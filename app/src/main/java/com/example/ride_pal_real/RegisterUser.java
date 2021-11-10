@@ -2,18 +2,13 @@ package com.example.ride_pal_real;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Locale;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
@@ -46,7 +41,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.create_account_head:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, SignInPage.class));
                 break;
             case R.id.create_button:
                 register();
