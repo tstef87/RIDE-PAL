@@ -1,5 +1,6 @@
 package com.example.ride_pal_real;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,13 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
     private TextView banner, registerUser;
     private EditText fname, lname, em, pw;
+    private ProgressBar pb;
     private FirebaseAuth mAuth;
 
     @Override
@@ -33,6 +41,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         lname =  findViewById(R.id.lastName);
         em = findViewById(R.id.sjuEmail);
         pw =  findViewById(R.id.password);
+
+        pb = findViewById(R.id.progressBar);
 
 
     }
@@ -55,6 +65,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String lastname = lname.getText().toString().trim();
         String emailaddress = em.getText().toString().trim();
         String password = pw.getText().toString().trim();
+
+
 
         if (firstname.isEmpty()){
             fname.setError("First Name can not be Empty");
@@ -84,6 +96,32 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             pw.requestFocus();
             return;
         }
+
+        pb.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(emailaddress, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    User user = new User(firstname, lastname, emailaddress, password);
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if(task.isSuccessful()){
+                                Toast.makeText(RegisterUser.this,"user hhave been registered", Toast.LENGTH_LONG).show();
+                                pb.setVisibility(View.VISIBLE);
+                            }else{
+                                Toast.makeText(RegisterUser.this, "no", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
 
 
         startActivity(new Intent(this, Main.class));
