@@ -110,7 +110,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()){
-                                Toast.makeText(RegisterUser.this,"user hhave been registered", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterUser.this,"user has been registered", Toast.LENGTH_LONG).show();
+
                                 pb.setVisibility(View.VISIBLE);
                             }else{
                                 Toast.makeText(RegisterUser.this, "no", Toast.LENGTH_SHORT).show();
@@ -118,13 +119,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         }
                     });
                 }
+                startActivity(new Intent(RegisterUser.this, Main.class));
+
             }
         });
 
 
 
 
-        startActivity(new Intent(this, Main.class));
     }
 
 
