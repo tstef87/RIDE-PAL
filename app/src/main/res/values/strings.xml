@@ -11,22 +11,4 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="back">Back</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="reset_password">Reset Password</string>
-    <string name="enter_email">Enter email</string>
-    <string name="title_activity_maps">MapsActivity</string>
-    <string name="name">Name</string>
-
-    <string-array name="parking_lots">
-        <item>Mandevill</item>
-        <item>Hagan</item>
-        <item>Campion</item>
-        <item>Merion</item>
-
-
-    </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>

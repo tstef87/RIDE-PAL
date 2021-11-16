@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RIDEPALREAL">
         <activity
+            android:name=".AccountInfoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_account_info"
+            android:theme="@style/Theme.RIDEPALREAL.NoActionBar" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity

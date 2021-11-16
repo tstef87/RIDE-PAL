@@ -3,58 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_rides">
+    app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_profile"
-        android:name="com.example.ride_pal_real.ui.profile.ProfileFragment"
-        android:label="Home"
+        android:id="@+id/nav_home"
+        android:name="com.example.ride_pal_real.ui.home.HomeFragment"
+        android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.ride_pal_real.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_rides"
-        android:name="com.example.ride_pal_real.ui.rides.create.ListFragment"
-        android:label="Find a Ride Pal"
-        tools:layout="@layout/fragment_list" />
-
-    <fragment
-        android:label="Your Ride Pals"
-        android:name="com.example.ride_pal_real.ui.yourRidePals.YourRides"
-        android:id="@+id/nav_your_rides"
-        tools:layout="@layout/fragment_your_rides" />
-
-    <fragment
-        android:label="Rides Posted"
-        android:name="com.example.ride_pal_real.ui.ride_applicants.RidesPostedListFragment"
-        android:id="@+id/nav_your_rides_posted"
-        tools:layout="@layout/fragment_rides_posted_list">
-        <action
-            android:id="@+id/action_nav_your_ride_applicants_to_nav_your_rides_posted"
-            app:destination="@id/nav_your_ride_applicants" />
-    </fragment>
-
-
-    <fragment
-        android:label="Your Applicants"
-        android:name="com.example.ride_pal_real.ui.ride_applicants.RideApplicantsFragment"
-        android:id="@+id/nav_your_ride_applicants"
-        tools:layout="@layout/fragment_ride_applicants" >
-
-    </fragment>
-
-
-    <activity
-        android:id="@+id/nav_map"
-        android:name="com.example.ride_pal_real.ui.map.MapsActivity"
-        android:label="Map"
-        tools:layout="@layout/activity_maps" />
-
-
-
-    <activity
-        android:id="@+id/nav_logout"
-        android:name="com.example.ride_pal_real.ui.logout.AccountSettings"
-        android:label="logout"
-        tools:layout="@layout/activity_logout_page" />
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.ride_pal_real.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
 </navigation>

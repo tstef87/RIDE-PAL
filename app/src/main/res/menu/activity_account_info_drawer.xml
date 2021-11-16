@@ -4,33 +4,17 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-
         <item
-            android:id="@+id/nav_rides"
-            android:icon="@mipmap/ic_launcher_carpoolicon"
-            android:title="Rides" />
-
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_your_rides"
-            android:icon="@mipmap/ic_launcher_carpoolicon"
-            android:title="Your Rides" />
-
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
         <item
-            android:id="@+id/nav_your_rides_posted"
-            android:icon="@android:drawable/ic_menu_revert"
-            android:title="Ride Applicants" />
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@mipmap/ic_launcher_profileicon"
-            android:title="Profile" />
-        <item
-            android:id="@+id/nav_help"
-            android:icon="@mipmap/ic_launcher_helpicon"
-            android:title="Help" />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@mipmap/ic_launcher_logouticon"
-            android:title="Logout" />
-
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_slideshow" />
     </group>
 </menu>

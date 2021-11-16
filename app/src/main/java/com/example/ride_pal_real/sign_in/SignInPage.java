@@ -57,7 +57,7 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                startActivity(new Intent(this, RegisterUser.class));
+                startActivity(new Intent(this, AccountInfoActivity.class));
                 break;
 
             case R.id.signIn:
