@@ -1,4 +1,4 @@
-package com.example.ride_pal_real.sign_in;
+package com.example.ride_pal_real;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ride_pal_real.R;
-import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,6 +26,8 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,14 +80,11 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
             editTextEmail.requestFocus();
             return;
         }
-
-        /** taken out for testing
         if (!email.substring(email.length() - 8, email.length()).equals("@sju.edu")){
             editTextEmail.setError("must be SJU email");
             editTextEmail.requestFocus();
             return;
         }
-         */
 
         if (pw.length() < 6){
             editTextPassword.setError("password must be more then 6 characters");
@@ -101,10 +98,10 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    assert user != null;
                     if(user.isEmailVerified()) {
-                        startActivity(new Intent(SignInPage.this, AccountInfoActivity.class));
+                        startActivity(new Intent(SignInPage.this, AccountSettings.class));
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(SignInPage.this, "check email for varification", Toast.LENGTH_LONG).show();

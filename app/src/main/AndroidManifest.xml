@@ -1,82 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ride_pal_real">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
-    <uses-permission android:name="RIDE PAL" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_sjuicon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_sjuicon"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RIDEPALREAL">
         <activity
-            android:name=".ui.ride_applicants.AppViewActivity"
+            android:name=".ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".ui.ride_applicants.RideApplicantsActivity"
+            android:name=".AccountSettings"
             android:exported="false" />
         <activity
-            android:name=".ui.ride_applicants.ApplicantsListActivity"
+            android:name=".RegisterUser"
             android:exported="false" />
         <activity
-            android:name=".ui.rides.create.ApplyForRideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.yourRidePals.YourRideView"
-            android:exported="false" />
-        <activity
-            android:name=".ui.rides.create.RideDiscription"
-            android:exported="false" />
-        <activity
-            android:name=".ui.rides.create.CreateRide"
-            android:exported="false" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".ui.map.MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".ui.AccountInfoActivity"
-            android:exported="false"
-            android:label="@string/title_activity_account_info"
-            android:theme="@style/Theme.RIDEPALREAL.NoActionBar" />
-        <activity
-            android:name=".sign_in.ForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".ui.logout.AccountSettings"
-            android:exported="false" />
-        <activity
-            android:name=".sign_in.RegisterUser"
-            android:exported="false" />
-        <activity
-            android:name=".sign_in.SignInPage"
+            android:name=".SignInPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

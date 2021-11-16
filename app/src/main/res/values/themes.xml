@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.RIDEPALREAL" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#9e1b32</item>
-        <item name="colorPrimaryVariant">#9e1b32</item>
+        <item name="colorPrimary">#A50000</item>
+        <item name="colorPrimaryVariant">#A50000</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#676767</item>
@@ -13,13 +13,4 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="Theme.RIDEPALREAL.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.RIDEPALREAL.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.RIDEPALREAL.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
