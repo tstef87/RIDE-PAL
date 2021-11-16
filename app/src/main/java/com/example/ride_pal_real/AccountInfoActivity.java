@@ -1,5 +1,6 @@
 package com.example.ride_pal_real;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -16,10 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ride_pal_real.databinding.ActivityAccountInfoBinding;
 
-public class AccountInfoActivity extends AppCompatActivity {
+public class AccountInfoActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityAccountInfoBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,8 @@ public class AccountInfoActivity extends AppCompatActivity {
         binding.appBarAccountInfo.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(AccountInfoActivity.this, AccountSettings.class));
+
             }
         });
         DrawerLayout drawer = binding.drawerLayout;

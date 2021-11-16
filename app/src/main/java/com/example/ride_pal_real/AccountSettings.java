@@ -24,7 +24,7 @@ public class AccountSettings extends AppCompatActivity {
 
     private String userId;
 
-    private Button logout;
+    private Button logout, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,18 @@ public class AccountSettings extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(AccountSettings.this, SignInPage.class));
+            }
+        });
+
+        back = (Button) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccountSettings.this, AccountInfoActivity.class));
             }
         });
 

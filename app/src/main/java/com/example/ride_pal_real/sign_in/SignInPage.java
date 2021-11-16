@@ -57,7 +57,7 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                startActivity(new Intent(this, AccountInfoActivity.class));
+                startActivity(new Intent(this, RegisterUser.class));
                 break;
 
             case R.id.signIn:
@@ -101,7 +101,7 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if(user.isEmailVerified()) {
-                        startActivity(new Intent(SignInPage.this, AccountSettings.class));
+                        startActivity(new Intent(SignInPage.this, AccountInfoActivity.class));
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(SignInPage.this, "check email for varification", Toast.LENGTH_LONG).show();
