@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class AccountSettings extends AppCompatActivity {
 
     private FirebaseUser user;
@@ -65,8 +67,8 @@ public class AccountSettings extends AppCompatActivity {
                 User userProfile = snapshot.getValue(User.class);
 
                 if(userProfile != null){
-                    String fn = userProfile.firstname;
-                    String ln = userProfile.lastname;
+                    String fn = userProfile.firstname.toUpperCase(Locale.ROOT);
+                    String ln = userProfile.lastname.toUpperCase(Locale.ROOT);
                     String ema = userProfile.email;
 
                     fname.setText(fn);
