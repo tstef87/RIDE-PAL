@@ -16,28 +16,32 @@
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/drawable/sju_app_icon_background.xml" value="0.10555555555555556" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_account_info.xml" value="0.375717017208413" />
+        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_account_info.xml" value="0.5451010886469674" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_forgot_password.xml" value="0.365625" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_main2.xml" value="0.33" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_register_user.xml" value="0.22" />
+        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_register_user.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/activity_signin.xml" value="0.25" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/app_bar_account_info.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/content_account_info.xml" value="0.1757852077001013" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/fragment_gallery.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/fragment_home.xml" value="0.20878623188405798" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/fragment_maps.xml" value="0.365625" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/fragment_slideshow.xml" value="0.20878623188405798" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/nav_header_account_info.xml" value="0.1" />
+        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/nav_header_account_info.xml" value="0.5" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/menu/account_info.xml" value="0.365625" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/menu/activity_account_info_drawer.xml" value="0.365625" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10555555555555556" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.10555555555555556" />
-        <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/mipmap-anydpi-v26/sju_app_icon.xml" value="0.10555555555555556" />
+        <entry key="app/src/main/res/layout/activity_account_info.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/app_bar_account_info.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/nav_header_account_info.xml" value="0.1296875" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
