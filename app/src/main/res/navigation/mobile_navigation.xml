@@ -19,7 +19,13 @@
 
     <fragment
         android:id="@+id/nav_map"
-        android:name="com.example.ride_pal_real.ui.slideshow.MapsFragment"
+        android:name="com.example.ride_pal_real.ui.map.MapsFragment"
         android:label="map"
         tools:layout="@layout/fragment_maps" />
+
+    <activity
+        android:id="@+id/nav_logout"
+        android:name="com.example.ride_pal_real.AccountSettings"
+        android:label="logout"
+        tools:layout="@layout/activity_main2" />
 </navigation>
