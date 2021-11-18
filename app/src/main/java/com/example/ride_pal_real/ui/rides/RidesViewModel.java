@@ -1,4 +1,4 @@
-package com.example.ride_pal_real.ui.gallery;
+package com.example.ride_pal_real.ui.rides;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class GalleryViewModel extends ViewModel {
+public class RidesViewModel extends ViewModel {
 
 
     private FirebaseUser user;
@@ -19,16 +19,12 @@ public class GalleryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public RidesViewModel() {
         mText = new MutableLiveData<>();
 
 
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        userId = user.getUid();
-
-        mText.setValue(user.getEmail());
+        mText.setValue("this is the Rides fragment");
 
 
 

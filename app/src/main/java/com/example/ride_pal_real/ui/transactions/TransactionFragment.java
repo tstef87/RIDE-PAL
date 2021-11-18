@@ -1,4 +1,4 @@
-package com.example.ride_pal_real.ui.gallery;
+package com.example.ride_pal_real.ui.transactions;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,24 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ride_pal_real.R;
-import com.example.ride_pal_real.databinding.FragmentGalleryBinding;
+import com.example.ride_pal_real.databinding.FragmentHomeBinding;
+import com.example.ride_pal_real.databinding.FragmentTransactionsBinding;
 
-public class GalleryFragment extends Fragment {
+public class TransactionFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
-    private FragmentGalleryBinding binding;
+    private TransactionViewModel transactionViewModel;
+    private FragmentTransactionsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        transactionViewModel =
+                new ViewModelProvider(this).get(TransactionViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentTransactionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textTransaction;
+        transactionViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

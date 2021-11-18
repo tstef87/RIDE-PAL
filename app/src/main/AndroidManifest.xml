@@ -40,25 +40,25 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ui.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".AccountInfoActivity"
+            android:name=".ui.AccountInfoActivity"
             android:exported="false"
             android:label="@string/title_activity_account_info"
             android:theme="@style/Theme.RIDEPALREAL.NoActionBar" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".sign_in.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".AccountSettings"
+            android:name=".ui.logout.AccountSettings"
             android:exported="false" />
         <activity
-            android:name=".RegisterUser"
+            android:name=".sign_in.RegisterUser"
             android:exported="false" />
         <activity
-            android:name=".SignInPage"
+            android:name=".sign_in.SignInPage"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

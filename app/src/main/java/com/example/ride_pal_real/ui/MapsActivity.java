@@ -1,8 +1,9 @@
-package com.example.ride_pal_real;
+package com.example.ride_pal_real.ui;
 
 import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.example.ride_pal_real.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

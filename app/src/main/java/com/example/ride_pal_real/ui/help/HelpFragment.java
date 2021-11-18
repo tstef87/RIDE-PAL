@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ride_pal_real.databinding.FragmentHelpBinding;
 import com.example.ride_pal_real.databinding.FragmentHomeBinding;
+import com.example.ride_pal_real.databinding.FragmentTransactionsBinding;
 
 public class HelpFragment extends Fragment {
 
