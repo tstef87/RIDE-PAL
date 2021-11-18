@@ -119,7 +119,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         }
                     });
                 }
-                startActivity(new Intent(RegisterUser.this, AccountSettings.class));
+                startActivity(new Intent(RegisterUser.this, AccountInfoActivity.class));
 
             }
         });
