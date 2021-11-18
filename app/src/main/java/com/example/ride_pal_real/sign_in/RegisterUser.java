@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ProgressBar;
@@ -19,7 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView banner, registerUser;
+    private TextView banner;
+    private Button registerUser;
     private EditText fname, lname, em, pw;
     private ProgressBar pb;
     private FirebaseAuth mAuth;
@@ -34,7 +36,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         banner =  findViewById(R.id.create_account_head);
         banner.setOnClickListener(this);
 
-        registerUser =  findViewById(R.id.create_button);
+        registerUser =  findViewById(R.id.register_button);
         registerUser.setOnClickListener(this);
 
         fname = findViewById(R.id.firstName);
@@ -53,7 +55,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             case R.id.create_account_head:
                 startActivity(new Intent(this, SignInPage.class));
                 break;
-            case R.id.create_button:
+            case R.id.register_button:
                 register();
                 break;
         }
