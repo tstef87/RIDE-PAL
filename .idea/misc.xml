@@ -63,6 +63,7 @@
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_transactions.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/nav_header_account_info.xml" value="0.1296875" />
+        <entry key="app/src/main/res/menu/account_info.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/menu/activity_account_info_drawer.xml" value="0.2526041666666667" />
       </map>
     </option>
