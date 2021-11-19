@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.example.ride_pal_real.ui.profile.ProfileFragment"
-        android:label="Profile"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment

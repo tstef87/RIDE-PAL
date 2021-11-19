@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_profile"
             android:icon="@mipmap/ic_launcher_profileicon"
-            android:title="Profile" />
+            android:title="Home" />
         <item
             android:id="@+id/nav_rides"
             android:icon="@mipmap/ic_launcher_carpoolicon"
