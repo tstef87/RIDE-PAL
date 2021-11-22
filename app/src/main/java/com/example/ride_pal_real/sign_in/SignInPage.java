@@ -29,8 +29,6 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,8 +98,8 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user != null;
                     if(user.isEmailVerified()) {
                         startActivity(new Intent(SignInPage.this, AccountInfoActivity.class));
                     }else{
