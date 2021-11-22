@@ -30,8 +30,6 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-
-
     }
 
     @Override

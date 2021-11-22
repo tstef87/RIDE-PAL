@@ -61,6 +61,8 @@
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_ride_pals.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_ride_pals_list.xml" value="0.23854166666666668" />

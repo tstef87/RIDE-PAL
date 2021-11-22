@@ -22,9 +22,9 @@
 
     <fragment
         android:id="@+id/nav_rides"
-        android:name="com.example.ride_pal_real.ui.rides.RidePalsFragment"
+        android:name="com.example.ride_pal_real.ui.rides.RideListingFragment"
         android:label="Create Ride"
-        tools:layout="@layout/fragment_ride_pals" />
+        tools:layout="@layout/fragment_item" />
 
 
     <activity

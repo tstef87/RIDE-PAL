@@ -1,15 +1,9 @@
 package com.example.ride_pal_real.ui.rides.placeholder;
 
-import com.example.ride_pal_real.sign_in.User;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -19,12 +13,6 @@ import java.util.PriorityQueue;
  */
 public class PlaceholderContent {
 
-    private FirebaseUser user;
-    private DatabaseReference reference;
-
-    private String userId;
-
-
     /**
      * An array of sample (placeholder) items.
      */
@@ -33,10 +21,7 @@ public class PlaceholderContent {
     /**
      * A map of sample (placeholder) items, by ID.
      */
-    public static Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
-
-
-
+    public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
 
     private static final int COUNT = 25;
 
