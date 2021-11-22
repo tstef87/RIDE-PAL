@@ -1,27 +1,19 @@
 package com.example.ride_pal_real.ui.logout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.SignInPage;
-import com.example.ride_pal_real.sign_in.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Locale;
 
 public class AccountSettings extends AppCompatActivity {
 
@@ -35,7 +27,7 @@ public class AccountSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_logout_page);
 
         logout = (Button) findViewById(R.id.signOut);
 
@@ -61,34 +53,7 @@ public class AccountSettings extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userId = user.getUid();
 
-        final TextView fname = (TextView) findViewById(R.id.fname_data);
-        final TextView lname = (TextView) findViewById(R.id.lname_data);
-        final TextView em = (TextView) findViewById(R.id.email_data);
 
-        reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-
-                if(userProfile != null){
-                    String fn = userProfile.firstname.toUpperCase(Locale.ROOT);
-                    String ln = userProfile.lastname.toUpperCase(Locale.ROOT);
-                    String ema = userProfile.email;
-
-                    fname.setText(fn);
-                    lname.setText(ln);
-                    em.setText(ema);
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
     }
 }

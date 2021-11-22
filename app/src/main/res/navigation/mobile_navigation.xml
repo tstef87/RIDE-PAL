@@ -31,5 +31,5 @@
         android:id="@+id/nav_logout"
         android:name="com.example.ride_pal_real.ui.logout.AccountSettings"
         android:label="logout"
-        tools:layout="@layout/activity_main2" />
+        tools:layout="@layout/activity_logout_page" />
 </navigation>
