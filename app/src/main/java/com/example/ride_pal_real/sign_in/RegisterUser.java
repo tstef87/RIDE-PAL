@@ -14,9 +14,11 @@ import android.widget.Toast;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
@@ -104,7 +106,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(firstname, lastname, emailaddress, password);
+                    User user = new User(firstname, lastname, emailaddress);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -112,16 +114,25 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()){
-                                Toast.makeText(RegisterUser.this,"user has been registered", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterUser.this,"user has been registered, check email for verification", Toast.LENGTH_LONG).show();
+                                pb.setVisibility(View.INVISIBLE);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                user.sendEmailVerification();
+                                startActivity(new Intent(RegisterUser.this, SignInPage.class));
 
-                                pb.setVisibility(View.VISIBLE);
+
+
                             }else{
                                 Toast.makeText(RegisterUser.this, "no", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
                 }
-                startActivity(new Intent(RegisterUser.this, AccountInfoActivity.class));
+                Toast.makeText(RegisterUser.this, "Email is already in use", Toast.LENGTH_LONG).show();
+                pb.setVisibility(View.INVISIBLE);
+
+
 
             }
         });
