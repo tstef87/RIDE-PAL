@@ -26,4 +26,10 @@
         android:layout_height="wrap_content"
         android:text="@string/name" />
 
+    <TextView
+        android:id="@+id/navEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="email" />
+
 </LinearLayout>

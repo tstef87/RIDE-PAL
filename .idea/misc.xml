@@ -68,7 +68,7 @@
         <entry key="app/src/main/res/layout/fragment_ride_pals_list.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_transactions.xml" value="0.2526041666666667" />
-        <entry key="app/src/main/res/layout/nav_header_account_info.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/nav_header_account_info.xml" value="0.375" />
         <entry key="app/src/main/res/menu/account_info.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/menu/activity_account_info_drawer.xml" value="0.2526041666666667" />
       </map>

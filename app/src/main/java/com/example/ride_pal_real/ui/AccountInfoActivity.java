@@ -75,6 +75,7 @@ public class AccountInfoActivity extends AppCompatActivity  {
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.navFullName);
+        TextView navEmail = (TextView) headerView.findViewById(R.id.navEmail);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -87,12 +88,13 @@ public class AccountInfoActivity extends AppCompatActivity  {
                 User userProfile = snapshot.getValue(User.class);
 
                 if (userProfile != null) {
-                    String fn = userProfile.firstname.toUpperCase(Locale.ROOT);
-                    String ln = userProfile.lastname.toUpperCase(Locale.ROOT);
+                    String fn = userProfile.firstname.substring(0,1).toUpperCase(Locale.ROOT)+""+userProfile.firstname.substring(1).toLowerCase(Locale.ROOT);
+                    String ln = userProfile.lastname.substring(0,1).toUpperCase(Locale.ROOT)+""+userProfile.lastname.substring(1).toLowerCase(Locale.ROOT);
                     String full = fn + " " + ln;
                     String ema = userProfile.email;
 
                     navUsername.setText(full);
+                    navEmail.setText(ema);
                 }
 
             }
