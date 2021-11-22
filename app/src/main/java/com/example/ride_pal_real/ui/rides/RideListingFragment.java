@@ -18,7 +18,7 @@ import com.example.ride_pal_real.ui.rides.placeholder.PlaceholderContent;
 /**
  * A fragment representing a list of Items.
  */
-public class RidePalsFragment extends Fragment {
+public class RideListingFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -29,13 +29,13 @@ public class RidePalsFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public RidePalsFragment() {
+    public RideListingFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static RidePalsFragment newInstance(int columnCount) {
-        RidePalsFragment fragment = new RidePalsFragment();
+    public static RideListingFragment newInstance(int columnCount) {
+        RideListingFragment fragment = new RideListingFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -54,7 +54,7 @@ public class RidePalsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ride_pals_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -65,7 +65,7 @@ public class RidePalsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            recyclerView.setAdapter(new MyRideListingRecyclerViewAdapter(PlaceholderContent.ITEMS));
         }
         return view;
     }
