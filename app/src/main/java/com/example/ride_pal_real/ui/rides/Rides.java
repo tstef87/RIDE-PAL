@@ -14,7 +14,7 @@ public class Rides {
 
     }
 
-    public Rides( FirebaseUser user, String dis, String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday){
+    public Rides( String dis, String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday){
         this.dis = dis;
         this.time = time;
         this.destination = destination;

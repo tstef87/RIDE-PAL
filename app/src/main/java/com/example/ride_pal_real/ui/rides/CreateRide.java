@@ -86,8 +86,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-        String text = parent.getItemAtPosition(position).toString();
-        spinnerResult = text;
+        spinnerResult = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(),text, Toast.LENGTH_SHORT).show();
 
     }
@@ -100,40 +99,40 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
     private boolean tof(CheckBox x){
 
-        if (x.isChecked()){
-            return true;
-        }
-        return false;
+        return x.isChecked();
     }
 
     private void register(){
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference ref = database.getReference("Rides");
 
-        boolean mon = tof(mday);
-        boolean tue = tof(tuday);
-        boolean wed = tof(wday);
-        boolean thu = tof(thday);
-        boolean fri = tof(fday);
         String t = time.getText().toString().trim();
         String d = dis.getText().toString().trim();
         String dest = spinnerResult;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        Rides ride = new Rides( user, d, t, dest, mon, tue, wed, thu, fri);
-
-
-        DatabaseReference rideRef = ref;
-        Map<String, Rides> rides = new HashMap<>();
-
-        rides.put(user.getUid(), ride);
-
-        rideRef.setValue(rides);
+        boolean tue = tof(tuday);
+        boolean mond = tof(mday);
+        boolean wed = tof(wday);
+        boolean thu = tof(thday);
+        boolean fri = tof(fday);
 
 
-        //Toast.makeText(CreateRide.this, "failed", Toast.LENGTH_SHORT).show();
+        if (t.isEmpty()){
+            time.setError("time can not be empty");
+            time.requestFocus();
+            return;
+        }
+        if (d.isEmpty()){
+            dis.setError("discription can not be empty");
+            dis.requestFocus();
+            return;
+        }
+
+        FirebaseDatabase.getInstance().getReference("Rides")
+                .child(d)
+                .setValue(new Rides(user.getUid(), t, dest, mond, tue, wed, thu, fri));
 
     }
 
