@@ -16,6 +16,15 @@
     <string name="reset_password">Reset Password</string>
     <string name="enter_email">Enter email</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="parking_lots">
+        <item>Mandevill</item>
+        <item>Hagan</item>
+        <item>Campion</item>
+        <item>Merion</item>
+
+
+
+    </string-array>
+
 </resources>
