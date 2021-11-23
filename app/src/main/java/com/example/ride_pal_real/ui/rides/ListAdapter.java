@@ -17,8 +17,6 @@ public class ListAdapter extends ArrayAdapter<Rides> {
 
 
 
-
-
     public ListAdapter(@NonNull Context context, ArrayList<Rides> ridesArrayList) {
         super(context, R.layout.list_item, ridesArrayList);
     }

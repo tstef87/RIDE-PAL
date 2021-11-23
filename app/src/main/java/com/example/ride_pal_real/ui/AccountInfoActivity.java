@@ -66,7 +66,7 @@ public class AccountInfoActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_map, R.id.nav_logout, R.id.nav_profile, R.id.nav_rides)
+                R.id.nav_map, R.id.nav_logout, R.id.nav_profile, R.id.nav_rides, R.id.nav_transactions)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);

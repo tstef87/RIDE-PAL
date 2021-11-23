@@ -53,6 +53,7 @@
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_listing.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout/activity_logout_page.xml" value="0.11197916666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22604166666666667" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.2526041666666667" />
@@ -66,7 +67,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.125" />
-        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.11197916666666667" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_mightdelete.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_ride_list.xml" value="0.1" />
@@ -75,7 +76,7 @@
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_transactions.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_work_list.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/list_item.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/nav_header_account_info.xml" value="0.375" />
         <entry key="app/src/main/res/menu/account_info.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/menu/activity_account_info_drawer.xml" value="0.2526041666666667" />

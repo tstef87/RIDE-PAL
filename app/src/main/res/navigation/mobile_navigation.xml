@@ -12,7 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
 
-
     <fragment
         android:id="@+id/nav_map"
         android:name="com.example.ride_pal_real.ui.map.MapsFragment"
@@ -25,7 +24,6 @@
         android:name="com.example.ride_pal_real.ui.rides.create.CreateRide"
         android:label="Create Ride"
         tools:layout="@layout/activity_create_ride" />
-
 
     <activity
         android:id="@+id/nav_logout"
