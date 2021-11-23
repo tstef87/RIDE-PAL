@@ -2,6 +2,7 @@ package com.example.ride_pal_real.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.GnssAntennaInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -29,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
-public class AccountInfoActivity extends AppCompatActivity  {
+public class AccountInfoActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityAccountInfoBinding binding;
@@ -125,4 +126,6 @@ public class AccountInfoActivity extends AppCompatActivity  {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
