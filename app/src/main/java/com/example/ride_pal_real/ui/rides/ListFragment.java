@@ -1,66 +1,143 @@
 package com.example.ride_pal_real.ui.rides;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Binder;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.ride_pal_real.R;
+import com.example.ride_pal_real.databinding.FragmentListBinding;
+import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.map.MapsFragment;
+import com.example.ride_pal_real.ui.rides.create.CreateRide;
+import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 public class ListFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ArrayAdapter<String> adapter;
+    ArrayList<String> data = new ArrayList<String>();
+    ListView listView;
+    SearchView searchView;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ListFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(String param1, String param2) {
-        ListFragment fragment = new ListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference ref = database.getReference("Rides");
+        //ArrayList<Rides> ridesArrayList = new ArrayList<>();
+        //HashMap<String, String> hmap = new HashMap<>();
+
+
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
+
+
+        FirebaseDatabase.getInstance().getReference().child("Rides")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            String dest = snapshot.child("destination").getValue().toString();
+                            data.add(dest);
+                        }
+
+                        listView = (ListView) view.findViewById(R.id.listview);
+                        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
+                        listView.setAdapter(adapter);
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+
+
+        return view;
+
+        //View view = inflater.inflate(R.layout.fragment_list,container, false);
+        //listView = (ListView) view.findViewById(R.id.listview);
+        //adapter = new ArrayAdapter<Map<String, String>>(getActivity(), android.R.layout.simple_list_item_1, (List<Map<String, String>>) hmap);
+
+
+
+
+
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+
+
+    }
+
+
+    private void moveToNewActivity (){
+
+        Intent i = new Intent(getActivity(), CreateRide.class);
+        startActivity(i);
+        ((Activity)getActivity()).overridePendingTransition(0,0);
+    }
+
+    private String getDoW(Rides ride){
+
+        String days = "";
+        if(ride.monday){
+            days += "Monday ";
+        }
+        if(ride.tuesday){
+            days += "Tuesday ";
+        }
+        if(ride.wednesday){
+            days += "Wednesday ";
+        }
+        if(ride.thursday){
+            days += "Thursday ";
+        }
+        if(ride.friday){
+            days += "Firday";
+        }
+        return days;
+
+    }
+
+
 }

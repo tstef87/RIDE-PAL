@@ -48,7 +48,7 @@
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/nav_header_account_info.xml" value="0.5" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/menu/account_info.xml" value="0.365625" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/menu/activity_account_info_drawer.xml" value="0.365625" />
-        <entry key="app/src/main/res/layout/activity_account_info.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_account_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_ride.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_listing.xml" value="0.21302083333333333" />
@@ -66,7 +66,7 @@
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_mightdelete.xml" value="0.25" />
