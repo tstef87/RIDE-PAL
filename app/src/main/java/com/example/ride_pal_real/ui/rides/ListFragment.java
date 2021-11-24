@@ -65,8 +65,18 @@ public class ListFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            String dest = snapshot.child("destination").getValue().toString();
-                            data.add(dest);
+                            String s = snapshot.child("destination").getValue().toString();
+                            s += "- ";
+                            s += snapshot.child("time").getValue().toString();
+                            s += ": ";
+
+                            if(snapshot.child("monday").getValue().toString().equals("true")){ s += "Monday ";}
+                            if(snapshot.child("tuesday").getValue().toString().equals("true")){ s += "Tuesday ";}
+                            if(snapshot.child("wednesday").getValue().toString().equals("true")){ s += "Wednesday ";}
+                            if(snapshot.child("thursday").getValue().toString().equals("true")){ s += "Thursday ";}
+                            if(snapshot.child("friday").getValue().toString().equals("true")){ s += "Friday ";}
+
+                            data.add(s);
                         }
 
                         listView = (ListView) view.findViewById(R.id.listview);
@@ -116,28 +126,5 @@ public class ListFragment extends Fragment {
         startActivity(i);
         ((Activity)getActivity()).overridePendingTransition(0,0);
     }
-
-    private String getDoW(Rides ride){
-
-        String days = "";
-        if(ride.monday){
-            days += "Monday ";
-        }
-        if(ride.tuesday){
-            days += "Tuesday ";
-        }
-        if(ride.wednesday){
-            days += "Wednesday ";
-        }
-        if(ride.thursday){
-            days += "Thursday ";
-        }
-        if(ride.friday){
-            days += "Firday";
-        }
-        return days;
-
-    }
-
 
 }
