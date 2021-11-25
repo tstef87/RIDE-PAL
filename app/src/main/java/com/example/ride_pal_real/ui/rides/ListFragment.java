@@ -25,6 +25,7 @@ import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.ui.map.MapsFragment;
 import com.example.ride_pal_real.ui.rides.create.CreateRide;
 import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +43,7 @@ public class ListFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
     ArrayList<String> data = new ArrayList<String>();
+    ArrayList<Rides> ridesArrayList = new ArrayList<>();
     ListView listView;
     SearchView searchView;
 
@@ -63,8 +65,14 @@ public class ListFragment extends Fragment {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Rides ride = new Rides();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+
+
+
+
                             String s = snapshot.child("destination").getValue().toString();
                             s += "- ";
                             s += snapshot.child("time").getValue().toString();
@@ -84,8 +92,6 @@ public class ListFragment extends Fragment {
                         listView.setAdapter(adapter);
 
 
-
-
                     }
 
                     @Override
@@ -93,6 +99,27 @@ public class ListFragment extends Fragment {
 
                     }
                 });
+
+        FloatingActionButton refresh = (FloatingActionButton) view.findViewById(R.id.refresh);
+        FloatingActionButton createNewRide = (FloatingActionButton) view.findViewById(R.id.create_new_ride_fab);
+
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                moveToNewActivity(AccountInfoActivity.class);
+            }
+        });
+
+        createNewRide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                moveToNewActivity(CreateRide.class);
+
+            }
+        });
 
         return view;
 
@@ -102,16 +129,20 @@ public class ListFragment extends Fragment {
     public void onStart(){
         super.onStart();
 
-
-
     }
 
 
-    private void moveToNewActivity (){
+    private void moveToNewActivity (Class c){
 
-        Intent i = new Intent(getActivity(), CreateRide.class);
+        Intent i = new Intent(getActivity(), c);
         startActivity(i);
         ((Activity)getActivity()).overridePendingTransition(0,0);
+    }
+
+    private Rides makeRide(){
+        Rides ride = new Rides();
+        return ride;
+
     }
 
 }
