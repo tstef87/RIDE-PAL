@@ -94,20 +94,7 @@ public class ListFragment extends Fragment {
                     }
                 });
 
-
-
-
-
-
         return view;
-
-        //View view = inflater.inflate(R.layout.fragment_list,container, false);
-        //listView = (ListView) view.findViewById(R.id.listview);
-        //adapter = new ArrayAdapter<Map<String, String>>(getActivity(), android.R.layout.simple_list_item_1, (List<Map<String, String>>) hmap);
-
-
-
-
 
     }
 
