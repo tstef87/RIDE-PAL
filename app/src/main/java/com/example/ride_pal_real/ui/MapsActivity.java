@@ -35,9 +35,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
     private GoogleMap mMap;
-private ActivityMapsBinding binding;
+    private ActivityMapsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +83,8 @@ private ActivityMapsBinding binding;
     // TextView latitudeTextView, longitTextView;
     int PERMISSION_ID = 44;
 
-    private double lon;
-    private double lat;
+    public double lon = 1.0;
+    public double lat = 34.0;
 
 
 
