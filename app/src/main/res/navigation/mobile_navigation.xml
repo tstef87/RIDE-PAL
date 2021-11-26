@@ -12,17 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
 
-    <fragment
+    <activity
         android:id="@+id/nav_map"
-        android:name="com.example.ride_pal_real.ui.map.MapsFragment"
+        android:name="com.example.ride_pal_real.ui.MapsActivity"
         android:label="Map"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/activity_maps" />
 
     <fragment
         android:id="@+id/nav_rides"
         android:name="com.example.ride_pal_real.ui.rides.ListFragment"
         android:label="Find a Ride Pal"
         tools:layout="@layout/fragment_list" />
+
+
 
 
     <activity

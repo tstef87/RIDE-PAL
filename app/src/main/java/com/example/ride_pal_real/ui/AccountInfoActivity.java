@@ -1,6 +1,7 @@
 package com.example.ride_pal_real.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.location.GnssAntennaInfo;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import java.util.Locale;
 
 public class AccountInfoActivity extends AppCompatActivity {
 
+    //public static final Context CONTEXT_IGNO = ;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityAccountInfoBinding binding;
 
