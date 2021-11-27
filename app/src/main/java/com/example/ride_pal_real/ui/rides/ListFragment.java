@@ -22,9 +22,11 @@ import android.widget.TextView;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.databinding.FragmentListBinding;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.map.MapsActivity;
 import com.example.ride_pal_real.ui.map.MapsFragment;
 import com.example.ride_pal_real.ui.rides.create.CreateRide;
 import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.example.ride_pal_real.ui.rides.ridedis.RideDiscription;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,10 +71,6 @@ public class ListFragment extends Fragment {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-
-
-
-
                             String s = snapshot.child("destination").getValue().toString();
                             s += "- ";
                             s += snapshot.child("time").getValue().toString();
@@ -84,12 +82,24 @@ public class ListFragment extends Fragment {
                             if(snapshot.child("thursday").getValue().toString().equals("true")){ s += "Thursday ";}
                             if(snapshot.child("friday").getValue().toString().equals("true")){ s += "Friday ";}
 
+
+
+
                             data.add(s);
                         }
 
                         listView = (ListView) view.findViewById(R.id.listview);
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                moveToNewActivity(RideDiscription.class);
+                            }
+                        });
+
+
 
 
                     }

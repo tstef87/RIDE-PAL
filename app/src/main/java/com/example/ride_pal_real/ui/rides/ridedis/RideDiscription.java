@@ -15,8 +15,5 @@ public class RideDiscription extends AppCompatActivity {
 
 
 
-
-
-
     }
 }
