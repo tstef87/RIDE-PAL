@@ -140,12 +140,8 @@ public class ListFragment extends Fragment {
                                 RideDiscription.getRideFromList(r);
                                 moveToNewActivity(RideDiscription.class);
 
-
-
                             }
                         });
-
-
 
 
                     }
@@ -195,10 +191,5 @@ public class ListFragment extends Fragment {
         ((Activity)getActivity()).overridePendingTransition(0,0);
     }
 
-    private Rides makeRide(){
-        Rides ride = new Rides();
-        return ride;
-
-    }
 
 }
