@@ -136,7 +136,12 @@ public class ListFragment extends Fragment {
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Rides r = dataRides.get(position);
+                                RideDiscription.getRideFromList(r);
                                 moveToNewActivity(RideDiscription.class);
+
+
+
                             }
                         });
 

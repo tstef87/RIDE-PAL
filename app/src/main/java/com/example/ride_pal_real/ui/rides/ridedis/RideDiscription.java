@@ -2,38 +2,39 @@ package com.example.ride_pal_real.ui.rides.ridedis;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
-import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.rides.create.Rides;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 public class RideDiscription extends AppCompatActivity {
+
+    private TextView name, time, destination;
+    private static Rides rideVal;
+
+    public static Rides getRideFromList(Rides ride) {
+
+       rideVal = ride;
+       return rideVal;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_discription);
 
-        Button back = (Button) findViewById(R.id.ride_dis_back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RideDiscription.this, AccountInfoActivity.class));
-            }
-        });
+        name = findViewById(R.id.dis_username_tv);
+        time = findViewById(R.id.dis_time_tv);
+        destination = findViewById(R.id.dis_destination_tv);
 
-        Button accept = (Button) findViewById(R.id.accept);
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        destination.setText(rideVal.getDestination());
+        time.setText(rideVal.getTime());
+        name.setText(rideVal.getDis());
 
 
 
 
     }
+
 }
