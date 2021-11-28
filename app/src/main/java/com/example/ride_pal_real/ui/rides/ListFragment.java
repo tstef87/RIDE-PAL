@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +70,9 @@ public class ListFragment extends Fragment {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Rides ride = new Rides();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Rides ride = new Rides();
 
                             ride.setDestination(snapshot.child("destination").getValue().toString());
                             ride.setDis(snapshot.child("dis").getValue().toString());
@@ -107,24 +108,6 @@ public class ListFragment extends Fragment {
                                 ride.setFriday(false);
                             }
 
-
-
-/*
-                            String s = snapshot.child("destination").getValue().toString();
-                            s += "- ";
-                            s += snapshot.child("time").getValue().toString();
-                            s += ": ";
-
-                            if(snapshot.child("monday").getValue().toString().equals("true")){ s += "Monday ";}
-                            if(snapshot.child("tuesday").getValue().toString().equals("true")){ s += "Tuesday ";}
-                            if(snapshot.child("wednesday").getValue().toString().equals("true")){ s += "Wednesday ";}
-                            if(snapshot.child("thursday").getValue().toString().equals("true")){ s += "Thursday ";}
-                            if(snapshot.child("friday").getValue().toString().equals("true")){ s += "Friday ";}
-
- */
-
-
-
                             data.add(ride.toStringList());
                             dataRides.add(ride);
                         }
@@ -133,12 +116,19 @@ public class ListFragment extends Fragment {
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
 
+
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                                 Rides r = dataRides.get(position);
-                                RideDiscription.getRideFromList(r);
-                                moveToNewActivity(RideDiscription.class);
+
+                                Intent i = new Intent(getActivity() , RideDiscription.class);
+                                i.putExtra("name", r.getDis());
+                                i.putExtra("destination", r.getDestination());
+                                i.putExtra("time", r.getTime());
+
+                                startActivity(i);
 
                             }
                         });

@@ -2,39 +2,39 @@ package com.example.ride_pal_real.ui.rides.ridedis;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
-import com.example.ride_pal_real.ui.rides.create.Rides;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class RideDiscription extends AppCompatActivity {
 
-    private TextView name, time, destination;
-    private static Rides rideVal;
+    private TextView nameTV, timeTV, destinationTV;
 
-    public static Rides getRideFromList(Rides ride) {
 
-       rideVal = ride;
-       return rideVal;
 
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_discription);
 
-        name = findViewById(R.id.dis_username_tv);
-        time = findViewById(R.id.dis_time_tv);
-        destination = findViewById(R.id.dis_destination_tv);
+        Bundle recdData = getIntent().getExtras();
+        String name = recdData.getString("name");
+        String time = recdData.getString("destination");
+        String des = recdData.getString("time");
 
-        destination.setText(rideVal.getDestination());
-        time.setText(rideVal.getTime());
-        name.setText(rideVal.getDis());
+        nameTV = findViewById(R.id.dis_username_tv);
+        timeTV = findViewById(R.id.dis_time_tv);
+        destinationTV = findViewById(R.id.dis_destination_tv);
 
+        nameTV.setText(name);
+        timeTV.setText(des);
+        destinationTV.setText(time);
 
 
 
     }
+
+
 
 }
