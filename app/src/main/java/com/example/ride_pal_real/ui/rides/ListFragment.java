@@ -45,6 +45,8 @@ public class ListFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
     ArrayList<String> data = new ArrayList<String>();
+    ArrayList<Rides> dataRides = new ArrayList<Rides>();
+
     ArrayList<Rides> ridesArrayList = new ArrayList<>();
     ListView listView;
     SearchView searchView;
@@ -71,6 +73,43 @@ public class ListFragment extends Fragment {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
+                            ride.setDestination(snapshot.child("destination").getValue().toString());
+                            ride.setDis(snapshot.child("dis").getValue().toString());
+                            ride.setTime(snapshot.child("time").getValue().toString());
+
+                            if(snapshot.child("monday").getValue().toString().equals("true")){
+                                ride.setMonday(true);
+                            }else{
+                                ride.setMonday(false);
+                            }
+
+                            if(snapshot.child("tuesday").getValue().toString().equals("true")){
+                                ride.setTuesday(true);
+                            }else{
+                                ride.setTuesday(false);
+                            }
+
+                            if(snapshot.child("wednesday").getValue().toString().equals("true")){
+                                ride.setWednesday(true);
+                            }else{
+                                ride.setWednesday(false);
+                            }
+
+                            if(snapshot.child("thursday").getValue().toString().equals("true")){
+                                ride.setThursday(true);
+                            }else{
+                                ride.setThursday(false);
+                            }
+
+                            if(snapshot.child("friday").getValue().toString().equals("true")){
+                                ride.setFriday(true);
+                            }else{
+                                ride.setFriday(false);
+                            }
+
+
+
+/*
                             String s = snapshot.child("destination").getValue().toString();
                             s += "- ";
                             s += snapshot.child("time").getValue().toString();
@@ -82,10 +121,12 @@ public class ListFragment extends Fragment {
                             if(snapshot.child("thursday").getValue().toString().equals("true")){ s += "Thursday ";}
                             if(snapshot.child("friday").getValue().toString().equals("true")){ s += "Friday ";}
 
+ */
 
 
 
-                            data.add(s);
+                            data.add(ride.toStringList());
+                            dataRides.add(ride);
                         }
 
                         listView = (ListView) view.findViewById(R.id.listview);

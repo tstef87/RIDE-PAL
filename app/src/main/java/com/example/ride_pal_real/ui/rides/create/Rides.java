@@ -86,4 +86,34 @@ public class Rides {
     public void setFriday(boolean friday) {
         this.friday = friday;
     }
+
+    @Override
+    public String toString() {
+        return "Rides{" +
+                "dis='" + dis + '\'' +
+                ", time='" + time + '\'' +
+                ", destination='" + destination + '\'' +
+                ", monday=" + monday +
+                ", tuesday=" + tuesday +
+                ", wednesday=" + wednesday +
+                ", thursday=" + thursday +
+                ", friday=" + friday +
+                '}';
+    }
+
+    public String toStringList(){
+        String s = "";
+        s += getDestination();
+        s += "- ";
+        s += getTime();
+        s += ": ";
+
+        if(isMonday()){ s += "Monday ";}
+        if(isTuesday()){ s += "Tuesday ";}
+        if(isWednesday()){ s += "Wednesday ";}
+        if(isTuesday()){ s += "Thursday ";}
+        if(isFriday()){ s += "Friday ";}
+
+        return s;
+    }
 }
