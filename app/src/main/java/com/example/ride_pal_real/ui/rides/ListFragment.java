@@ -121,7 +121,12 @@ public class ListFragment extends Fragment {
                                 i.putExtra("name", r.getName());
                                 i.putExtra("destination", r.getDestination());
                                 i.putExtra("time", r.getTime());
-
+                                i.putExtra("name", r.getName());
+                                i.putExtra("monday", r.isMonday());
+                                i.putExtra("tuesday", r.isTuesday());
+                                i.putExtra("wednesday", r.isWednesday());
+                                i.putExtra("thursday", r.isThursday());
+                                i.putExtra("friday", r.isFriday());
                                 startActivity(i);
 
                             }

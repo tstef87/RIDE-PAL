@@ -70,7 +70,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String lastname = lname.getText().toString().trim();
         String emailaddress = em.getText().toString().trim();
         String password = pw.getText().toString().trim();
-        ArrayList<Rides> yourRidesList = new ArrayList<>();
+        Rides yourRides= new Rides();
 
 
 
@@ -108,7 +108,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(firstname, lastname, emailaddress, yourRidesList);
+                    User user = new User(firstname, lastname, emailaddress);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -35,7 +35,8 @@ public class YourRides extends Fragment {
     String userID;
 
     ListView listView;
-    DatabaseReference reference;
+    DatabaseReference referenceUser;
+    DatabaseReference referenceRide;
 
 
     @Override
@@ -55,13 +56,10 @@ public class YourRides extends Fragment {
         listView.setAdapter(adapter);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-
         userID = user.getUid();
 
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-
-
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        referenceUser = FirebaseDatabase.getInstance().getReference("Users");
+        referenceUser.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);

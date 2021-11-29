@@ -9,18 +9,16 @@ public class User {
 
 
     public String firstname, lastname, email;
-    public ArrayList<Rides> yourRideList;
 
     public User(){
 
 
     }
 
-    public User(String firstname, String lastname, String email, ArrayList<Rides> yourRideList){
+    public User(String firstname, String lastname, String email){
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.yourRideList = yourRideList;
     }
 
 
@@ -48,13 +46,7 @@ public class User {
         this.email = email;
     }
 
-    public ArrayList<Rides> getYourRideList() {
-        return yourRideList;
-    }
 
-    public void addYourRideList(Rides ride) {
-        this.yourRideList.add(ride);
-    }
 
 
     public String getFullName(){
