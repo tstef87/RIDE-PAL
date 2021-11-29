@@ -40,10 +40,6 @@ public class RideDiscription extends AppCompatActivity {
 
         Bundle recdData = getIntent().getExtras();
 
-
-
-
-
         String name = recdData.getString("name");
         String des = recdData.getString("des");
         String time = recdData.getString("time");
@@ -100,8 +96,7 @@ public class RideDiscription extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-
-                userProfile = snapshot.getValue(User.class);
+                //userProfile = snapshot.getValue(User.class);
 
                 FirebaseDatabase.getInstance().getReference("YourRides")
                         .child(userId)

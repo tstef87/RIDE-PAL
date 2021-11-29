@@ -2,7 +2,6 @@ package com.example.ride_pal_real.sign_in;
 
 import com.example.ride_pal_real.ui.rides.create.Rides;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class User {
