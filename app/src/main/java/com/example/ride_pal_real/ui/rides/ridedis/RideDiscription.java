@@ -14,10 +14,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -106,6 +108,23 @@ public class RideDiscription extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(Void unused) {
+
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                        Query ridesQuery = ref.child("Rides").child(rides.getTime());
+
+                        ridesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot ridesSnapshot: dataSnapshot.getChildren()) {
+                                    ridesSnapshot.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
+
                         startActivity(new Intent(RideDiscription.this, AccountInfoActivity.class));
 
                     }
