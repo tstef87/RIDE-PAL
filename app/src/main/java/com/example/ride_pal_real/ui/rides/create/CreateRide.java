@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 
 public class CreateRide extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -134,6 +136,12 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                        return;
                    }
 
+                   if (!checkTime(t)){
+                       time.setError("time must be formated like- 3:00pm");
+                       time.requestFocus();
+                       return;
+                   }
+
 
                    FirebaseDatabase.getInstance().getReference("Rides")
                            .child(t)
@@ -155,6 +163,21 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                }
            });
 
+    }
+    private boolean checkTime(String time){
+
+        if(time.substring(time.length() - 2).toLowerCase(Locale.ROOT).equals("am") || time.substring(time.length() - 2, time.length()).toLowerCase(Locale.ROOT).equals("am")){
+            if (Integer.parseInt(time.substring(time.length()-4, time.length()-2)) <= 60){
+                if(time.charAt(time.length() - 5) == ':'){
+                    if(Integer.parseInt(time.substring(0, time.length()-5)) <= 12){
+                        return true;
+                    }
+                } //12:12am
+            }
+        }
+
+
+        return false;
     }
 
 
