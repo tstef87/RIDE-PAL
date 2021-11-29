@@ -38,12 +38,12 @@ public class YourRides extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_your_rides, container, false);
 
-
-
-
         listView = (ListView) view.findViewById(R.id.listviewYR);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
         listView.setAdapter(adapter);
+
+
+
 
 
         return view;

@@ -6,10 +6,10 @@
     tools:context=".ui.yourRidePals.YourRides">
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/listviewYR"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </ListView>
 
 </FrameLayout>
