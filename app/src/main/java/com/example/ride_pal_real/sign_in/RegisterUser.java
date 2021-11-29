@@ -12,12 +12,15 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ride_pal_real.R;
+import com.example.ride_pal_real.ui.rides.create.Rides;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
@@ -67,6 +70,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String lastname = lname.getText().toString().trim();
         String emailaddress = em.getText().toString().trim();
         String password = pw.getText().toString().trim();
+        ArrayList<Rides> yourRidesList = new ArrayList<>();
 
 
 
@@ -104,7 +108,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(firstname, lastname, emailaddress);
+                    User user = new User(firstname, lastname, emailaddress, yourRidesList);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -127,7 +131,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     });
 
                 }
-                Toast.makeText(RegisterUser.this, "Email is already in use", Toast.LENGTH_LONG).show();
+                else{
+                    Toast.makeText(RegisterUser.this, "Email is already in use", Toast.LENGTH_LONG).show();
+                }
                 pb.setVisibility(View.INVISIBLE);
 
 
