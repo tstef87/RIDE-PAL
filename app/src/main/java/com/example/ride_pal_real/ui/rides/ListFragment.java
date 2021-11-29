@@ -48,7 +48,6 @@ public class ListFragment extends Fragment {
     ArrayList<String> data = new ArrayList<String>();
     ArrayList<Rides> dataRides = new ArrayList<Rides>();
 
-    ArrayList<Rides> ridesArrayList = new ArrayList<>();
     ListView listView;
     SearchView searchView;
 
@@ -58,11 +57,6 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference ref = database.getReference("Rides");
-        //ArrayList<Rides> ridesArrayList = new ArrayList<>();
-        //HashMap<String, String> hmap = new HashMap<>();
-
-
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
 

@@ -17,9 +17,9 @@
             android:icon="@android:drawable/ic_dialog_map"
             android:title="Map" />
         <item
-            android:id="@+id/nav_transactions"
+            android:id="@+id/nav_your_rides"
             android:icon="@mipmap/ic_launcher_transcationicon"
-            android:title="Transactions" />
+            android:title="Your Rides" />
         <item
             android:id="@+id/nav_help"
             android:icon="@mipmap/ic_launcher_helpicon"
