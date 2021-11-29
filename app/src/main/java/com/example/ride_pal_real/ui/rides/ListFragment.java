@@ -69,7 +69,7 @@ public class ListFragment extends Fragment {
                             Rides ride = new Rides();
 
                             ride.setDestination(snapshot.child("destination").getValue().toString());
-                            ride.setDis(snapshot.child("dis").getValue().toString());
+                            ride.setName(snapshot.child("name").getValue().toString());
                             ride.setTime(snapshot.child("time").getValue().toString());
 
                             if(snapshot.child("monday").getValue().toString().equals("true")){
@@ -118,7 +118,7 @@ public class ListFragment extends Fragment {
                                 Rides r = dataRides.get(position);
 
                                 Intent i = new Intent(getActivity() , RideDiscription.class);
-                                i.putExtra("name", r.getDis());
+                                i.putExtra("name", r.getName());
                                 i.putExtra("destination", r.getDestination());
                                 i.putExtra("time", r.getTime());
 

@@ -3,6 +3,7 @@ package com.example.ride_pal_real.sign_in;
 import com.example.ride_pal_real.ui.rides.create.Rides;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class User {
 
@@ -54,4 +55,17 @@ public class User {
     public void addYourRideList(Rides ride) {
         this.yourRideList.add(ride);
     }
+
+
+    public String getFullName(){
+
+        String s = "";
+        s += getFirstname().substring(0,1).toUpperCase(Locale.ROOT) + "" + getFirstname().substring(1).toLowerCase();
+        s += " " + getLastname().substring(0,1).toUpperCase(Locale.ROOT) + "" + getLastname().substring(1).toLowerCase();
+        return s;
+    }
+
+
+
+
 }

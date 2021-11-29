@@ -33,7 +33,6 @@ import java.util.Locale;
 
 public class AccountInfoActivity extends AppCompatActivity {
 
-    //public static final Context CONTEXT_IGNO = ;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityAccountInfoBinding binding;
 
@@ -85,9 +84,8 @@ public class AccountInfoActivity extends AppCompatActivity {
                 User userProfile = snapshot.getValue(User.class);
 
                 if (userProfile != null) {
-                    String fn = userProfile.firstname.substring(0,1).toUpperCase(Locale.ROOT)+""+userProfile.firstname.substring(1).toLowerCase(Locale.ROOT);
-                    String ln = userProfile.lastname.substring(0,1).toUpperCase(Locale.ROOT)+""+userProfile.lastname.substring(1).toLowerCase(Locale.ROOT);
-                    String full = fn + " " + ln;
+
+                    String full = userProfile.getFullName();
                     String ema = userProfile.email;
 
                     navUsername.setText(full);

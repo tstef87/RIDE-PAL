@@ -1,5 +1,6 @@
 package com.example.ride_pal_real.ui.rides.create;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,22 +14,29 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.ride_pal_real.R;
+import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class CreateRide extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private CheckBox mday, tuday, wday, thday, fday;
-    private TextView dis, time;
+    private TextView time;
     private Button createRide, back;
     private Spinner spinner;
     private String spinnerResult;
     private FirebaseAuth mAuth;
+    private DatabaseReference reference;
+    private User userProfile;
+    private String name;
 
 
     @Override
@@ -45,7 +53,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         thday = findViewById(R.id.thursday_cb);
         fday = findViewById(R.id.firday_cb);
         time = findViewById(R.id.editTextTime);
-        dis = findViewById(R.id.discription_et);
+
 
         createRide = findViewById(R.id.create_ride_button);
         back = findViewById(R.id.back_button_create_ride);
@@ -99,36 +107,53 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
         DatabaseReference ref = database.getReference("Rides");
 
-        String t = time.getText().toString().trim();
-        String d = dis.getText().toString().trim();
-        String dest = spinnerResult;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        boolean tue = tof(tuday);
-        boolean mond = tof(mday);
-        boolean wed = tof(wday);
-        boolean thu = tof(thday);
-        boolean fri = tof(fday);
+        String userId = user.getUid();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   userProfile = snapshot.getValue(User.class);
+                   name = userProfile.getFullName();
 
 
-        if (t.isEmpty()){
-            time.setError("time can not be empty");
-            time.requestFocus();
-            return;
-        }
-        if (d.isEmpty()){
-            dis.setError("discription can not be empty");
-            dis.requestFocus();
-            return;
-        }
+                   String t = time.getText().toString().trim();
+                   String dest = spinnerResult;
+                   boolean tue = tof(tuday);
+                   boolean mond = tof(mday);
+                   boolean wed = tof(wday);
+                   boolean thu = tof(thday);
+                   boolean fri = tof(fday);
 
-        FirebaseDatabase.getInstance().getReference("Rides")
-                .child(d)
-                .setValue(new Rides(user.getUid(), t, dest, mond, tue, wed, thu, fri)).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                startActivity(new Intent(CreateRide.this, AccountInfoActivity.class));
-            }
-        });
+
+                   if (t.isEmpty()){
+                       time.setError("time can not be empty");
+                       time.requestFocus();
+                       return;
+                   }
+
+
+                   FirebaseDatabase.getInstance().getReference("Rides")
+                           .child(name)
+                           .setValue(new Rides(user.getUid(), t, dest, mond, tue, wed, thu, fri)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                       @Override
+                       public void onSuccess(Void unused) {
+                           startActivity(new Intent(CreateRide.this, AccountInfoActivity.class));
+                       }
+                   });
+
+
+
+
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
+
+               }
+           });
 
     }
 
