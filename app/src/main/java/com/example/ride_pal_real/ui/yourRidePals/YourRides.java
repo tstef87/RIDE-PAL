@@ -49,29 +49,73 @@ public class YourRides extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         View view = inflater.inflate(R.layout.fragment_your_rides, container, false);
 
-        listView = (ListView) view.findViewById(R.id.listviewYR);
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
-        listView.setAdapter(adapter);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userID = user.getUid();
+        FirebaseDatabase.getInstance().getReference().child("YourRides")
+                .child(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        referenceUser = FirebaseDatabase.getInstance().getReference("Users");
-        referenceUser.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Rides ride = new Rides();
+
+                            ride.setDestination(snapshot.child("destination").getValue().toString());
+                            ride.setName(snapshot.child("name").getValue().toString());
+                            ride.setTime(snapshot.child("time").getValue().toString());
+
+                            if(snapshot.child("monday").getValue().toString().equals("true")){
+                                ride.setMonday(true);
+                            }else{
+                                ride.setMonday(false);
+                            }
+
+                            if(snapshot.child("tuesday").getValue().toString().equals("true")){
+                                ride.setTuesday(true);
+                            }else{
+                                ride.setTuesday(false);
+                            }
+
+                            if(snapshot.child("wednesday").getValue().toString().equals("true")){
+                                ride.setWednesday(true);
+                            }else{
+                                ride.setWednesday(false);
+                            }
+
+                            if(snapshot.child("thursday").getValue().toString().equals("true")){
+                                ride.setThursday(true);
+                            }else{
+                                ride.setThursday(false);
+                            }
+
+                            if(snapshot.child("friday").getValue().toString().equals("true")){
+                                ride.setFriday(true);
+                            }else{
+                                ride.setFriday(false);
+                            }
+
+                            data.add(ride.toStringList());
 
 
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                        }
+
+
+                        listView = (ListView) view.findViewById(R.id.listviewYR);
+                        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
+                        listView.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
 
         return view;
