@@ -7,17 +7,18 @@ import java.util.Locale;
 public class User {
 
 
-    public String firstname, lastname, email;
+    public String firstname, lastname, email, phoneNumber;
 
     public User(){
 
 
     }
 
-    public User(String firstname, String lastname, String email){
+    public User(String firstname, String lastname, String email, String phoneNumber){
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
 

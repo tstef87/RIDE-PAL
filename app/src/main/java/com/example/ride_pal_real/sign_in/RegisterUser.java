@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
     private Button registerUser, back;
-    private EditText fname, lname, em, pw;
+    private EditText fname, lname, em, pw, pn;
     private ProgressBar pb;
     private FirebaseAuth mAuth;
 
@@ -46,6 +46,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         lname =  findViewById(R.id.lastName);
         em = findViewById(R.id.sjuEmail);
         pw =  findViewById(R.id.password);
+        pn = findViewById(R.id.phone_number);
 
         pb = findViewById(R.id.progressBar);
 
@@ -70,9 +71,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String lastname = lname.getText().toString().trim();
         String emailaddress = em.getText().toString().trim();
         String password = pw.getText().toString().trim();
-        Rides yourRides= new Rides();
-
-
+        String phoneNumber = pn.getText().toString().trim();
 
         if (firstname.isEmpty()){
             fname.setError("First Name can not be Empty");
@@ -91,6 +90,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        if(!checkPhoneNumber(phoneNumber)){
+            pn.setError("Phone Number Must be Formatted Like- (555)-555-5555");
+            pn.requestFocus();
+            return;
+        }
+
         if (!emailaddress.substring(emailaddress.length() - 8, emailaddress.length()).equals("@sju.edu")){
             em.setError("must be SJU email");
             em.requestFocus();
@@ -103,12 +108,16 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+
+
+
+
         pb.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(emailaddress, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(firstname, lastname, emailaddress);
+                    User user = new User(firstname, lastname, emailaddress, phoneNumber);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -146,5 +155,19 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private boolean checkPhoneNumber(String pn){
 
+        if(pn.charAt(0) == '('){
+            if(pn.charAt(4) == ')'){
+                if(pn.charAt(5) == '-'){
+                    if(pn.charAt(9) == '-'){
+                        if(pn.length() == 14){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
