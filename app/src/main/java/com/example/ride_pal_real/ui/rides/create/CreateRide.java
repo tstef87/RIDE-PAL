@@ -172,7 +172,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                     if(Integer.parseInt(time.substring(0, time.length()-5)) <= 12){
                         return true;
                     }
-                } //12:12am
+                }
             }
         }
 
