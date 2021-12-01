@@ -170,4 +170,18 @@ public class RideDiscription extends AppCompatActivity {
         });
 
     }
+
+
+    /*TODO:
+
+    change the value in the database to "3:00am 10010" = monday, thursday
+    call when creating a ride and accepting a ride.
+    checks time first, if that passes, then check the binary
+
+     */
+    private boolean ifTimeConflict(String s){
+        return true;
+    }
+
+
 }

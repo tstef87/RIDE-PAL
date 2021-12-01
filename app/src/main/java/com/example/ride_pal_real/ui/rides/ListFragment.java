@@ -189,5 +189,15 @@ public class ListFragment extends Fragment {
         ((Activity)getActivity()).overridePendingTransition(0,0);
     }
 
+    /*TODO:
+
+  checks if it is your ride or not by using party1id
+  if it is your ride it takes you to a edit ride activity
+
+   */
+    private boolean yourRide(){
+        return true;
+    }
+
 
 }
