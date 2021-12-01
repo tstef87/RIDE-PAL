@@ -114,7 +114,7 @@ public class RideDiscription extends AppCompatActivity {
                         ridesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot ridesSnapshot: dataSnapshot.getChildren()) {
+                                for (DataSnapshot ridesSnapshot : dataSnapshot.getChildren()) {
                                     ridesSnapshot.getRef().removeValue();
                                 }
                             }
@@ -129,6 +129,19 @@ public class RideDiscription extends AppCompatActivity {
                     }
                 });
 
+                FirebaseDatabase.getInstance().getReference("YourRides")
+                        .child(rides.getName())
+                        .child(rides.getTime())
+                        .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                    @Override
+                    public void onSuccess(Void unused) {
+                        startActivity(new Intent(RideDiscription.this, AccountInfoActivity.class));
+
+                    }
+                });
+
+
             }
 
             @Override
@@ -136,15 +149,8 @@ public class RideDiscription extends AppCompatActivity {
 
             }
 
+
         });
-
-
-
-
-
-
-
-
 
     }
 }
