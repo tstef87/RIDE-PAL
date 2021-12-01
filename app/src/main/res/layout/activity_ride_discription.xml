@@ -41,7 +41,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.ride_pal_real.ui.profile.ProfileFragment"
+        android:name="com.example.ride_pal_real.ui.map.MapsFragment"
         android:layout_width="246dp"
         android:layout_height="251dp"
         android:layout_marginTop="28dp"
