@@ -149,9 +149,10 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                    }
 
 
+                   Rides rides = new Rides(userProfile.getFullName(), t, dest, mond, tue, wed, thu, fri, user.getUid(), "-");
                    FirebaseDatabase.getInstance().getReference("Rides")
-                           .child(t)
-                           .setValue(new Rides(userProfile.getFullName(), t, dest, mond, tue, wed, thu, fri, user.getUid(), "-")).addOnSuccessListener(new OnSuccessListener<Void>() {
+                           .child(rides.makeTitle())
+                           .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
                        @Override
                        public void onSuccess(Void unused) {
                            startActivity(new Intent(CreateRide.this, AccountInfoActivity.class));

@@ -140,5 +140,16 @@ public class Rides {
         return s;
     }
 
+    public String makeTitle(){
+        String s ="";
+        s += getTime() + " ";
+        if (isMonday()){ s+= "1";} else{ s += "0";};
+        if (isTuesday()){ s+= "1";} else{ s += "0";};
+        if (isWednesday()){ s+= "1";} else{ s += "0";};
+        if (isThursday()){ s+= "1";} else{ s += "0";};
+        if (isFriday()){ s+= "1";} else{ s += "0";};
+        return s;
+    }
+
 
 }

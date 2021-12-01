@@ -109,7 +109,7 @@ public class RideDiscription extends AppCompatActivity {
 
                 FirebaseDatabase.getInstance().getReference("YourRides")
                         .child(rides.getParty1id())
-                        .child(rides.getTime())
+                        .child(rides.makeTitle())
                         .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
 
 
@@ -117,7 +117,7 @@ public class RideDiscription extends AppCompatActivity {
                     public void onSuccess(Void unused) {
 
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        Query ridesQuery = ref.child("Rides").child(rides.getTime());
+                        Query ridesQuery = ref.child("Rides").child(rides.makeTitle());
 
                         ridesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -152,7 +152,7 @@ public class RideDiscription extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 FirebaseDatabase.getInstance().getReference("YourRides")
                         .child(rides.getParty2id())
-                        .child(rides.getTime())
+                        .child(rides.makeTitle())
                         .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
 
                     @Override
@@ -179,9 +179,11 @@ public class RideDiscription extends AppCompatActivity {
     checks time first, if that passes, then check the binary
 
      */
-    private boolean ifTimeConflict(String s){
+    private boolean ifTimeConflict(){
         return true;
     }
+
+
 
 
 }
