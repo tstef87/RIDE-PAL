@@ -148,6 +148,7 @@ public class Rides {
         if (isWednesday()){ s+= "1";} else{ s += "0";};
         if (isThursday()){ s+= "1";} else{ s += "0";};
         if (isFriday()){ s+= "1";} else{ s += "0";};
+        s += " "+getParty1id();
         return s;
     }
 

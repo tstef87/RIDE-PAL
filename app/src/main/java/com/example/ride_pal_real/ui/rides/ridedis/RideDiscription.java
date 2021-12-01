@@ -1,8 +1,11 @@
 package com.example.ride_pal_real.ui.rides.ridedis;
 
+import static androidx.navigation.fragment.NavHostFragment.findNavController;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
@@ -72,7 +75,9 @@ public class RideDiscription extends AppCompatActivity {
         });
 
         accept = findViewById(R.id.accept);
+
         accept.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 

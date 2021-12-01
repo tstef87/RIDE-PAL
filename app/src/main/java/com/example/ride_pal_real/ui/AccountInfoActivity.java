@@ -63,7 +63,7 @@ public class AccountInfoActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                 R.id.nav_map, R.id.nav_your_rides ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides)
+                R.id.nav_your_rides ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -72,6 +72,9 @@ public class AccountInfoActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -126,8 +129,5 @@ public class AccountInfoActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
-
 
 }
