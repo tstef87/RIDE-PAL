@@ -99,9 +99,6 @@ public class RideDiscription extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
-                //userProfile = snapshot.getValue(User.class);
-
                 FirebaseDatabase.getInstance().getReference("YourRides")
                         .child(userId)
                         .child(rides.getTime())

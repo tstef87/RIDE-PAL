@@ -110,6 +110,9 @@ public class ListFragment extends Fragment {
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
 
+                        TextView emptyText = (TextView) view.findViewById(android.R.id.empty);
+                        listView.setEmptyView(emptyText);
+
 
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

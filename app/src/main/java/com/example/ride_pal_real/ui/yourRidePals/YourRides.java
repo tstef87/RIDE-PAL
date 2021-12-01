@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
@@ -111,6 +112,8 @@ public class YourRides extends Fragment {
                         listView = (ListView) view.findViewById(R.id.listviewYR);
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
+                        TextView emptyText = (TextView) view.findViewById(android.R.id.empty);
+                        listView.setEmptyView(emptyText);
 
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
