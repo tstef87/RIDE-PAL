@@ -195,6 +195,8 @@ public class ListFragment extends Fragment {
   if it is your ride it takes you to a edit ride activity
 
    */
+
+
     private boolean yourRide(){
         return true;
     }
