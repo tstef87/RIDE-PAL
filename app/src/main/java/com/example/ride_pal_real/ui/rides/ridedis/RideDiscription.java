@@ -2,6 +2,8 @@ package com.example.ride_pal_real.ui.rides.ridedis;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;

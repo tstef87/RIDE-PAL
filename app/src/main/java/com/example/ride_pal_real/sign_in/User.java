@@ -14,6 +14,8 @@ public class User {
 
     }
 
+
+
     public User(String firstname, String lastname, String email, String phoneNumber){
         this.firstname = firstname;
         this.lastname = lastname;
@@ -21,6 +23,9 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
     public String getFirstname() {
         return firstname;

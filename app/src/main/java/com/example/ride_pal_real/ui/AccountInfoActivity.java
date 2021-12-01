@@ -1,6 +1,7 @@
 package com.example.ride_pal_real.ui;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.GnssAntennaInfo;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -64,6 +66,9 @@ public class AccountInfoActivity extends AppCompatActivity {
                 R.id.nav_map, R.id.nav_your_rides ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides)
                 .setOpenableLayout(drawer)
                 .build();
+
+
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -72,6 +77,7 @@ public class AccountInfoActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.navFullName);
         TextView navEmail = (TextView) headerView.findViewById(R.id.navEmail);
+
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -120,6 +126,8 @@ public class AccountInfoActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 
 
 }

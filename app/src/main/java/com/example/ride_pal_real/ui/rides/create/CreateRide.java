@@ -142,6 +142,12 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                        return;
                    }
 
+                   if(!checkAtLeastOneDay(mond, tue, wed, thu, fri)){
+                       mday.setError("At least One Day Must be Selected");
+                       mday.requestFocus();
+                       return;
+                   }
+
 
                    FirebaseDatabase.getInstance().getReference("Rides")
                            .child(t)
@@ -165,18 +171,24 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
     }
     private boolean checkTime(String time){
-
-        if(time.substring(time.length() - 2).toLowerCase(Locale.ROOT).equals("am") || time.substring(time.length() - 2, time.length()).toLowerCase(Locale.ROOT).equals("pm")){
-            if (Integer.parseInt(time.substring(time.length()-4, time.length()-2)) <= 60){
-                if(time.charAt(time.length() - 5) == ':'){
-                    if(Integer.parseInt(time.substring(0, time.length()-5)) <= 12){
-                        return true;
+        if (time.length() > 3) {
+            if (time.substring(time.length() - 2).toLowerCase(Locale.ROOT).equals("am") || time.substring(time.length() - 2, time.length()).toLowerCase(Locale.ROOT).equals("pm")) {
+                if (Integer.parseInt(time.substring(time.length() - 4, time.length() - 2)) <= 60) {
+                    if (time.charAt(time.length() - 5) == ':') {
+                        if (Integer.parseInt(time.substring(0, time.length() - 5)) <= 12) {
+                            return true;
+                        }
                     }
                 }
             }
         }
+        return false;
+    }
 
-
+    private boolean checkAtLeastOneDay(boolean m, boolean t, boolean w, boolean th, boolean f){
+        if(m || t || w || th || f){
+            return true;
+        }
         return false;
     }
 

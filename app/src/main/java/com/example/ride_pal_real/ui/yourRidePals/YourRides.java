@@ -117,19 +117,38 @@ public class YourRides extends Fragment {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                                 Rides r = dataRides.get(position);
+                                String user = r.getName();
 
-                                Intent i = new Intent(getActivity() , YourRideView.class);
-                                i.putExtra("name", r.getName());
-                                i.putExtra("destination", r.getDestination());
-                                i.putExtra("time", r.getTime());
-                                i.putExtra("name", r.getName());
-                                i.putExtra("monday", r.isMonday());
-                                i.putExtra("tuesday", r.isTuesday());
-                                i.putExtra("wednesday", r.isWednesday());
-                                i.putExtra("thursday", r.isThursday());
-                                i.putExtra("friday", r.isFriday());
-                                startActivity(i);
+                                FirebaseDatabase.getInstance().getReference().child("Users")
+                                        .child(user).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                                        User u = snapshot.getValue(User.class);
+
+
+                                        Intent i = new Intent(getActivity() , YourRideView.class);
+                                        i.putExtra("phonenumber", u.getPhoneNumber());
+                                        i.putExtra("name", r.getName());
+                                        i.putExtra("destination", r.getDestination());
+                                        i.putExtra("time", r.getTime());
+                                        i.putExtra("name", r.getName());
+                                        i.putExtra("monday", r.isMonday());
+                                        i.putExtra("tuesday", r.isTuesday());
+                                        i.putExtra("wednesday", r.isWednesday());
+                                        i.putExtra("thursday", r.isThursday());
+                                        i.putExtra("friday", r.isFriday());
+                                        startActivity(i);
+
+
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
 
 
                             }
