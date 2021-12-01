@@ -90,6 +90,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        if(phoneNumber.isEmpty()){
+            pn.setError("Phone Number is Required");
+            pn.requestFocus();
+            return;
+        }
+
         if(!checkPhoneNumber(phoneNumber)){
             pn.setError("Phone Number Must be Formatted Like- (555)-555-5555");
             pn.requestFocus();

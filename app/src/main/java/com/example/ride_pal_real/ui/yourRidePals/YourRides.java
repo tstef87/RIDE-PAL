@@ -1,5 +1,6 @@
 package com.example.ride_pal_real.ui.yourRidePals;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,12 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.example.ride_pal_real.ui.rides.ridedis.RideDiscription;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -99,8 +102,7 @@ public class YourRides extends Fragment {
                             }
 
                             data.add(ride.toStringList());
-
-
+                            dataRides.add(ride);
 
 
                         }
@@ -109,6 +111,31 @@ public class YourRides extends Fragment {
                         listView = (ListView) view.findViewById(R.id.listviewYR);
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                Rides r = dataRides.get(position);
+
+                                Intent i = new Intent(getActivity() , YourRideView.class);
+                                i.putExtra("name", r.getName());
+                                i.putExtra("destination", r.getDestination());
+                                i.putExtra("time", r.getTime());
+                                i.putExtra("name", r.getName());
+                                i.putExtra("monday", r.isMonday());
+                                i.putExtra("tuesday", r.isTuesday());
+                                i.putExtra("wednesday", r.isWednesday());
+                                i.putExtra("thursday", r.isThursday());
+                                i.putExtra("friday", r.isFriday());
+                                startActivity(i);
+
+
+
+                            }
+
+                        });
+
                     }
 
                     @Override
