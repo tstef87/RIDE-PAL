@@ -79,7 +79,10 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getBoolean("tuesday"),
                         recdData.getBoolean("wednesday"),
                         recdData.getBoolean("thursday"),
-                        recdData.getBoolean("friday"));
+                        recdData.getBoolean("friday"),
+                        recdData.getString("party1id"),
+                        recdData.getString("party2id"));
+
 
                 addToYourRides(ride);
             }
@@ -88,10 +91,15 @@ public class RideDiscription extends AppCompatActivity {
 
     private void addToYourRides(Rides rides){
 
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         String userId = user.getUid();
+        rides.setParty2id(userId);
+
         reference = FirebaseDatabase.getInstance().getReference("YourRides");
 
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -100,7 +108,7 @@ public class RideDiscription extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 FirebaseDatabase.getInstance().getReference("YourRides")
-                        .child(userId)
+                        .child(rides.getParty1id())
                         .child(rides.getTime())
                         .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
 
@@ -129,8 +137,21 @@ public class RideDiscription extends AppCompatActivity {
                     }
                 });
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
+
+        reference.child(rides.getParty2id()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 FirebaseDatabase.getInstance().getReference("YourRides")
-                        .child(rides.getName())
+                        .child(rides.getParty2id())
                         .child(rides.getTime())
                         .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
 
@@ -140,16 +161,12 @@ public class RideDiscription extends AppCompatActivity {
 
                     }
                 });
-
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-
         });
 
     }

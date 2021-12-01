@@ -102,6 +102,10 @@ public class YourRides extends Fragment {
                                 ride.setFriday(false);
                             }
 
+                            ride.setParty1id(snapshot.child("party1id").getValue().toString());
+                            ride.setParty2id(snapshot.child("party2id").getValue().toString());
+
+
                             data.add(ride.toStringList());
                             dataRides.add(ride);
 
@@ -129,9 +133,8 @@ public class YourRides extends Fragment {
 
                                         User u = snapshot.getValue(User.class);
 
-
                                         Intent i = new Intent(getActivity() , YourRideView.class);
-                                        i.putExtra("phonenumber", u.getPhoneNumber());
+                                        //i.putExtra("phonenumber", u.getPhoneNumber());
                                         i.putExtra("name", r.getName());
                                         i.putExtra("destination", r.getDestination());
                                         i.putExtra("time", r.getTime());
@@ -141,6 +144,8 @@ public class YourRides extends Fragment {
                                         i.putExtra("wednesday", r.isWednesday());
                                         i.putExtra("thursday", r.isThursday());
                                         i.putExtra("friday", r.isFriday());
+                                        i.putExtra("party1id", r.getParty1id());
+                                        i.putExtra("party2id", r.getParty2id());
                                         startActivity(i);
 
 

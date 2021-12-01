@@ -101,6 +101,9 @@ public class ListFragment extends Fragment {
                             }else{
                                 ride.setFriday(false);
                             }
+                            ride.setParty1id(snapshot.child("party1id").getValue().toString());
+                            ride.setParty2id(snapshot.child("party2id").getValue().toString());
+
 
                             data.add(ride.toStringList());
                             dataRides.add(ride);
@@ -130,6 +133,9 @@ public class ListFragment extends Fragment {
                                 i.putExtra("wednesday", r.isWednesday());
                                 i.putExtra("thursday", r.isThursday());
                                 i.putExtra("friday", r.isFriday());
+                                i.putExtra("party1id", r.getParty1id());
+                                i.putExtra("party2id", r.getParty2id());
+
                                 startActivity(i);
 
                             }

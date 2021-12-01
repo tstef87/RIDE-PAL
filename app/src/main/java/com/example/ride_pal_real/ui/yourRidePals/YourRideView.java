@@ -42,7 +42,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         days = (TextView) findViewById(R.id.yrp_days_of_week);
 
         message = (TextView) findViewById(R.id.yrp_message);
-        message.setOnClickListener(this);
+        //message.setOnClickListener(this);
 
         getdirections = (TextView) findViewById(R.id.yrp_get_directions);
         getdirections.setClickable(true);
@@ -64,7 +64,10 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 recdData.getBoolean("tuesday"),
                 recdData.getBoolean("wednesday"),
                 recdData.getBoolean("thursday"),
-                recdData.getBoolean("friday"));
+                recdData.getBoolean("friday"),
+                recdData.getString("party1id"),
+                recdData.getString("party2id"));
+
 
         switch (v.getId()) {
             case R.id.yrp_delete_ride:
@@ -77,7 +80,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.yrp_message:
-                openMesseges(recdData.getString("phonenumber"));
+                //openMesseges(recdData.getString("phonenumber"));
                 break;
 
             case R.id.yrp_add_to_calendar:
@@ -110,6 +113,8 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
 
     }
 

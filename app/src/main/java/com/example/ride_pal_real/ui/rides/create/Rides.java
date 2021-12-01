@@ -1,7 +1,7 @@
 package com.example.ride_pal_real.ui.rides.create;
 
 public class Rides {
-    public String name, time, destination;
+    public String name, time, destination, party1id, party2id;
     public boolean monday, tuesday, wednesday, thursday, friday;
 
     public Rides(){
@@ -11,7 +11,8 @@ public class Rides {
 
 
 
-    public Rides(String name, String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday){
+
+    public Rides(String name, String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id){
         this.name = name;
         this.time = time;
         this.destination = destination;
@@ -20,6 +21,8 @@ public class Rides {
         this.wednesday = wednesday;
         this.thursday = thursday;
         this.friday = friday;
+        this.party1id = party1id;
+        this.party2id = party2id;
     }
 
 
@@ -86,6 +89,26 @@ public class Rides {
     public void setFriday(boolean friday) {
         this.friday = friday;
     }
+
+
+    public String getParty1id() {
+        return party1id;
+    }
+
+    public void setParty1id(String party1id) {
+        this.party1id = party1id;
+    }
+
+    public String getParty2id() {
+        return party2id;
+    }
+
+    public void setParty2id(String party2id) {
+        this.party2id = party2id;
+    }
+
+
+
 
     @Override
     public String toString() {
