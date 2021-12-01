@@ -143,8 +143,8 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                    }
 
                    if(!checkAtLeastOneDay(mond, tue, wed, thu, fri)){
-                       mday.setError("At least One Day Must be Selected");
-                       mday.requestFocus();
+                       time.setError("At least One Day Must be Selected");
+                       time.requestFocus();
                        return;
                    }
 

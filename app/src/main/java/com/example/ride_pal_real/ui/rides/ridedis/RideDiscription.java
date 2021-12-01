@@ -25,6 +25,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class RideDiscription extends AppCompatActivity {
 
@@ -84,13 +88,14 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getString("party2id"));
 
 
+                Toast.makeText(RideDiscription.this, "there is a time conflict", Toast.LENGTH_LONG).show();
                 addToYourRides(ride);
+
             }
         });
     }
 
     private void addToYourRides(Rides rides){
-
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -171,19 +176,5 @@ public class RideDiscription extends AppCompatActivity {
 
     }
 
-
-    /*TODO:
-
-    change the value in the database to "3:00am 10010" = monday, thursday
-    call when creating a ride and accepting a ride.
-    checks time first, if that passes, then check the binary
-
-     */
-    private boolean ifTimeConflict(){
-        return true;
-    }
-
-
-
-
 }
+

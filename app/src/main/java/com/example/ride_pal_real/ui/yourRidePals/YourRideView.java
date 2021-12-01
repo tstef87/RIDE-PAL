@@ -99,8 +99,8 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
     private void deleteRide(Rides rides){
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Query party1 = ref.child("YourRides").child(rides.getParty1id()).child(rides.getTime());
-        Query party2 = ref.child("YourRides").child(rides.getParty2id()).child(rides.getTime());
+        Query party1 = ref.child("YourRides").child(rides.getParty1id()).child(rides.makeTitle());
+        Query party2 = ref.child("YourRides").child(rides.getParty2id()).child(rides.makeTitle());
 
 
         party1.addListenerForSingleValueEvent(new ValueEventListener() {
