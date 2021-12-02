@@ -93,7 +93,7 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getString("party2id"));
 
 
-                Toast.makeText(RideDiscription.this, "there is a time conflict", Toast.LENGTH_LONG).show();
+                //Toast.makeText(RideDiscription.this, "there is a time conflict", Toast.LENGTH_LONG).show();
                 addToYourRides(ride);
 
             }

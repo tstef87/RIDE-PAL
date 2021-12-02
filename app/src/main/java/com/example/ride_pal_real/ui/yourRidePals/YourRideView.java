@@ -78,6 +78,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.yrp_back:
+                startActivity(new Intent(YourRideView.this, AccountInfoActivity.class));
                 break;
 
             case R.id.yrp_message:
