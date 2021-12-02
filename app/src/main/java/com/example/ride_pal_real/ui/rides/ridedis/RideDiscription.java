@@ -74,12 +74,16 @@ public class RideDiscription extends AppCompatActivity {
             }
         });
 
-        accept = findViewById(R.id.accept);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
 
+        accept = findViewById(R.id.accept);
         accept.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
+
 
                 Rides ride = new Rides(recdData.getString("name"),
                         recdData.getString("time"),
@@ -93,8 +97,13 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getString("party2id"));
 
 
-                //Toast.makeText(RideDiscription.this, "there is a time conflict", Toast.LENGTH_LONG).show();
-                addToYourRides(ride);
+                if(!userId.equals(ride.getParty1id())) {
+                    addToYourRides(ride);
+                }
+                else{
+                    Toast.makeText(RideDiscription.this, "This is your own listing, you can not accept it!", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
@@ -180,6 +189,8 @@ public class RideDiscription extends AppCompatActivity {
         });
 
     }
+
+
 
 }
 
