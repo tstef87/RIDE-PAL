@@ -113,9 +113,7 @@ public class RideDiscription extends AppCompatActivity {
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         String userId = user.getUid();
         rides.setParty2id(userId);
 
