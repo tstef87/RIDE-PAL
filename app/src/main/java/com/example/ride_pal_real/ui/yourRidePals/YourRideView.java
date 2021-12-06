@@ -2,6 +2,8 @@ package com.example.ride_pal_real.ui.yourRidePals;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +45,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         days = (TextView) findViewById(R.id.yrp_days_of_week);
 
         message = (TextView) findViewById(R.id.yrp_message);
-        //message.setOnClickListener(this);
+        message.setOnClickListener(this);
 
         getdirections = (TextView) findViewById(R.id.yrp_get_directions);
         getdirections.setClickable(true);
@@ -57,6 +59,10 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
+
         Bundle recdData = getIntent().getExtras();
         Rides ride = new Rides(recdData.getString("time"),
                 recdData.getString("destination"),
@@ -68,7 +74,9 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 recdData.getString("party1id"),
                 recdData.getString("party2id"),
                 recdData.getString("party1name"),
-                recdData.getString("party2name"));
+                recdData.getString("party2name"),
+                recdData.getString("party1phonenumber"),
+                recdData.getString("party2phonenumber"));
 
 
         switch (v.getId()) {
@@ -83,7 +91,8 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.yrp_message:
-                //openMesseges(recdData.getString("phonenumber"));
+
+                openMesseges(ride, userId);
                 break;
 
             case R.id.yrp_add_to_calendar:
@@ -136,8 +145,16 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void openMesseges(String number){
-        String s ="";
+    private void openMesseges(Rides rides, String id){
+        String s = "";
+        String number;
+        if(id.equals(rides.getParty1id())) {
+            number = rides.getParty2phonenumber();
+        }
+        else{
+            number = rides.getParty1phonenumber();
+        }
+
         s += number.substring(1,4);
         s += number.substring(6,9);
         s += number.substring(10);

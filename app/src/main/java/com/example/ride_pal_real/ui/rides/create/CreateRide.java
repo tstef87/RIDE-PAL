@@ -34,11 +34,10 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
     private TextView time;
     private Button createRide, back;
     private Spinner spinner;
-    private String spinnerResult;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
     private User userProfile;
-    private String party1name, party2name;
+    private String spinnerResult, party1name, party2name, party1phonenumber, party2phonenumber;
 
 
 
@@ -121,6 +120,8 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                    userProfile = snapshot.getValue(User.class);
                    party1name = userProfile.getFullName();
                    party2name = "-";
+                   party1phonenumber = userProfile.getPhoneNumber();
+                   party2phonenumber = "-";
 
                    String t = time.getText().toString().trim();
                    String dest = spinnerResult;
@@ -150,7 +151,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                    }
 
 
-                   Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-", party1name, party2name);
+                   Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-", party1name, party2name, party1phonenumber, party2phonenumber);
                    FirebaseDatabase.getInstance().getReference("Rides")
                            .child(rides.makeTitle())
                            .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {

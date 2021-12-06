@@ -1,7 +1,7 @@
 package com.example.ride_pal_real.ui.rides.create;
 
 public class Rides {
-    public String name, time, destination, party1id, party2id, party1name, party2name;
+    public String name, time, destination, party1id, party2id, party1name, party2name, party1phonenumber, party2phonenumber;
     public boolean monday, tuesday, wednesday, thursday, friday;
 
     public Rides(){
@@ -9,7 +9,9 @@ public class Rides {
 
     }
 
-    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id, String party1name, String party2name){
+
+
+    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id, String party1name, String party2name, String party1phonenumber, String party2phonenumber){
         this.time = time;
         this.destination = destination;
         this.monday = monday;
@@ -21,6 +23,25 @@ public class Rides {
         this.party2id = party2id;
         this.party1name = party1name;
         this.party2name = party2name;
+        this.party1phonenumber = party1phonenumber;
+        this.party2phonenumber = party2phonenumber;
+
+    }
+
+    public String getParty1phonenumber() {
+        return party1phonenumber;
+    }
+
+    public void setParty1phonenumber(String party1phonenumber) {
+        this.party1phonenumber = party1phonenumber;
+    }
+
+    public String getParty2phonenumber() {
+        return party2phonenumber;
+    }
+
+    public void setParty2phonenumber(String party2phonenumber) {
+        this.party2phonenumber = party2phonenumber;
     }
 
     public String getParty1name() {

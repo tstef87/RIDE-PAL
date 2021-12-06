@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.rides.ridedis.RideDiscription">
+    tools:context=".ui.rides.create.RideDiscription">
 
     <TextView
         android:id="@+id/dis_username_tv"

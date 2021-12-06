@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.rides.create.Rides;
-import com.example.ride_pal_real.ui.rides.ridedis.RideDiscription;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -105,6 +104,8 @@ public class YourRides extends Fragment {
 
                             ride.setParty1id(snapshot.child("party1id").getValue().toString());
                             ride.setParty2id(snapshot.child("party2id").getValue().toString());
+                            ride.setParty1phonenumber(snapshot.child("party1phonenumber").getValue().toString());
+                            ride.setParty2phonenumber(snapshot.child("party2phonenumber").getValue().toString());
 
 
                             data.add(ride.toStringListYR(userId));
@@ -149,6 +150,8 @@ public class YourRides extends Fragment {
                                         i.putExtra("friday", r.isFriday());
                                         i.putExtra("party1id", r.getParty1id());
                                         i.putExtra("party2id", r.getParty2id());
+                                        i.putExtra("party1phonenumber", r.getParty1phonenumber());
+                                        i.putExtra("party2phonenumber", r.getParty2phonenumber());
                                         startActivity(i);
 
 
