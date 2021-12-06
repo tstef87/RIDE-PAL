@@ -70,6 +70,7 @@ public class YourRides extends Fragment {
 
                             ride.setDestination(snapshot.child("destination").getValue().toString());
                             ride.setParty1name(snapshot.child("party1name").getValue().toString());
+                            ride.setParty2name(snapshot.child("party2name").getValue().toString());
                             ride.setTime(snapshot.child("time").getValue().toString());
 
                             if(snapshot.child("monday").getValue().toString().equals("true")){
@@ -106,7 +107,7 @@ public class YourRides extends Fragment {
                             ride.setParty2id(snapshot.child("party2id").getValue().toString());
 
 
-                            data.add(ride.toStringList());
+                            data.add(ride.toStringListYR(userId));
                             dataRides.add(ride);
 
 
@@ -116,6 +117,8 @@ public class YourRides extends Fragment {
                         listView = (ListView) view.findViewById(R.id.listviewYR);
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
+
+
                         TextView emptyText = (TextView) view.findViewById(android.R.id.empty);
                         listView.setEmptyView(emptyText);
 

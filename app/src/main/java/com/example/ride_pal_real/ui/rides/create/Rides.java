@@ -130,6 +130,39 @@ public class Rides {
         return s;
     }
 
+    public String toStringListYR(String uid){
+        String s = "";
+
+        if (uid.equals(getParty1id())) {
+            s += getParty2name() + ", ";
+
+        }
+        else{
+            s += getParty1name() + ", ";
+
+        }
+        s += getDestination();
+        s += "- ";
+        s += getTime();
+        s += ": ";
+        if (isMonday()) {
+            s += "Monday ";
+        }
+        if (isTuesday()) {
+            s += "Tuesday ";
+        }
+        if (isWednesday()) {
+            s += "Wednesday ";
+        }
+        if (isTuesday()) {
+            s += "Thursday ";
+        }
+        if (isFriday()) {
+            s += "Friday ";
+        }
+        return s;
+    }
+
     public String makeTitle(){
         String s ="";
         s += getTime() + " ";
