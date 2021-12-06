@@ -184,6 +184,27 @@ public class Rides {
         return s;
     }
 
+    public String makeDOW(){
+        String s = "";
+
+        if (isMonday()) {
+            s += "Monday ";
+        }
+        if (isTuesday()) {
+            s += "Tuesday ";
+        }
+        if (isWednesday()) {
+            s += "Wednesday ";
+        }
+        if (isTuesday()) {
+            s += "Thursday ";
+        }
+        if (isFriday()) {
+            s += "Friday ";
+        }
+        return s;
+    }
+
     public String makeTitle(){
         String s ="";
         s += getTime() + " ";

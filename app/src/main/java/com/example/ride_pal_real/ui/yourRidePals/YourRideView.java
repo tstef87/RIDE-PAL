@@ -28,12 +28,46 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
     Button back, delete;
     TextView name, time, days, message, getdirections, addtocalender;
+    private Rides ride;
+    private String userId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_ride_view);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        userId = user.getUid();
+
+        Bundle recdData = getIntent().getExtras();
+        ride = new Rides(recdData.getString("time"),
+                recdData.getString("destination"),
+                recdData.getBoolean("monday"),
+                recdData.getBoolean("tuesday"),
+                recdData.getBoolean("wednesday"),
+                recdData.getBoolean("thursday"),
+                recdData.getBoolean("friday"),
+                recdData.getString("party1id"),
+                recdData.getString("party2id"),
+                recdData.getString("party1name"),
+                recdData.getString("party2name"),
+                recdData.getString("party1phonenumber"),
+                recdData.getString("party2phonenumber"));
+
+        name = (TextView) findViewById(R.id.yrp_name);
+        time = (TextView) findViewById(R.id.yrp_time);
+        days = (TextView) findViewById(R.id.yrp_days_of_week);
+
+        if (userId.equals(ride.getParty1id())){
+            name.setText(ride.getParty2name());
+        }
+        else{
+            name.setText(ride.getParty1name());
+        }
+
+        time.setText(ride.getTime());
+        days.setText(ride.makeDOW());
 
         delete = (Button) findViewById(R.id.yrp_delete_ride);
         delete.setOnClickListener(this);
@@ -59,26 +93,6 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userId = user.getUid();
-
-        Bundle recdData = getIntent().getExtras();
-        Rides ride = new Rides(recdData.getString("time"),
-                recdData.getString("destination"),
-                recdData.getBoolean("monday"),
-                recdData.getBoolean("tuesday"),
-                recdData.getBoolean("wednesday"),
-                recdData.getBoolean("thursday"),
-                recdData.getBoolean("friday"),
-                recdData.getString("party1id"),
-                recdData.getString("party2id"),
-                recdData.getString("party1name"),
-                recdData.getString("party2name"),
-                recdData.getString("party1phonenumber"),
-                recdData.getString("party2phonenumber"));
-
-
         switch (v.getId()) {
             case R.id.yrp_delete_ride:
 

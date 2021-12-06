@@ -138,7 +138,6 @@ public class YourRides extends Fragment {
                                         User u = snapshot.getValue(User.class);
 
                                         Intent i = new Intent(getActivity() , YourRideView.class);
-                                        //i.putExtra("phonenumber", u.getPhoneNumber());
                                         i.putExtra("party1name", r.getParty1name());
                                         i.putExtra("party2name", r.getParty2name());
                                         i.putExtra("destination", r.getDestination());
