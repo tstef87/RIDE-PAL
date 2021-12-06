@@ -111,7 +111,9 @@ public class RideDiscription extends AppCompatActivity {
 
                 if(!userId.equals(ride.getParty1id())) {
                     //addToYourRides(ride);
-                    startActivity(new Intent(RideDiscription.this, ApplyForRideActivity.class));
+                    Intent i = new Intent(RideDiscription.this , ApplyForRideActivity.class);
+                    i.putExtra("RideName", ride.makeTitle());
+                    startActivity(i);
 
 
                 }
