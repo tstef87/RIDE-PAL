@@ -10,9 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 public class ApplyForRideActivity extends AppCompatActivity {
 
+
+    CheckBox yes, no;
     Button apply, back;
 
     @Override
@@ -27,5 +30,30 @@ public class ApplyForRideActivity extends AppCompatActivity {
                 startActivity(new Intent(ApplyForRideActivity.this, AccountInfoActivity.class));
             }
         });
+
+        yes = findViewById(R.id.afr_yes);
+        no = findViewById(R.id.afr_no);
+
+        apply = (Button) findViewById(R.id.afr_apply);
+
+    }
+
+    public void applyForRide() {
+
+        if (validYesOrNo(yes.isChecked(), no.isChecked())){
+
+        }
+    }
+
+    public boolean validYesOrNo(boolean yes, boolean no){
+        if (yes && no){
+            return false;
+        }
+        else if (!yes && !no){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
