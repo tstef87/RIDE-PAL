@@ -71,7 +71,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register();
+                createRide();
             }
         });
 
@@ -103,10 +103,10 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         return x.isChecked();
     }
 
-    private void register(){
+
+    private void createRide(){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
         DatabaseReference ref = database.getReference("Rides");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

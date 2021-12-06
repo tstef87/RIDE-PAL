@@ -63,7 +63,7 @@ public class AccountInfoActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_your_rides ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides)
+                R.id.nav_your_rides ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides, R.id.nav_your_ride_applicants)
                 .setOpenableLayout(drawer)
                 .build();
 

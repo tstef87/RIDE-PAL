@@ -24,6 +24,12 @@
         android:id="@+id/nav_your_rides"
         tools:layout="@layout/fragment_your_rides" />
 
+    <fragment
+        android:label="Ride Applicants"
+        android:name="com.example.ride_pal_real.ui.ride_applicants.RidesPostedListFragment"
+        android:id="@+id/nav_your_ride_applicants"
+        tools:layout="@layout/fragment_rides_posted_list" />
+
 
     <activity
         android:id="@+id/nav_map"

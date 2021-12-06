@@ -25,6 +25,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RIDEPALREAL">
         <activity
+            android:name=".ui.ride_applicants.ApplicantsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.rides.create.ApplyForRideActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.yourRidePals.YourRideView"
             android:exported="false" />
         <activity

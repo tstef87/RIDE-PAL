@@ -110,7 +110,10 @@ public class RideDiscription extends AppCompatActivity {
 
 
                 if(!userId.equals(ride.getParty1id())) {
-                    addToYourRides(ride);
+                    //addToYourRides(ride);
+                    startActivity(new Intent(RideDiscription.this, ApplyForRideActivity.class));
+
+
                 }
                 else{
                     Toast.makeText(RideDiscription.this, "This is your own listing, you can not accept it!", Toast.LENGTH_LONG).show();
@@ -121,8 +124,12 @@ public class RideDiscription extends AppCompatActivity {
         });
     }
 
-    private void addToYourRides(Rides rides){
 
+
+
+
+    //im going to have to modify this or bring it to another tab
+    private void addToYourRides(Rides rides){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
