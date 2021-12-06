@@ -1,7 +1,7 @@
 package com.example.ride_pal_real.ui.rides.create;
 
 public class Rides {
-    public String name, time, destination, party1id, party2id;
+    public String name, time, destination, party1id, party2id, party1name, party2name;
     public boolean monday, tuesday, wednesday, thursday, friday;
 
     public Rides(){
@@ -9,11 +9,7 @@ public class Rides {
 
     }
 
-
-
-
-    public Rides(String name, String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id){
-        this.name = name;
+    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id, String party1name, String party2name){
         this.time = time;
         this.destination = destination;
         this.monday = monday;
@@ -23,15 +19,24 @@ public class Rides {
         this.friday = friday;
         this.party1id = party1id;
         this.party2id = party2id;
+        this.party1name = party1name;
+        this.party2name = party2name;
     }
 
-
-    public String getName() {
-        return name;
+    public String getParty1name() {
+        return party1name;
     }
 
-    public void setName(String dis) {
-        this.name = dis;
+    public void setParty1name(String party1name) {
+        this.party1name = party1name;
+    }
+
+    public String getParty2name() {
+        return party2name;
+    }
+
+    public void setParty2name(String party2name) {
+        this.party2name = party2name;
     }
 
     public String getTime() {
@@ -108,21 +113,6 @@ public class Rides {
     }
 
 
-
-
-    @Override
-    public String toString() {
-        return "Rides{" +
-                "name='" + name + '\'' +
-                ", time='" + time + '\'' +
-                ", destination='" + destination + '\'' +
-                ", monday=" + monday +
-                ", tuesday=" + tuesday +
-                ", wednesday=" + wednesday +
-                ", thursday=" + thursday +
-                ", friday=" + friday +
-                '}';
-    }
 
     public String toStringList(){
         String s = "";

@@ -58,8 +58,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Bundle recdData = getIntent().getExtras();
-        Rides ride = new Rides(recdData.getString("name"),
-                recdData.getString("time"),
+        Rides ride = new Rides(recdData.getString("time"),
                 recdData.getString("destination"),
                 recdData.getBoolean("monday"),
                 recdData.getBoolean("tuesday"),
@@ -67,7 +66,9 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 recdData.getBoolean("thursday"),
                 recdData.getBoolean("friday"),
                 recdData.getString("party1id"),
-                recdData.getString("party2id"));
+                recdData.getString("party2id"),
+                recdData.getString("party1name"),
+                recdData.getString("party2name"));
 
 
         switch (v.getId()) {

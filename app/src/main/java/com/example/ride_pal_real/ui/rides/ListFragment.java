@@ -69,7 +69,8 @@ public class ListFragment extends Fragment {
                             Rides ride = new Rides();
 
                             ride.setDestination(snapshot.child("destination").getValue().toString());
-                            ride.setName(snapshot.child("name").getValue().toString());
+                            ride.setParty1name(snapshot.child("party1name").getValue().toString());
+                            ride.setParty2name("-");
                             ride.setTime(snapshot.child("time").getValue().toString());
 
                             if(snapshot.child("monday").getValue().toString().equals("true")){
@@ -124,10 +125,9 @@ public class ListFragment extends Fragment {
                                 Rides r = dataRides.get(position);
 
                                 Intent i = new Intent(getActivity() , RideDiscription.class);
-                                i.putExtra("name", r.getName());
+
                                 i.putExtra("destination", r.getDestination());
                                 i.putExtra("time", r.getTime());
-                                i.putExtra("name", r.getName());
                                 i.putExtra("monday", r.isMonday());
                                 i.putExtra("tuesday", r.isTuesday());
                                 i.putExtra("wednesday", r.isWednesday());
@@ -135,6 +135,8 @@ public class ListFragment extends Fragment {
                                 i.putExtra("friday", r.isFriday());
                                 i.putExtra("party1id", r.getParty1id());
                                 i.putExtra("party2id", r.getParty2id());
+                                i.putExtra("party1name", r.getParty1name());
+                                i.putExtra("party2name", r.getParty2name());
 
                                 startActivity(i);
 
@@ -188,18 +190,5 @@ public class ListFragment extends Fragment {
         startActivity(i);
         ((Activity)getActivity()).overridePendingTransition(0,0);
     }
-
-    /*TODO:
-
-  checks if it is your ride or not by using party1id
-  if it is your ride it takes you to a edit ride activity
-
-   */
-
-
-    private boolean yourRide(){
-        return true;
-    }
-
 
 }

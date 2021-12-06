@@ -69,7 +69,7 @@ public class YourRides extends Fragment {
                             Rides ride = new Rides();
 
                             ride.setDestination(snapshot.child("destination").getValue().toString());
-                            ride.setName(snapshot.child("name").getValue().toString());
+                            ride.setParty1name(snapshot.child("party1name").getValue().toString());
                             ride.setTime(snapshot.child("time").getValue().toString());
 
                             if(snapshot.child("monday").getValue().toString().equals("true")){
@@ -124,7 +124,7 @@ public class YourRides extends Fragment {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                                 Rides r = dataRides.get(position);
-                                String user = r.getName();
+                                String user = r.getParty1name();
 
                                 FirebaseDatabase.getInstance().getReference().child("Users")
                                         .child(user).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -135,10 +135,10 @@ public class YourRides extends Fragment {
 
                                         Intent i = new Intent(getActivity() , YourRideView.class);
                                         //i.putExtra("phonenumber", u.getPhoneNumber());
-                                        i.putExtra("name", r.getName());
+                                        i.putExtra("party1name", r.getParty1name());
+                                        i.putExtra("party2name", r.getParty2name());
                                         i.putExtra("destination", r.getDestination());
                                         i.putExtra("time", r.getTime());
-                                        i.putExtra("name", r.getName());
                                         i.putExtra("monday", r.isMonday());
                                         i.putExtra("tuesday", r.isTuesday());
                                         i.putExtra("wednesday", r.isWednesday());

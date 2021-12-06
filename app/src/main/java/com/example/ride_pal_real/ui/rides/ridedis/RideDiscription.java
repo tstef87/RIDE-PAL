@@ -40,6 +40,7 @@ public class RideDiscription extends AppCompatActivity {
     private User userProfile;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
+    private String party2Name; //add party2phonenumber here later
 
 
 
@@ -51,8 +52,8 @@ public class RideDiscription extends AppCompatActivity {
 
         Bundle recdData = getIntent().getExtras();
 
-        String name = recdData.getString("name");
-        String des = recdData.getString("des");
+        String name = recdData.getString("party1name");
+        String des = recdData.getString("destination");
         String time = recdData.getString("time");
 
 
@@ -77,6 +78,21 @@ public class RideDiscription extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
 
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                party2Name = user.getFullName();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         accept = findViewById(R.id.accept);
         accept.setOnClickListener(new View.OnClickListener() {
 
@@ -85,8 +101,7 @@ public class RideDiscription extends AppCompatActivity {
 
 
 
-                Rides ride = new Rides(recdData.getString("name"),
-                        recdData.getString("time"),
+                Rides ride = new Rides(recdData.getString("time"),
                         recdData.getString("destination"),
                         recdData.getBoolean("monday"),
                         recdData.getBoolean("tuesday"),
@@ -94,7 +109,9 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getBoolean("thursday"),
                         recdData.getBoolean("friday"),
                         recdData.getString("party1id"),
-                        recdData.getString("party2id"));
+                        recdData.getString("party2id"),
+                        recdData.getString("party1name"),
+                        party2Name);
 
 
                 if(!userId.equals(ride.getParty1id())) {
@@ -118,7 +135,6 @@ public class RideDiscription extends AppCompatActivity {
         rides.setParty2id(userId);
 
         reference = FirebaseDatabase.getInstance().getReference("YourRides");
-
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
