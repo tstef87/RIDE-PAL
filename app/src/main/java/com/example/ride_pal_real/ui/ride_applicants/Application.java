@@ -3,7 +3,7 @@ package com.example.ride_pal_real.ui.ride_applicants;
 public class Application {
 
 
-    public String name, prefrences, id, phonenumber, canDrive;
+    public String name, preferences, id, phonenumber, canDrive;
 
     public Application(){
 
@@ -11,9 +11,9 @@ public class Application {
     }
 
 
-    public Application(String name, String prefrences, String id, String phonenumber, String canDrive){
+    public Application(String name, String preferences, String id, String phonenumber, String canDrive){
         this.name = name;
-        this.prefrences = prefrences;
+        this.preferences = preferences;
         this.id = id;
         this.phonenumber = phonenumber;
         this.canDrive = canDrive;
@@ -29,12 +29,12 @@ public class Application {
         this.name = name;
     }
 
-    public String getPrefrences() {
-        return prefrences;
+    public String getPreferences() {
+        return preferences;
     }
 
-    public void setPrefrences(String prefrences) {
-        this.prefrences = prefrences;
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
     }
 
     public String getId() {
@@ -68,6 +68,11 @@ public class Application {
         else{
             canDrive = "false";
         }
+    }
+
+    public void setCanDrive2(String canDrive){
+        this.canDrive = canDrive;
+
     }
 
     public String makeTitle(){

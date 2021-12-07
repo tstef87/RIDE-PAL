@@ -16,7 +16,7 @@
             android:title="Your Rides" />
 
         <item
-            android:id="@+id/nav_your_ride_applicants"
+            android:id="@+id/nav_your_rides_posted"
             android:icon="@android:drawable/ic_menu_revert"
             android:title="Ride Applicants" />
         <item

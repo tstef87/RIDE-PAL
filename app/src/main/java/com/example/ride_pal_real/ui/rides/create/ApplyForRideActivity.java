@@ -3,7 +3,6 @@ package com.example.ride_pal_real.ui.rides.create;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
-import com.example.ride_pal_real.ui.logout.AccountSettings;
 import com.example.ride_pal_real.ui.ride_applicants.Application;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +22,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ApplyForRideActivity extends AppCompatActivity {
@@ -84,7 +82,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
                     application.setId(userId);
                     application.setName(userProfile.getFullName());
                     application.setPhonenumber(userProfile.getPhoneNumber());
-                    application.setPrefrences(prefrences.getText().toString());
+                    application.setPreferences(prefrences.getText().toString());
 
                     FirebaseDatabase.getInstance().getReference("Rides")
                             .child(recdData.getString("RideName"))
