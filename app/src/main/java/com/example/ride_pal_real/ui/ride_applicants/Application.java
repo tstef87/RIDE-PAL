@@ -53,12 +53,9 @@ public class Application {
         this.phonenumber = phonenumber;
     }
 
-    public boolean getCanDrive() {
+    public String getCanDrive() {
 
-        if(canDrive.equals("true")){
-            return true;
-        }
-        return false;
+        return canDrive;
     }
 
     public void setCanDrive(boolean cd) {

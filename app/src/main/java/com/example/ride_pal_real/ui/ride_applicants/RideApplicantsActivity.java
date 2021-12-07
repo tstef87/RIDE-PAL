@@ -3,6 +3,7 @@ package com.example.ride_pal_real.ui.ride_applicants;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
+import com.example.ride_pal_real.ui.rides.create.Rides;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -10,8 +11,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -67,6 +70,25 @@ public class RideApplicantsActivity extends AppCompatActivity {
 
                         TextView emptyText = (TextView) findViewById(android.R.id.empty);
                         listView.setEmptyView(emptyText);
+
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                Application application = dataApp.get(position);
+
+                                Intent i = new Intent(RideApplicantsActivity.this , AppViewActivity.class);
+                                i.putExtra("name", application.getName());
+                                i.putExtra("canDrive", application.getCanDrive());
+                                i.putExtra("pref", application.getPreferences());
+                                i.putExtra("id", application.getId());
+                                i.putExtra("phonenumber", application.getPhonenumber());
+                                i.putExtra("ref", ref);
+
+                                startActivity(i);
+                            }
+                        });
                     }
 
                     @Override
