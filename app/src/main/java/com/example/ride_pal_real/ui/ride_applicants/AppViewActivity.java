@@ -67,13 +67,20 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         decline.setOnClickListener(this);
 
         Bundle recdData = getIntent().getExtras();
+
         ref = recdData.getString("ref");
+
 
         application = new Application(recdData.getString("name"),
                 recdData.getString("pref"),
                 recdData.getString("id"),
                 recdData.getString("phonenumber"),
                 recdData.getString("canDrive"));
+
+
+        name.setText(application.getName());
+        canDrive.setText(canDrive(application.getCanDrive()));
+        pref.setText(application.getPreferences());
 
         reference = FirebaseDatabase.getInstance().getReference("Rides");
 
@@ -114,6 +121,15 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
                 openMesseges();
                 break;
 
+        }
+    }
+
+    private String canDrive(String s){
+        if(s.equals("true")){
+            return "is able to drive";
+        }
+        else {
+            return "is unable to drive";
         }
     }
 
