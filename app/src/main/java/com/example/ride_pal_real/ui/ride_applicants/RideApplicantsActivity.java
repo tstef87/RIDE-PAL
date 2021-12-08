@@ -3,7 +3,9 @@ package com.example.ride_pal_real.ui.ride_applicants;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
+import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +30,7 @@ public class RideApplicantsActivity extends AppCompatActivity {
     ArrayList<String> data = new ArrayList<String>();
     ArrayList<Application> dataApp = new ArrayList<Application>();
     ListView listView;
+    FloatingActionButton refresh, back;
 
 
     @Override
@@ -35,14 +38,33 @@ public class RideApplicantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_applicants);
 
+        Bundle recdData = getIntent().getExtras();
+        String ref = recdData.getString("ref");
+
+        refresh = (FloatingActionButton) findViewById(R.id.ra_refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RideApplicantsActivity.this, RideApplicantsActivity.class);
+                i.putExtra("ref", ref);
+                startActivity(i);
+            }
+        });
+
+        back = (FloatingActionButton) findViewById(R.id.ra_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RideApplicantsActivity.this, AccountInfoActivity.class));
+            }
+        });
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
 
-        Bundle recdData = getIntent().getExtras();
 
-        String ref = recdData.getString("ref");
 
         FirebaseDatabase.getInstance().getReference().child("Rides").child(ref).child("applications")
                 .addListenerForSingleValueEvent(new ValueEventListener() {

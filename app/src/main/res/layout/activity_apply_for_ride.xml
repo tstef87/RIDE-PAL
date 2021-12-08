@@ -60,30 +60,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/afr_yes" />
 
-    <TextView
-        android:id="@+id/example"
-        android:layout_width="243dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:text="Write a small discription about what you look for in a Ride Pal"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preferences" />
-
     <EditText
         android:id="@+id/afr_preferences"
         android:layout_width="304dp"
         android:layout_height="103dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Edit Text"
+        android:hint="Write a small discription about what you look for in a Ride Pal"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/example" />
+        app:layout_constraintTop_toBottomOf="@+id/preferences" />
 
     <Button
         android:id="@+id/afr_apply"

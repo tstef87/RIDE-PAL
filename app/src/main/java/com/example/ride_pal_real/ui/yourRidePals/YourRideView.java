@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.net.URL;
+
 public class YourRideView extends AppCompatActivity implements View.OnClickListener {
 
     Button back, delete;
@@ -82,7 +84,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         message.setOnClickListener(this);
 
         getdirections = (TextView) findViewById(R.id.yrp_get_directions);
-        getdirections.setClickable(true);
+        getdirections.setOnClickListener(this);
 
         addtocalender = (TextView) findViewById(R.id.yrp_add_to_calendar);
         addtocalender.setClickable(true);
@@ -113,6 +115,8 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.yrp_get_directions:
+                openMap();
+
                 break;
 
 
@@ -173,5 +177,12 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         s += number.substring(6,9);
         s += number.substring(10);
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", s, null)));
+    }
+
+    private void openMap(){
+        //String url = "https://www.google.com/maps/dir/39.9998976,-75.235328/40.0017991,-75.2267659/5600+City+Ave,+Philadelphia,+PA+19131/@39.9982745,-75.2370576,16z/am=t/data=!3m1!4b1!4m11!4m10!1m1!4e1!1m0!1m5!1m1!1s0x89c6c74f28c1c21b:0xf933bbdca5b6d622!2m2!1d-75.2388361!2d39.9947363!3e2";
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("https://www.google.com/maps/dir/39.9998976,-75.235328/40.0017991,-75.2267659/5600+City+Ave,+Philadelphia,+PA+19131/@39.9982745,-75.2370576,16z/am=t/data=!3m1!4b1!4m11!4m10!1m1!4e1!1m0!1m5!1m1!1s0x89c6c74f28c1c21b:0xf933bbdca5b6d622!2m2!1d-75.2388361!2d39.9947363!3e2"));
+        startActivity(intent);
     }
 }
