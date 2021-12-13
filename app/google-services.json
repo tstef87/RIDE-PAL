@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "855770076131",
+    "firebase_url": "https://ride-pal-8a602-default-rtdb.firebaseio.com",
+    "project_id": "ride-pal-8a602",
+    "storage_bucket": "ride-pal-8a602.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855770076131:android:21ebd49b21052b553786d6",
+        "android_client_info": {
+          "package_name": "com.example.ride_pal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855770076131-eg977j7tmjqqr9tl0j327ifevmsgiv1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA7e94LAkMIPrD4aIQ-ma0-TyBZfa9UTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855770076131-eg977j7tmjqqr9tl0j327ifevmsgiv1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855770076131:android:ff13390a8b7759683786d6",
+        "android_client_info": {
+          "package_name": "com.example.ride_pal_real"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855770076131-eg977j7tmjqqr9tl0j327ifevmsgiv1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA7e94LAkMIPrD4aIQ-ma0-TyBZfa9UTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855770076131-eg977j7tmjqqr9tl0j327ifevmsgiv1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855770076131:android:72275fbe5c1b5e983786d6",
+        "android_client_info": {
+          "package_name": "com.example.ridepal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855770076131-eg977j7tmjqqr9tl0j327ifevmsgiv1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA7e94LAkMIPrD4aIQ-ma0-TyBZfa9UTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855770076131-eg977j7tmjqqr9tl0j327ifevmsgiv1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

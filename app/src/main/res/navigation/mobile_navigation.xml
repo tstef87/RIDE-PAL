@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_profile">
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.ride_pal_real.ui.profile.ProfileFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.ride_pal_real.ui.map.MapsFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
+        android:id="@+id/nav_transactions"
+        android:name="com.example.ride_pal_real.ui.rides.ListFragment"
+        android:label="List"
+        tools:layout="@layout/fragment_list" />
+
+
+    <activity
+        android:id="@+id/nav_rides"
+        android:name="com.example.ride_pal_real.ui.rides.create.CreateRide"
+        android:label="Create Ride"
+        tools:layout="@layout/activity_create_ride" />
+
+    <activity
+        android:id="@+id/nav_logout"
+        android:name="com.example.ride_pal_real.ui.logout.AccountSettings"
+        android:label="logout"
+        tools:layout="@layout/activity_logout_page" />
+    <activity
+        android:id="@+id/nav_profile_s"
+        android:name="com.example.ride_pal_real.show_profile"
+        android:label="Profile"
+        tools:layout="@layout/activity_show_profile" />
+</navigation>
