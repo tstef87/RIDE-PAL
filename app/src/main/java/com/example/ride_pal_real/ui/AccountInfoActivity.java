@@ -1,26 +1,24 @@
 package com.example.ride_pal_real.ui;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.location.GnssAntennaInfo;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.ride_pal_real.Profile_;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.databinding.ActivityAccountInfoBinding;
 import com.example.ride_pal_real.sign_in.User;
@@ -35,25 +33,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
-public class AccountInfoActivity extends AppCompatActivity  {
+public class AccountInfoActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityAccountInfoBinding binding;
-    ImageButton imgButton;
+
     private FirebaseUser user;
     private DatabaseReference reference;
 
     private String userId;
-  // ImageView img = (ImageView) findViewById(R.id.ima);
 
 
-
-
-
-
-
-
-    //imgButton =(ImageButton)findViewById(R.id.ima);
 
 
     @SuppressLint("SetTextI18n")
@@ -61,21 +51,8 @@ public class AccountInfoActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         binding = ActivityAccountInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
-        //ImageView img = (ImageView) findViewById(R.id.ima);
-
-
-      /*  img.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Intent i = new Intent(getApplicationContext(), Profile_.class);
-                //startActivity(i);
-            }
-        });*/
 
         setSupportActionBar(binding.appBarAccountInfo.toolbar);
 
@@ -86,12 +63,18 @@ public class AccountInfoActivity extends AppCompatActivity  {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_map, R.id.nav_transactions ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides, R.id.nav_transactions,R.id.nav_profile_s)
+                R.id.nav_your_rides ,R.id.nav_logout, R.id.nav_profile, R.id.nav_rides, R.id.nav_your_ride_applicants, R.id.nav_your_rides_posted)
                 .setOpenableLayout(drawer)
                 .build();
+
+
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -110,9 +93,8 @@ public class AccountInfoActivity extends AppCompatActivity  {
                 User userProfile = snapshot.getValue(User.class);
 
                 if (userProfile != null) {
-                    String fn = userProfile.firstname.substring(0,1).toUpperCase(Locale.ROOT)+""+userProfile.firstname.substring(1).toLowerCase(Locale.ROOT);
-                    String ln = userProfile.lastname.substring(0,1).toUpperCase(Locale.ROOT)+""+userProfile.lastname.substring(1).toLowerCase(Locale.ROOT);
-                    String full = fn + " " + ln;
+
+                    String full = userProfile.getFullName();
                     String ema = userProfile.email;
 
                     navUsername.setText(full);
@@ -141,12 +123,11 @@ public class AccountInfoActivity extends AppCompatActivity  {
         return true;
     }
 
-
-        public boolean onSupportNavigateUp () {
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);
-            return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                    || super.onSupportNavigateUp();
-        }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 
 }

@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.rides.create.ListFragment">
+    tools:context=".ui.ride_applicants.RideApplicantsActivity">
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_new_ride_fab"
+        android:id="@+id/ra_back"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"
@@ -18,7 +20,7 @@
         android:contentDescription="Create new Ride" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/refresh"
+        android:id="@+id/ra_refresh"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"
@@ -28,13 +30,14 @@
         android:contentDescription="Refresh Page"
         tools:ignore="SpeakableTextPresentCheck" />
 
+
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/ya_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        />
 
 
-    </ListView>
 
     <TextView
         android:id="@android:id/empty"
@@ -42,8 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:text="You Have No Applicants For This Ride"
         android:textSize="20sp"
-        android:text="No Rides Listed" />
+        />
 
 
 </FrameLayout>

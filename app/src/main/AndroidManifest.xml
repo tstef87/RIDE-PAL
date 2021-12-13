@@ -7,15 +7,15 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission
-        android:name="RIDE PAL"
-        tools:ignore="CoarseFineLocation" />
+    <uses-permission android:name="RIDE PAL" />
 
     <application
         android:allowBackup="true"
@@ -25,10 +25,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RIDEPALREAL">
         <activity
-            android:name=".show_profile"
+            android:name=".ui.ride_applicants.AppViewActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile_"
+            android:name=".ui.ride_applicants.RideApplicantsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ride_applicants.ApplicantsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.rides.create.ApplyForRideActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.yourRidePals.YourRideView"
+            android:exported="false" />
+        <activity
+            android:name=".ui.rides.create.RideDiscription"
             android:exported="false" />
         <activity
             android:name=".ui.rides.create.CreateRide"
@@ -46,7 +58,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.MapsActivity"
+            android:name=".ui.map.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
