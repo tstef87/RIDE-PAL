@@ -60,6 +60,8 @@ public class ListFragment extends Fragment {
                             ride.setParty1phonenumber(snapshot.child("data").child("party1phonenumber").getValue().toString());
                             ride.setParty2phonenumber("-");
                             ride.setTime(snapshot.child("data").child("time").getValue().toString());
+                            ride.setParty1address(snapshot.child("data").child("party1address").getValue().toString());
+                            ride.setParty2address("-");
 
                             if(snapshot.child("data").child("monday").getValue().toString().equals("true")){
                                 ride.setMonday(true);
@@ -127,7 +129,8 @@ public class ListFragment extends Fragment {
                                 i.putExtra("party2name", r.getParty2name());
                                 i.putExtra("party1phonenumber", r.getParty1phonenumber());
                                 i.putExtra("party2phonenumber", r.getParty2phonenumber());
-
+                                i.putExtra("party1address", r.getParty1address());
+                                i.putExtra("party2address", r.getParty2address());
                                 startActivity(i);
 
                             }

@@ -1,7 +1,7 @@
 package com.example.ride_pal_real.ui.rides.create;
 
 public class Rides {
-    public String name, time, destination, party1id, party2id, party1name, party2name, party1phonenumber, party2phonenumber;
+    public String name, time, destination, party1id, party2id, party1name, party2name, party1phonenumber, party2phonenumber, party1address, party2address;
     public boolean monday, tuesday, wednesday, thursday, friday;
 
     public Rides(){
@@ -11,7 +11,8 @@ public class Rides {
 
 
 
-    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id, String party1name, String party2name, String party1phonenumber, String party2phonenumber){
+
+    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id, String party1name, String party2name, String party1phonenumber, String party2phonenumber, String party1address, String party2address){
         this.time = time;
         this.destination = destination;
         this.monday = monday;
@@ -25,8 +26,12 @@ public class Rides {
         this.party2name = party2name;
         this.party1phonenumber = party1phonenumber;
         this.party2phonenumber = party2phonenumber;
+        this.party1address = party1address;
+        this.party2address = party2address;
 
     }
+
+
 
     public String getParty1phonenumber() {
         return party1phonenumber;
@@ -203,6 +208,22 @@ public class Rides {
             s += "Friday ";
         }
         return s;
+    }
+
+    public String getParty1address() {
+        return party1address;
+    }
+
+    public void setParty1address(String party1address) {
+        this.party1address = party1address;
+    }
+
+    public String getParty2address() {
+        return party2address;
+    }
+
+    public void setParty2address(String party2address) {
+        this.party2address = party2address;
     }
 
     public String makeTitle(){

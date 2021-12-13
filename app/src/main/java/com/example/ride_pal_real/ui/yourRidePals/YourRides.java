@@ -106,7 +106,8 @@ public class YourRides extends Fragment {
                             ride.setParty2id(snapshot.child("party2id").getValue().toString());
                             ride.setParty1phonenumber(snapshot.child("party1phonenumber").getValue().toString());
                             ride.setParty2phonenumber(snapshot.child("party2phonenumber").getValue().toString());
-
+                            ride.setParty1address(snapshot.child("party1address").getValue().toString());
+                            ride.setParty2address(snapshot.child("party2address").getValue().toString());
 
                             data.add(ride.toStringListYR(userId));
                             dataRides.add(ride);
@@ -151,6 +152,8 @@ public class YourRides extends Fragment {
                                         i.putExtra("party2id", r.getParty2id());
                                         i.putExtra("party1phonenumber", r.getParty1phonenumber());
                                         i.putExtra("party2phonenumber", r.getParty2phonenumber());
+                                        i.putExtra("party1address", r.getParty1address());
+                                        i.putExtra("party2address", r.getParty2address());
                                         startActivity(i);
 
 

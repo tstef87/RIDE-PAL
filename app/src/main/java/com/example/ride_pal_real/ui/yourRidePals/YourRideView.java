@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.URL;
 
@@ -55,7 +57,9 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 recdData.getString("party1name"),
                 recdData.getString("party2name"),
                 recdData.getString("party1phonenumber"),
-                recdData.getString("party2phonenumber"));
+                recdData.getString("party2phonenumber"),
+                recdData.getString("party1address"),
+                recdData.getString("party2address"));
 
         name = (TextView) findViewById(R.id.yrp_name);
         time = (TextView) findViewById(R.id.yrp_time);
@@ -180,9 +184,18 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
     }
 
     private void openMap(){
-        //String url = "https://www.google.com/maps/dir/39.9998976,-75.235328/40.0017991,-75.2267659/5600+City+Ave,+Philadelphia,+PA+19131/@39.9982745,-75.2370576,16z/am=t/data=!3m1!4b1!4m11!4m10!1m1!4e1!1m0!1m5!1m1!1s0x89c6c74f28c1c21b:0xf933bbdca5b6d622!2m2!1d-75.2388361!2d39.9947363!3e2";
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("https://www.google.com/maps/dir/39.9998976,-75.235328/40.0017991,-75.2267659/5600+City+Ave,+Philadelphia,+PA+19131/@39.9982745,-75.2370576,16z/am=t/data=!3m1!4b1!4m11!4m10!1m1!4e1!1m0!1m5!1m1!1s0x89c6c74f28c1c21b:0xf933bbdca5b6d622!2m2!1d-75.2388361!2d39.9947363!3e2"));
-        startActivity(intent);
+        Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=7&bobtail&run&broomall&waypoints=40.023962,-75.218069&travelmode=driving");
+        Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        intent.setPackage("com.google.android.apps.maps");
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            try {
+                Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                startActivity(unrestrictedIntent);
+            } catch (ActivityNotFoundException innerEx) {
+                Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

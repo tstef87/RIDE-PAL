@@ -78,12 +78,12 @@
         android:id="@+id/afr_apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="Apply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/afr_preferences" />
+        app:layout_constraintTop_toBottomOf="@+id/afr_address" />
 
     <Button
         android:id="@+id/afr_back"
@@ -97,5 +97,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/afr_apply"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/afr_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Enter Pick Up Address"
+        android:inputType="textAutoComplete|textPostalAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/afr_preferences" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,7 +75,8 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
                 recdData.getString("pref"),
                 recdData.getString("id"),
                 recdData.getString("phonenumber"),
-                recdData.getString("canDrive"));
+                recdData.getString("canDrive"),
+                recdData.getString("address"));
 
 
         name.setText(application.getName());
@@ -182,6 +183,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         ride.setParty2name(application.getName());
         ride.setParty2phonenumber(application.getPhonenumber());
         ride.setParty2id(application.getId());
+        ride.setParty2address(application.getAddress());
 
 
         FirebaseDatabase.getInstance().getReference("YourRides")

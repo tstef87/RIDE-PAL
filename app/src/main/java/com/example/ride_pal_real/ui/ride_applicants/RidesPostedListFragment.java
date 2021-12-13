@@ -5,10 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ride_pal_real.R;
-import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.ui.rides.create.Rides;
-import com.example.ride_pal_real.ui.yourRidePals.YourRideView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +45,6 @@ public class RidesPostedListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
         View view = inflater.inflate(R.layout.fragment_rides_posted_list, container, false);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
@@ -65,6 +59,8 @@ public class RidesPostedListFragment extends Fragment {
 
                             ride.setDestination(snapshot.child("data").child("destination").getValue().toString());
                             ride.setParty1name(snapshot.child("data").child("party1name").getValue().toString());
+                            ride.setParty1address(snapshot.child("data").child("party1address").getValue().toString());
+                            ride.setParty2address("-");
                             ride.setParty2name("-");
                             ride.setParty1phonenumber(snapshot.child("data").child("party1phonenumber").getValue().toString());
                             ride.setParty2phonenumber("-");
@@ -101,6 +97,8 @@ public class RidesPostedListFragment extends Fragment {
                             }
                             ride.setParty1id(snapshot.child("data").child("party1id").getValue().toString());
                             ride.setParty2id(snapshot.child("data").child("party2id").getValue().toString());
+                            ride.setParty1address(snapshot.child("data").child("party1address").getValue().toString());
+                            ride.setParty2address(snapshot.child("data").child("party2address").getValue().toString());
 
 
                             if(userId.equals(ride.getParty1id())) {
@@ -123,6 +121,7 @@ public class RidesPostedListFragment extends Fragment {
                                 Rides r = dataRides.get(position);
                                 Intent i = new Intent(getActivity() , RideApplicantsActivity.class);
                                 i.putExtra("ref", r.makeTitle());
+
                                 startActivity(i);
                             }
                         });

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -150,8 +151,17 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                        return;
                    }
 
+                   EditText address = (EditText) findViewById(R.id.enterAddress);
+                   String party1address = address.getText().toString().trim();
 
-                   Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-", party1name, party2name, party1phonenumber, party2phonenumber);
+                   if (party1address.isEmpty()){
+                       address.setError("Invalid Address");
+                       address.requestFocus();
+                       return;
+                   }
+
+
+                   Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-", party1name, party2name, party1phonenumber, party2phonenumber, party1address, "-");
                    FirebaseDatabase.getInstance().getReference("Rides")
                            .child(rides.makeTitle()).child("data")
                            .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {

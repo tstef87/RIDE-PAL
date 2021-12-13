@@ -32,6 +32,7 @@ public class RideDiscription extends AppCompatActivity {
     private DatabaseReference reference;
     private String party2Name;
     private String party2phonenumber;
+    private String party2address;
 
 
 
@@ -92,8 +93,6 @@ public class RideDiscription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 Rides ride = new Rides(recdData.getString("time"),
                         recdData.getString("destination"),
                         recdData.getBoolean("monday"),
@@ -106,8 +105,9 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getString("party1name"),
                         party2Name,
                         recdData.getString("party1phonenumber"),
-                        party2phonenumber);
-
+                        party2phonenumber,
+                        recdData.getString("party1address"),
+                        party2address);
 
                 if(!userId.equals(ride.getParty1id())) {
                     //addToYourRides(ride);
@@ -118,96 +118,13 @@ public class RideDiscription extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(RideDiscription.this, "This is your own listing, you can not accept it!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RideDiscription.this, "This is your own listing, you can not apply for it!", Toast.LENGTH_LONG).show();
                 }
 
 
             }
         });
     }
-
-
-
-
-
-    //im going to have to modify this or bring it to another tab
-    private void addToYourRides(Rides rides){
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userId = user.getUid();
-        rides.setParty2id(userId);
-
-        reference = FirebaseDatabase.getInstance().getReference("YourRides");
-        reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                FirebaseDatabase.getInstance().getReference("YourRides")
-                        .child(rides.getParty1id())
-                        .child(rides.makeTitle())
-                        .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
-
-
-                    @Override
-                    public void onSuccess(Void unused) {
-
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        Query ridesQuery = ref.child("Rides").child(rides.makeTitle());
-
-                        ridesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot ridesSnapshot : dataSnapshot.getChildren()) {
-                                    ridesSnapshot.getRef().removeValue();
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                            }
-                        });
-
-                        startActivity(new Intent(RideDiscription.this, AccountInfoActivity.class));
-
-                    }
-                });
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-
-        });
-
-        reference.child(rides.getParty2id()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseDatabase.getInstance().getReference("YourRides")
-                        .child(rides.getParty2id())
-                        .child(rides.makeTitle())
-                        .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {
-
-                    @Override
-                    public void onSuccess(Void unused) {
-                        startActivity(new Intent(RideDiscription.this, AccountInfoActivity.class));
-
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
 
 
 }

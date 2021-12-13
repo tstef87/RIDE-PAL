@@ -29,7 +29,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
 
     CheckBox yes, no;
     Button apply, back;
-    EditText prefrences;
+    EditText prefrences, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,51 +60,73 @@ public class ApplyForRideActivity extends AppCompatActivity {
 
         yes = findViewById(R.id.afr_yes);
         no = findViewById(R.id.afr_no);
+        address = findViewById(R.id.afr_address);
 
 
         Application application = new Application();
 
         if (validYesOrNo(yes, no)) {
+            if (validAddress(address.getText().toString())) {
 
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String userId = user.getUid();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userId = user.getUid();
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
 
-            reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
 
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    User userProfile = snapshot.getValue(User.class);
-                    Bundle recdData = getIntent().getExtras();
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User userProfile = snapshot.getValue(User.class);
+                        Bundle recdData = getIntent().getExtras();
 
-                    prefrences = (EditText) findViewById(R.id.afr_preferences);
-                    application.setCanDrive(yes.isChecked());
-                    application.setId(userId);
-                    application.setName(userProfile.getFullName());
-                    application.setPhonenumber(userProfile.getPhoneNumber());
-                    application.setPreferences(prefrences.getText().toString());
+                        prefrences = (EditText) findViewById(R.id.afr_preferences);
+                        application.setCanDrive(yes.isChecked());
+                        application.setId(userId);
+                        application.setName(userProfile.getFullName());
+                        application.setPhonenumber(userProfile.getPhoneNumber());
+                        application.setPreferences(prefrences.getText().toString());
 
-                    FirebaseDatabase.getInstance().getReference("Rides")
-                            .child(recdData.getString("RideName"))
-                            .child("applications")
-                            .child(application.makeTitle())
-                            .setValue(application).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(ApplyForRideActivity.this, "Applied for Ride!", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(ApplyForRideActivity.this, AccountInfoActivity.class));
+
+                        address = findViewById(R.id.afr_address);
+                        String addy = address.getText().toString();
+                        String pref = prefrences.getText().toString();
+
+
+                        if (pref.isEmpty()){
+                            prefrences.setError("Must Not Be Empty");
+                            prefrences.requestFocus();
+                            return;
                         }
-                    });
+
+                        if (addy.isEmpty()){
+                            address.setError("Invalid Address");
+                            address.requestFocus();
+                            return;
+                        }
 
 
-                }
+                        FirebaseDatabase.getInstance().getReference("Rides")
+                                .child(recdData.getString("RideName"))
+                                .child("applications")
+                                .child(application.makeTitle())
+                                .setValue(application).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(ApplyForRideActivity.this, "Applied for Ride!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(ApplyForRideActivity.this, AccountInfoActivity.class));
+                            }
+                        });
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
 
-                }
+                    }
 
-            });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                });
+            }
         }
 
 
@@ -123,5 +145,13 @@ public class ApplyForRideActivity extends AppCompatActivity {
         else{
             return true;
         }
+    }
+
+    public boolean validAddress(String s){
+        if (s  == null){
+            Toast.makeText(ApplyForRideActivity.this, "Invalid Address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }
