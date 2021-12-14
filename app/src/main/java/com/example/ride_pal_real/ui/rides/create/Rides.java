@@ -241,10 +241,16 @@ public class Rides {
     public String urlMaker(String id){
 
         String s = "";
-        s += "https//:www.google.com/maps?daddr=";
+//        s += "https//:www.google.com/maps?daddr=";
+//        s += format(id);
+//        s += "+to:";
+//        s += getDestinationlonglat();
+
+        s += "https://www.google.com/maps/dir/?api=1&destination=";
         s += format(id);
-        s += "+to:";
+        s += "&destination=";
         s += getDestinationlonglat();
+        s += "&travelmode=driving";
 
         //s += "&travelmode=driving";
 

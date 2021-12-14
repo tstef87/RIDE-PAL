@@ -29,18 +29,6 @@
         android:name="com.example.ride_pal_real.ui.ride_applicants.RidesPostedListFragment"
         android:id="@+id/nav_your_rides_posted"
         tools:layout="@layout/fragment_rides_posted_list">
-        <action
-            android:id="@+id/action_nav_your_ride_applicants_to_nav_your_rides_posted"
-            app:destination="@id/nav_your_ride_applicants" />
-    </fragment>
-
-
-    <fragment
-        android:label="Your Applicants"
-        android:name="com.example.ride_pal_real.ui.ride_applicants.RideApplicantsFragment"
-        android:id="@+id/nav_your_ride_applicants"
-        tools:layout="@layout/fragment_ride_applicants" >
-
     </fragment>
 
 

@@ -59,6 +59,7 @@
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/layout/nav_header_account_info.xml" value="0.5" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/menu/account_info.xml" value="0.365625" />
         <entry key="..\:/Users/Troy/desktop/testacc/app/src/main/res/menu/activity_account_info_drawer.xml" value="0.365625" />
+        <entry key="app/src/main/res/drawable/whiteboarder.xml" value="0.36614583333333334" />
         <entry key="app/src/main/res/layout/activity_account_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_apply_for_ride.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_create_ride.xml" value="0.25" />
@@ -67,6 +68,7 @@
         <entry key="app/src/main/res/layout/activity_logout_page.xml" value="0.11197916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22604166666666667" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/layout/activity_main_map.xml" value="0.271875" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_ride_applicants.xml" value="0.1" />

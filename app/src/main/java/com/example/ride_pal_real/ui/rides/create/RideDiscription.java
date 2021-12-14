@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.map.MapsFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -85,6 +86,9 @@ public class RideDiscription extends AppCompatActivity {
 
             }
         });
+
+        MapsFragment mf = new MapsFragment();
+
 
 
         accept = findViewById(R.id.accept);
