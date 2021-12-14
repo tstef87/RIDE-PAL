@@ -238,5 +238,82 @@ public class Rides {
         return s;
     }
 
+    public String urlMaker(String id){
+
+        String s = "";
+        s += "https//:www.google.com/maps?daddr=";
+        s += format(id);
+        s += "+to:";
+        s += getDestinationlonglat();
+
+        //s += "&travelmode=driving";
+
+        //https://www.google.com/maps?daddr=Saint+Joseph+University+to:128+jamestown+ave
+
+        //https://www.google.com/maps/dir/?api=1&destination=7+bobtail+run+broomall&waypoints=7+bobtail+run&travelmode=driving
+        System.out.println(s);
+        return s;
+    }
+
+    public String format(String id){
+        String s = "";
+        String address;
+
+        if (id.equals(getParty1id())) {
+            address = getParty2address();
+        }
+        else {
+            address = getParty1address();
+        }
+
+        for (int i = 0; i <address.length(); i++) {
+
+            if (address.charAt(i) == ' '){
+                s += "+";
+            }
+            else{
+                s += address.charAt(i);
+            }
+        }
+
+        return s;
+    }
+
+    public String getDestinationlonglat(){
+
+        String s = "";
+        if(getDestination().equals("Mandevill")){
+
+            s += "39.996349,-75.236048";
+            return s;
+
+        }
+        else if (getDestination().equals("Hagan")){
+
+            s += "39.995671,-75.235773";
+            return s;
+        }
+
+        else if (getDestination().equals("Campion")){
+
+            s += "39.993389,-75.240340";
+            return s;
+
+        }
+
+        else if (getDestination().equals("Merion")){
+
+            s += "39.996297,-75.244389";
+            return s;
+        }
+        else{
+
+
+            return s;
+        }
+    }
 
 }
+
+
+

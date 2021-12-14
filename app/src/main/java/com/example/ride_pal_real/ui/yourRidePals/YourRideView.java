@@ -119,7 +119,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.yrp_get_directions:
-                openMap();
+                openMap(userId);
 
                 break;
 
@@ -183,8 +183,11 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", s, null)));
     }
 
-    private void openMap(){
-        Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=7&bobtail&run&broomall&waypoints=40.023962,-75.218069&travelmode=driving");
+    private void openMap(String id){
+
+        String url = ride.urlMaker(id);
+
+        Uri gmmIntentUri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         intent.setPackage("com.google.android.apps.maps");
         try {
@@ -199,3 +202,4 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         }
     }
 }
+

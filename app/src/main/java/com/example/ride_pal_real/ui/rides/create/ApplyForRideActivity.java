@@ -85,9 +85,9 @@ public class ApplyForRideActivity extends AppCompatActivity {
                         application.setName(userProfile.getFullName());
                         application.setPhonenumber(userProfile.getPhoneNumber());
                         application.setPreferences(prefrences.getText().toString());
+                        application.setAddress(address.getText().toString());
 
 
-                        address = findViewById(R.id.afr_address);
                         String addy = address.getText().toString();
                         String pref = prefrences.getText().toString();
 
