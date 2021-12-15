@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ApplyForRideActivity extends AppCompatActivity {
@@ -29,12 +30,18 @@ public class ApplyForRideActivity extends AppCompatActivity {
 
     CheckBox yes, no;
     Button apply, back;
-    EditText prefrences, address;
+    EditText prefrences;
+    TextView address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_for_ride);
+
+        Bundle recdDate = getIntent().getExtras();
+
+        address = (findViewById(R.id.afr_address));
+        address.setText(recdDate.getString("addressString"));
 
         back = (Button) findViewById(R.id.afr_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -85,10 +92,9 @@ public class ApplyForRideActivity extends AppCompatActivity {
                         application.setName(userProfile.getFullName());
                         application.setPhonenumber(userProfile.getPhoneNumber());
                         application.setPreferences(prefrences.getText().toString());
-                        application.setAddress(address.getText().toString());
+                        application.setAddress(recdData.getString("addressLngLat"));
 
 
-                        String addy = address.getText().toString();
                         String pref = prefrences.getText().toString();
 
 
@@ -98,11 +104,6 @@ public class ApplyForRideActivity extends AppCompatActivity {
                             return;
                         }
 
-                        if (addy.isEmpty()){
-                            address.setError("Invalid Address");
-                            address.requestFocus();
-                            return;
-                        }
 
 
                         FirebaseDatabase.getInstance().getReference("Rides")

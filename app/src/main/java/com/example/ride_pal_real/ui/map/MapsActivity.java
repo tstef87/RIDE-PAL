@@ -175,6 +175,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         i = new Intent(MapsActivity.this, CreateRide.class);
                     } else if (recdData.getString("intent").equals("ApplyForRideActivity")) {
                         i = new Intent(MapsActivity.this, ApplyForRideActivity.class);
+                        i.putExtra("RideName", recdData.getString("RideName"));
                     } else {
                         return;
                     }

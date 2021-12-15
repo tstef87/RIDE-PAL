@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.map.MapsActivity;
 import com.example.ride_pal_real.ui.map.MapsFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -114,8 +115,9 @@ public class RideDiscription extends AppCompatActivity {
                         party2address);
 
                 if(!userId.equals(ride.getParty1id())) {
-                    //addToYourRides(ride);
-                    Intent i = new Intent(RideDiscription.this , ApplyForRideActivity.class);
+                    //Intent i = new Intent(RideDiscription.this , ApplyForRideActivity.class);
+                    Intent i = new Intent(RideDiscription.this, MapsActivity.class);
+                    i.putExtra("intent", "ApplyForRideActivity");
                     i.putExtra("RideName", ride.makeTitle());
                     startActivity(i);
 
