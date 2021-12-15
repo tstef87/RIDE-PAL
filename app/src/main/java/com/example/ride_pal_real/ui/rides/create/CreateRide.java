@@ -67,20 +67,24 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        selectAddress = (Button) findViewById(R.id.select_address);
+        //selectAddress = (Button) findViewById(R.id.select_address);
         createRide = (Button) findViewById(R.id.create_ride_button);
         back = (Button) findViewById(R.id.back_button_create_ride);
 
-        selectAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(CreateRide.this, MapsActivity.class);
+//        selectAddress.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(CreateRide.this, MapsActivity.class);
+//
+//                i.putExtra("intent", "CreateRide");
+//
+//                startActivity(i);
+//            }
+//        });
 
-                i.putExtra("intent", "CreateRide");
-
-                startActivity(i);
-            }
-        });
+        address = (TextView) findViewById(R.id.cr_address);
+        Bundle recdData = getIntent().getExtras();
+        address.setText(recdData.getString("addressString"));
 
         createRide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,8 +167,10 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                        return;
                    }
 
-                   address = (TextView) findViewById(R.id.cr_address);
+
                    Bundle recdData = getIntent().getExtras();
+
+
                    if (recdData == null) {
                        address.setError("Please Select an Address");
                        address.requestFocus();
@@ -179,6 +185,8 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                        address.requestFocus();
                        return;
                    }
+
+
 
 
                    Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-", party1name, party2name, party1phonenumber, party2phonenumber, party1address, "-");

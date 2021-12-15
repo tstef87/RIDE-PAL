@@ -69,6 +69,18 @@
         android:src="@drawable/ic_gps"
         />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below = "@+id/sbar_layout"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="110dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/ic_accept"
+        android:src="@drawable/ic_gps"
+        />
+
 
 </RelativeLayout>
 

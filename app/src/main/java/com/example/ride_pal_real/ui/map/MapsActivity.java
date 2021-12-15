@@ -67,8 +67,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final float DEFAULT_ZOOM = 15f;
 
     private EditText mSearchText;
-    private ImageView mGPS;
-    private ImageView mBack;
+    private ImageView mGPS, mBack, mAccept;
 
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
@@ -82,6 +81,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mSearchText = (EditText) findViewById(R.id.input_search);
         mGPS = (ImageView) findViewById(R.id.ic_gps);
         mBack = (ImageView) findViewById(R.id.ic_back);
+        mAccept = (ImageView) findViewById(R.id.ic_accept);
 
 
         getLocationPermission();
@@ -139,8 +139,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     geoLocate();
                     hideSoftKeyboard();
 
-
-
                 }
                 return false;
             }
@@ -157,30 +155,43 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle recdData = getIntent().getExtras();
-                Intent i;
-
-                if (recdData == null){
-                    Toast.makeText(MapsActivity.this, "nothing to go back to", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                else if (recdData.getString("intent").equals("CreateRide")) {
-                    i = new Intent(MapsActivity.this, CreateRide.class);
-                }
-                else if(recdData.getString("intent").equals("ApplyForRideActivity")){
-                    i = new Intent(MapsActivity.this, ApplyForRideActivity.class);
-                }
-                else{
-                    return;
-                }
-
-                //make an accept button and put this code in there
-                i.putExtra("addressString", addressForTextView);
-                i.putExtra("addressLngLat", lnglat);
-                //---------------------------------------
+                Intent i = new Intent(MapsActivity.this, AccountInfoActivity.class);
                 startActivity(i);
             }
         });
+
+        mAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (addressForTextView != null) {
+
+                    Bundle recdData = getIntent().getExtras();
+                    Intent i;
+
+                    if (recdData == null) {
+                        Toast.makeText(MapsActivity.this, "nothing to go back to", Toast.LENGTH_LONG).show();
+                        return;
+                    } else if (recdData.getString("intent").equals("CreateRide")) {
+                        i = new Intent(MapsActivity.this, CreateRide.class);
+                    } else if (recdData.getString("intent").equals("ApplyForRideActivity")) {
+                        i = new Intent(MapsActivity.this, ApplyForRideActivity.class);
+                    } else {
+                        return;
+                    }
+
+                    i.putExtra("addressString", addressForTextView);
+                    i.putExtra("addressLngLat", lnglat);
+                    startActivity(i);
+
+                }
+                else{
+                    Toast.makeText(MapsActivity.this, "Please Type in an Address", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+
+
 
 
     }
@@ -203,7 +214,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
 
-            lnglat = address.getLatitude()+""+address.getLongitude();
+            lnglat = address.getLatitude()+","+address.getLongitude();
             addressForTextView = address.getAddressLine(0);
         }
     }

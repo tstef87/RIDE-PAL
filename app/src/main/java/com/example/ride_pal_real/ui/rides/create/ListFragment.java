@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.map.MapsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -161,7 +162,9 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                moveToNewActivity(CreateRide.class);
+                Intent i = new Intent(getActivity(), MapsActivity.class);
+                i.putExtra("intent", "CreateRide");
+                startActivity(i);
 
             }
         });
