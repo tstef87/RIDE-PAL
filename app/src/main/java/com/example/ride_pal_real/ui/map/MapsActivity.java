@@ -72,7 +72,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    private String lnglat, addressForTextView;
+    private String lnglat, addressForTextView, state, country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +165,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View view) {
                 if (addressForTextView != null) {
 
+
+
                     Bundle recdData = getIntent().getExtras();
                     Intent i;
 
@@ -211,12 +213,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (list.size() > 0){
             Address address = list.get(0);
 
-            Toast.makeText(MapsActivity.this, address.toString(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MapsActivity.this, address.toString(), Toast.LENGTH_SHORT).show();
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
 
             lnglat = address.getLatitude()+","+address.getLongitude();
             addressForTextView = address.getAddressLine(0);
+            country = address.getCountryName();
+            hideSoftKeyboard();
         }
     }
 
