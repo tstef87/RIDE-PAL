@@ -246,15 +246,8 @@ public class Rides {
         s += getDestinationlonglat();
         s += "&waypoints=";
         s += format(id);
-
-
         s += "&travelmode=driving";
 
-        //s += "&travelmode=driving";
-
-        //https://www.google.com/maps?daddr=Saint+Joseph+University+to:128+jamestown+ave
-
-        //https://www.google.com/maps/dir/?api=1&destination=7+bobtail+run+broomall&waypoints=7+bobtail+run&travelmode=driving
         System.out.println(s);
         return s;
     }
@@ -307,6 +300,3 @@ public class Rides {
     }
 
 }
-
-
-
