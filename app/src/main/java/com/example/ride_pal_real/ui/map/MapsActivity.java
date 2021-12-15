@@ -23,13 +23,19 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ride_pal_real.R;
+import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.ui.map.MapsFragment;
+import com.example.ride_pal_real.ui.rides.create.ApplyForRideActivity;
+import com.example.ride_pal_real.ui.rides.create.CreateRide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -61,16 +67,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final float DEFAULT_ZOOM = 15f;
 
     private EditText mSearchText;
+    private ImageView mGPS;
+    private ImageView mBack;
 
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
+    private String lnglat, addressForTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         mSearchText = (EditText) findViewById(R.id.input_search);
+        mGPS = (ImageView) findViewById(R.id.ic_gps);
+        mBack = (ImageView) findViewById(R.id.ic_back);
+
 
         getLocationPermission();
     }
@@ -102,8 +114,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void moveCamera(LatLng latLng, float zoom, String title) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-        MarkerOptions options = new MarkerOptions().position(latLng).title(title);
-        mMap.addMarker(options);
+        if (!title.equals("My Location")) {
+            mMap.clear();
+            MarkerOptions options = new MarkerOptions().position(latLng).title(title);
+            mMap.addMarker(options);
+        }
+
+        hideSoftKeyboard();
     }
 
 
@@ -120,12 +137,52 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if(actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE || keyEvent.getAction() == keyEvent.ACTION_DOWN || keyEvent.getAction() == keyEvent.KEYCODE_ENTER) {
                     geoLocate();
+                    hideSoftKeyboard();
+
 
 
                 }
                 return false;
             }
         });
+
+
+        mGPS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getDeviceLocation();
+            }
+        });
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle recdData = getIntent().getExtras();
+                Intent i;
+
+                if (recdData == null){
+                    Toast.makeText(MapsActivity.this, "nothing to go back to", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (recdData.getString("intent").equals("CreateRide")) {
+                    i = new Intent(MapsActivity.this, CreateRide.class);
+                }
+                else if(recdData.getString("intent").equals("ApplyForRideActivity")){
+                    i = new Intent(MapsActivity.this, ApplyForRideActivity.class);
+                }
+                else{
+                    return;
+                }
+
+                //make an accept button and put this code in there
+                i.putExtra("addressString", addressForTextView);
+                i.putExtra("addressLngLat", lnglat);
+                //---------------------------------------
+                startActivity(i);
+            }
+        });
+
+
     }
 
     private void geoLocate(){
@@ -145,6 +202,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Toast.makeText(MapsActivity.this, address.toString(), Toast.LENGTH_SHORT).show();
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
+
+            lnglat = address.getLatitude()+""+address.getLongitude();
+            addressForTextView = address.getAddressLine(0);
         }
     }
 
@@ -164,9 +224,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
             init();
-
-
-
 
         }
     }
@@ -221,5 +278,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         }
+    }
+
+    private void hideSoftKeyboard(){
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }

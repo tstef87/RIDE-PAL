@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.map.MapsActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,10 +32,10 @@ import java.util.Locale;
 
 public class CreateRide extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private CheckBox mday, tuday, wday, thday, fday;
-    private TextView time;
-    private Button createRide, back;
-    private Spinner spinner;
+    CheckBox mday, tuday, wday, thday, fday;
+    TextView time, address;
+    Button createRide, back, selectAddress;
+    Spinner spinner;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
     private User userProfile;
@@ -58,8 +59,6 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         time = findViewById(R.id.editTextTime);
 
 
-        createRide = findViewById(R.id.create_ride_button);
-        back = findViewById(R.id.back_button_create_ride);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -68,15 +67,28 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        Button create = (Button) findViewById(R.id.create_ride_button);
-        create.setOnClickListener(new View.OnClickListener() {
+        selectAddress = (Button) findViewById(R.id.select_address);
+        createRide = (Button) findViewById(R.id.create_ride_button);
+        back = (Button) findViewById(R.id.back_button_create_ride);
+
+        selectAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CreateRide.this, MapsActivity.class);
+
+                i.putExtra("intent", "CreateRide");
+
+                startActivity(i);
+            }
+        });
+
+        createRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createRide();
             }
         });
 
-        Button back = (Button) findViewById(R.id.back_button_create_ride);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,8 +163,16 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                        return;
                    }
 
-                   EditText address = (EditText) findViewById(R.id.enterAddress);
-                   String party1address = address.getText().toString().trim();
+                   address = (TextView) findViewById(R.id.cr_address);
+                   Bundle recdData = getIntent().getExtras();
+                   if (recdData == null) {
+                       address.setError("Please Select an Address");
+                       address.requestFocus();
+                       return;
+                   }
+
+                   address.setText(recdData.getString("addressString"));
+                   String party1address = recdData.getString("addressLngLat");
 
                    if (party1address.isEmpty()){
                        address.setError("Invalid Address");
