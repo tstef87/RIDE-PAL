@@ -241,15 +241,13 @@ public class Rides {
     public String urlMaker(String id){
 
         String s = "";
-//        s += "https//:www.google.com/maps?daddr=";
-//        s += format(id);
-//        s += "+to:";
-//        s += getDestinationlonglat();
 
         s += "https://www.google.com/maps/dir/?api=1&destination=";
-        s += format(id);
-        s += "&destination=";
         s += getDestinationlonglat();
+        s += "&waypoints=";
+        s += format(id);
+
+
         s += "&travelmode=driving";
 
         //s += "&travelmode=driving";
@@ -262,7 +260,6 @@ public class Rides {
     }
 
     public String format(String id){
-        String s = "";
         String address;
 
         if (id.equals(getParty1id())) {
@@ -272,17 +269,7 @@ public class Rides {
             address = getParty1address();
         }
 
-        for (int i = 0; i <address.length(); i++) {
-
-            if (address.charAt(i) == ' '){
-                s += "+";
-            }
-            else{
-                s += address.charAt(i);
-            }
-        }
-
-        return s;
+        return address;
     }
 
     public String getDestinationlonglat(){
