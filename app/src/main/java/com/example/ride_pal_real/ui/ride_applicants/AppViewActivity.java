@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.profile.EditProfileActivity;
 import com.example.ride_pal_real.ui.rides.create.RideDiscription;
 import com.example.ride_pal_real.ui.rides.create.Rides;
 import com.example.ride_pal_real.ui.yourRidePals.YourRideView;
@@ -26,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import android.Manifest;
 import android.content.Intent;
@@ -34,6 +38,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AppViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,6 +49,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
     Application application;
     Rides ride;
     DatabaseReference reference;
+    ImageView profilePic;
 
 
     @Override
@@ -81,6 +87,8 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
                 recdData.getString("canDrive"),
                 recdData.getString("address"),
                 recdData.getString("major"));
+
+        setPP();
 
 
         name.setText(application.getName());
@@ -243,6 +251,26 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+    }
+
+
+    private void setPP(){
+
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        profilePic = (ImageView) findViewById(R.id.profile_pic);
+
+        storageRef.child("profilePics/"+application.getId()+".jpg").getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.with(AppViewActivity.this).load(uri).into(profilePic);
+                    }
+                });
+
+
+
     }
 
 
