@@ -15,26 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Create Account"
-        android:textSize="25sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/firstName" />
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardCornerRadius="75dp"
-        android:layout_marginBottom="30dp">
-
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:scaleType="fitCenter"
-            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/firstName"

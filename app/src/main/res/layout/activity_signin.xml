@@ -43,7 +43,7 @@
         android:id="@+id/signIn"
         android:layout_width="290dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="220dp"
         android:text="Login"
         android:textColor="#ffffff"
         android:textSize="26sp"
@@ -59,8 +59,8 @@
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="188dp"
         android:text="Forgot Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -69,11 +69,11 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="188dp"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toEndOf="@+id/forgotPassword" />
 
     <ProgressBar
@@ -96,9 +96,10 @@
 
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969"
+        app:layout_constraintVertical_bias="0.662"
         app:srcCompat="@mipmap/ic_launcher_sjuicon" />
 
 

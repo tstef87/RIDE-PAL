@@ -4,30 +4,43 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.ui.rides.create.Rides;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
-    private Button registerUser, back;
-    private EditText fname, lname, em, pw, pn, mj;
-    private ProgressBar pb;
-    private FirebaseAuth mAuth;
+    private static final int PICK_IMAGE = 100;
+    Uri imageUri;
+    ImageView imgFavorite;
+
+    Button registerUser, back;
+    EditText fname, lname, em, pw, pn, mj;
+    ProgressBar pb;
+    FirebaseAuth mAuth;
+    ImageView profilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +55,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         registerUser =  findViewById(R.id.register_button);
         registerUser.setOnClickListener(this);
 
-        fname = findViewById(R.id.firstName);
-        lname =  findViewById(R.id.lastName);
-        em = findViewById(R.id.sjuEmail);
-        pw =  findViewById(R.id.password);
-        pn = findViewById(R.id.phone_number);
-        mj = findViewById(R.id.major);
+        fname = (EditText) findViewById(R.id.firstName);
+        lname =  (EditText) findViewById(R.id.lastName);
+        em = (EditText) findViewById(R.id.sjuEmail);
+        pw =  (EditText) findViewById(R.id.password);
+        pn = (EditText) findViewById(R.id.phone_number);
+        mj = (EditText) findViewById(R.id.major);
+
+        profilePic = (ImageView) findViewById(R.id.img);
 
         pb = findViewById(R.id.progressBar);
 
@@ -63,6 +78,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             case R.id.register_button:
                 register();
                 break;
+
         }
     }
 
@@ -185,4 +201,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
         return false;
     }
+
+
+
 }

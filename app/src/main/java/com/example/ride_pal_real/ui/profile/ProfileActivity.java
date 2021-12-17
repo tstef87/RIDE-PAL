@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 //import com.google.firebase.storage.FileDownloadTask;
 //import com.google.firebase.storage.FirebaseStorage;
 //import com.google.firebase.storage.StorageReference;
@@ -24,11 +25,13 @@ import com.google.firebase.storage.StorageReference;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         back = (Button) findViewById(R.id.back);
 
         setTextViews();
-        setProfilePicture();
+        setPP();
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -113,35 +116,24 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void setProfilePicture(){
-
-        storageRefrence= FirebaseStorage.getInstance().getReference().child("picture/profile_pic.png");
-        try {
-            final File lofi= File.createTempFile("profile_pic","png");
-            storageRefrence.getFile(lofi)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Bitmap btm= BitmapFactory.decodeFile(lofi.getAbsolutePath());
-                            ImageView image = (ImageView) findViewById(R.id.img);
 
 
-                            image.setImageBitmap(btm);
-
-                            //((ImageView)findViewById(R.id.img)).setImageBitmap(btm);
+    private void setPP(){
 
 
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        userId = firebaseUser.getUid();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-                }
-            });
+        ImageView img = (ImageView) findViewById(R.id.img);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        storageRef.child("profilePics/"+userId+".jpg").getDownloadUrl()
+        .addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(ProfileActivity.this).load(uri).into(img);
+            }
+        });
 
 
 

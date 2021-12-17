@@ -5,9 +5,12 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.GnssAntennaInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +25,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.databinding.ActivityAccountInfoBinding;
 import com.example.ride_pal_real.sign_in.User;
+import com.example.ride_pal_real.ui.profile.ProfileActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +35,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -42,6 +50,8 @@ public class AccountInfoActivity extends AppCompatActivity {
     private DatabaseReference reference;
 
     private String userId;
+
+    ImageView navProfilePic;
 
 
 
@@ -80,7 +90,9 @@ public class AccountInfoActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.navFullName);
         TextView navEmail = (TextView) headerView.findViewById(R.id.navEmail);
+        navProfilePic = (ImageView) headerView.findViewById(R.id.ima);
 
+        setPP();
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -128,6 +140,28 @@ public class AccountInfoActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_account_info);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    private void setPP(){
+
+
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        userId = firebaseUser.getUid();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+
+
+        storageRef.child("profilePics/"+userId+".jpg").getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.with(AccountInfoActivity.this).load(uri).into(navProfilePic);
+                    }
+                });
+
+
+
     }
 
 }

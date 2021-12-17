@@ -15,7 +15,8 @@
         android:gravity="center_horizontal"
         android:text="Profile Info"
         android:textAlignment="center"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        />
 
     <androidx.cardview.widget.CardView
         android:layout_width="100dp"
@@ -30,7 +31,8 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:scaleType="fitCenter"
-            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+            app:srcCompat="@mipmap/ic_launcher_profileicon"/>
 
     </androidx.cardview.widget.CardView>
 
