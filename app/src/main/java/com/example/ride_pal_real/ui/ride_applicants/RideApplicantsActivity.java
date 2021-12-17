@@ -78,7 +78,7 @@ public class RideApplicantsActivity extends AppCompatActivity {
                             application.setPhonenumber(dataSnapshot.child("phonenumber").getValue().toString());
                             application.setId(dataSnapshot.child("id").getValue().toString());
                             application.setName(dataSnapshot.child("name").getValue().toString());
-                            application.setCanDrive2(dataSnapshot.child("canDrive").getValue().toString());
+                            application.setCanDrive(dataSnapshot.child("canDrive").getValue().toString());
                             application.setAddress(dataSnapshot.child("address").getValue().toString());
 
                             dataApp.add(application);

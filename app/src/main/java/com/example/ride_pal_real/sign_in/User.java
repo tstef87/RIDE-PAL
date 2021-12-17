@@ -27,6 +27,8 @@ public class User {
         return phoneNumber;
     }
 
+    public void setPhoneNumber(String phoneNumber){ this.phoneNumber = phoneNumber;}
+
     public String getFirstname() {
         return firstname;
     }

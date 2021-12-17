@@ -86,8 +86,14 @@ public class ApplyForRideActivity extends AppCompatActivity {
                         User userProfile = snapshot.getValue(User.class);
                         Bundle recdData = getIntent().getExtras();
 
+                        if(yes.isChecked()){
+                            application.setCanDrive("yes");
+                        }
+                        else if(no.isChecked()){
+                            application.setCanDrive("no");
+                        }
+
                         prefrences = (EditText) findViewById(R.id.afr_preferences);
-                        application.setCanDrive(yes.isChecked());
                         application.setId(userId);
                         application.setName(userProfile.getFullName());
                         application.setPhonenumber(userProfile.getPhoneNumber());
@@ -109,7 +115,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
                         FirebaseDatabase.getInstance().getReference("Rides")
                                 .child(recdData.getString("RideName"))
                                 .child("applications")
-                                .child(application.makeTitle())
+                                .child(userId)
                                 .setValue(application).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {

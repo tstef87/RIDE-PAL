@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
+import com.example.ride_pal_real.ui.ride_applicants.Application;
+import com.example.ride_pal_real.ui.rides.create.Rides;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,9 +34,9 @@ public class EditProfileActivity extends AppCompatActivity {
     DatabaseReference databaseReferenceRides;
     DatabaseReference databaseReferenceYourRides;
 
-
     EditText fname, lname, major, email, phonenumber;
     Button update,save;
+    String ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,6 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         Bundle recdData = getIntent().getExtras();
-
 
         imgFavorite = (ImageView) findViewById(R.id.iv_cp);
 
@@ -55,13 +56,13 @@ public class EditProfileActivity extends AppCompatActivity {
         save=(Button)findViewById(R.id.btn_save);
         update=(Button) findViewById(R.id.btn_update);
 
-        String ref = recdData.getString("ref");
+        ref = recdData.getString("ref");
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference()
                 .child("Users").child(ref);
         databaseReferenceRides = firebaseDatabase.getInstance().getReference()
                 .child("Rides");
         databaseReferenceYourRides = FirebaseDatabase.getInstance().getReference()
-                .child("YourRides").child(ref);
+                .child("YourRides");
         setEditText();
 
 
@@ -121,25 +122,108 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void saveData(){
+
+        if(!checkPhoneNumber(phonenumber.getText().toString())){
+            phonenumber.setError("Phone Number Must be Formatted Like- (555)-555-5555");
+            phonenumber.requestFocus();
+            return;
+        }
+
         databaseReferenceUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
 
 
-                user.setEmail(email.getText().toString());
-                //user.setPhoneNumber(phonenumber.getText().toString());
+                //user.setEmail(email.getText().toString());
+                user.setPhoneNumber(phonenumber.getText().toString());
                 user.setFirstname(fname.getText().toString());
                 user.setLastname(lname.getText().toString());
 
-                if(!checkPhoneNumber(user.getPhoneNumber())){
-                    phonenumber.setError("Phone Number Must be Formatted Like- (555)-555-5555");
-                    phonenumber.requestFocus();
-                    return;
-                }
+
 
                 databaseReferenceUsers.setValue(user);
 
+
+                databaseReferenceRides.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+
+
+
+                            Rides ride = dataSnapshot.child("data").getValue(Rides.class);
+
+                            if (ride.getParty1id().equals(ref)){
+
+                                ride.setParty1phonenumber(phonenumber.getText().toString());
+                                ride.setParty1name(user.getFullName());
+                                databaseReferenceRides.child(ride.makeTitle()).child("data").setValue(ride);
+
+
+
+                            }
+
+                            Application application = dataSnapshot.child("applications").child(ref).getValue(Application.class);
+                            if(application != null) {
+
+                                application.setName(user.getFullName());
+                                application.setPhonenumber(phonenumber.getText().toString());
+                                databaseReferenceRides.child(ride.makeTitle()).child("applications").child(application.getId()).setValue(application);
+
+
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                databaseReferenceYourRides.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if(snapshot.hasChild(ref)) {
+                            for (DataSnapshot dataSnapshot : snapshot.child(ref).getChildren()) {
+
+                                Rides ride = dataSnapshot.getValue(Rides.class);
+
+                                if(ride.getParty1id().equals(ref)) {
+                                    ride.setParty1phonenumber(phonenumber.getText().toString());
+                                    ride.setParty1name(user.getFullName());
+                                    databaseReferenceYourRides.child(ref).child(ride.makeTitle()).setValue(ride);
+                                    databaseReferenceYourRides.child(ride.getParty2id()).child(ride.makeTitle()).setValue(ride);
+                                }
+                                else if(ride.getParty2id().equals(ref)) {
+
+                                    ride.setParty2phonenumber(phonenumber.getText().toString());
+                                    ride.setParty2name(user.getFullName());
+                                    databaseReferenceYourRides.child(ref).child(ride.makeTitle()).setValue(ride);
+                                    databaseReferenceYourRides.child(ride.getParty1id()).child(ride.makeTitle()).setValue(ride);
+                                }
+
+
+
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
             }
 
             @Override
@@ -148,17 +232,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        databaseReferenceRides.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
     }
 

@@ -59,19 +59,10 @@ public class Application {
         return canDrive;
     }
 
-    public void setCanDrive(boolean cd) {
-        if (cd){
-            canDrive = "true";
-        }
-        else{
-            canDrive = "false";
-        }
+    public void setCanDrive(String canDrive) {
+       this.canDrive = canDrive;
     }
 
-    public void setCanDrive2(String canDrive){
-        this.canDrive = canDrive;
-
-    }
 
     public void setAddress(String address) {
         this.address = address;
