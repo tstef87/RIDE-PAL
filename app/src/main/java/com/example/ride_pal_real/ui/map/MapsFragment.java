@@ -43,7 +43,7 @@ public class MapsFragment extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
             LatLng sju = new LatLng(39.9962540, -75.2353624);
             googleMap.addMarker(new MarkerOptions().position(sju).title("SJU"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sju));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sju, 15f));
         }
     };
 

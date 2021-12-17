@@ -66,7 +66,7 @@
         android:layout_marginTop="60dp"
         android:scaleType="centerCrop"
         android:id="@+id/ic_back"
-        android:src="@drawable/ic_gps"
+        android:src="@drawable/ic_back"
         />
 
     <ImageView
@@ -78,7 +78,7 @@
         android:layout_marginTop="110dp"
         android:scaleType="centerCrop"
         android:id="@+id/ic_accept"
-        android:src="@drawable/ic_gps"
+        android:src="@drawable/ic_accept"
         />
 
 

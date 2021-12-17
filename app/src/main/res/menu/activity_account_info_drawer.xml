@@ -12,21 +12,18 @@
 
         <item
             android:id="@+id/nav_your_rides"
-            android:icon="@mipmap/ic_launcher_carpoolicon"
+            android:icon="@drawable/ic_your_rides"
             android:title="Your Rides" />
 
         <item
             android:id="@+id/nav_your_rides_posted"
-            android:icon="@android:drawable/ic_menu_revert"
+            android:icon="@drawable/ic_application"
             android:title="Ride Applicants" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@mipmap/ic_launcher_profileicon"
             android:title="Profile" />
-        <item
-            android:id="@+id/nav_map"
-            android:icon="@mipmap/ic_launcher_helpicon"
-            android:title="Map" />
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@mipmap/ic_launcher_logouticon"

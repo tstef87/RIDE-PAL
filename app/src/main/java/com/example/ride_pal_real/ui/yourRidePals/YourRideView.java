@@ -91,11 +91,6 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
         getdirections = (TextView) findViewById(R.id.yrp_get_directions);
         getdirections.setOnClickListener(this);
-
-        addtocalender = (TextView) findViewById(R.id.yrp_add_to_calendar);
-        addtocalender.setClickable(true);
-
-
     }
 
 
@@ -117,8 +112,6 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 openMesseges(ride, userId);
                 break;
 
-            case R.id.yrp_add_to_calendar:
-                break;
 
             case R.id.yrp_get_directions:
                 openMap(userId);
