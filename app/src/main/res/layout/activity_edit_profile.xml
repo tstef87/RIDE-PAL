@@ -44,7 +44,9 @@
         android:hint="Name"
 
         android:paddingLeft="10dp"
-        android:password="false"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_name"
+
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -54,8 +56,10 @@
         android:layout_margin="4dp"
         android:drawablePadding="7dp"
         android:hint="Name"
-
+        android:singleLine="true"
         android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/ic_name"
+
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -66,21 +70,11 @@
         android:drawablePadding="7dp"
         android:hint="Major"
         android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_major"
 
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:drawablePadding="7dp"
-        android:hint="Email"
-        android:paddingStart="7dp"
-        android:paddingLeft="10dp"
-
-
-        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/ph"
@@ -89,6 +83,8 @@
         android:layout_margin="4dp"
         android:drawablePadding="7dp"
         android:hint="Phone no"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/ic_pn"
 
         android:paddingLeft="10dp"
 
@@ -114,11 +110,5 @@
         android:textSize="24sp" />
 
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible"
-        android:id="@+id/progressbar_cp"/>
 
 </LinearLayout>
