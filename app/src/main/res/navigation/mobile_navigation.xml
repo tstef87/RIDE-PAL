@@ -5,11 +5,11 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_rides">
 
-    <fragment
+    <activity
         android:id="@+id/nav_profile"
-        android:name="com.example.ride_pal_real.ui.profile.ProfileFragment"
+        android:name="com.example.ride_pal_real.ui.profile.ProfileActivity"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/activity_profile" />
 
 
     <fragment
