@@ -31,7 +31,7 @@ import java.net.URL;
 public class YourRideView extends AppCompatActivity implements View.OnClickListener {
 
     Button back, delete;
-    TextView name, time, days, message, getdirections, addtocalender;
+    TextView name, time, days, major, message, getdirections, addtocalender;
     private Rides ride;
     private String userId;
 
@@ -59,17 +59,22 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 recdData.getString("party1phonenumber"),
                 recdData.getString("party2phonenumber"),
                 recdData.getString("party1address"),
-                recdData.getString("party2address"));
+                recdData.getString("party2address"),
+                recdData.getString("party1major"),
+                recdData.getString("party2major"));
 
         name = (TextView) findViewById(R.id.yrp_name);
         time = (TextView) findViewById(R.id.yrp_time);
         days = (TextView) findViewById(R.id.yrp_days_of_week);
+        major = (TextView) findViewById(R.id.yrp_major);
 
         if (userId.equals(ride.getParty1id())){
             name.setText(ride.getParty2name());
+            major.setText(ride.getParty2major());
         }
         else{
             name.setText(ride.getParty1name());
+            major.setText(ride.getParty2major());
         }
 
         time.setText(ride.getTime());
@@ -80,9 +85,6 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         back = (Button) findViewById(R.id.yrp_back);
         back.setOnClickListener(this);
 
-        name = (TextView) findViewById(R.id.yrp_name);
-        time = (TextView) findViewById(R.id.yrp_time);
-        days = (TextView) findViewById(R.id.yrp_days_of_week);
 
         message = (TextView) findViewById(R.id.yrp_message);
         message.setOnClickListener(this);

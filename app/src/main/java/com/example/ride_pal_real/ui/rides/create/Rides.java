@@ -1,7 +1,11 @@
 package com.example.ride_pal_real.ui.rides.create;
 
+import java.util.Locale;
+
 public class Rides {
-    public String name, time, destination, party1id, party2id, party1name, party2name, party1phonenumber, party2phonenumber, party1address, party2address;
+    public String name, time, destination, party1id, party2id, party1name, party2name,
+            party1phonenumber, party2phonenumber, party1address, party2address, party1major,
+            party2major;
     public boolean monday, tuesday, wednesday, thursday, friday;
 
     public Rides(){
@@ -12,7 +16,10 @@ public class Rides {
 
 
 
-    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, String party1id, String party2id, String party1name, String party2name, String party1phonenumber, String party2phonenumber, String party1address, String party2address){
+    public Rides(String time, String destination, boolean monday, boolean tuesday, boolean wednesday,
+                 boolean thursday, boolean friday, String party1id, String party2id, String party1name,
+                 String party2name, String party1phonenumber, String party2phonenumber, String party1address,
+                 String party2address, String party1major, String party2major){
         this.time = time;
         this.destination = destination;
         this.monday = monday;
@@ -28,10 +35,27 @@ public class Rides {
         this.party2phonenumber = party2phonenumber;
         this.party1address = party1address;
         this.party2address = party2address;
+        this.party1major = party1major;
+        this.party2major = party2major;
 
     }
 
 
+    public String getParty1major() {
+        return party1major;
+    }
+
+    public void setParty1major(String party1major) {
+        this.party1major = party1major;
+    }
+
+    public String getParty2major() {
+        return party2major;
+    }
+
+    public void setParty2major(String party2major) {
+        this.party2major = party2major;
+    }
 
     public String getParty1phonenumber() {
         return party1phonenumber;
@@ -298,5 +322,7 @@ public class Rides {
             return s;
         }
     }
+
+
 
 }

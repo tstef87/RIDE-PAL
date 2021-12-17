@@ -34,12 +34,12 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
     CheckBox mday, tuday, wday, thday, fday;
     TextView time, address;
-    Button createRide, back, selectAddress;
+    Button createRide, back;
     Spinner spinner;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
     private User userProfile;
-    private String spinnerResult, party1name, party2name, party1phonenumber, party2phonenumber;
+    private String spinnerResult, party1name, party2name, party1phonenumber, party2phonenumber, party1major, party2major;
 
 
 
@@ -67,20 +67,9 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        //selectAddress = (Button) findViewById(R.id.select_address);
         createRide = (Button) findViewById(R.id.create_ride_button);
         back = (Button) findViewById(R.id.back_button_create_ride);
 
-//        selectAddress.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(CreateRide.this, MapsActivity.class);
-//
-//                i.putExtra("intent", "CreateRide");
-//
-//                startActivity(i);
-//            }
-//        });
 
         address = (TextView) findViewById(R.id.cr_address);
         Bundle recdData = getIntent().getExtras();
@@ -139,6 +128,8 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                    party2name = "-";
                    party1phonenumber = userProfile.getPhoneNumber();
                    party2phonenumber = "-";
+                   party1major = userProfile.getMajor();
+                   party2major = "-";
 
                    String t = time.getText().toString().trim();
                    String dest = spinnerResult;
@@ -189,7 +180,10 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
 
 
-                   Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-", party1name, party2name, party1phonenumber, party2phonenumber, party1address, "-");
+                   Rides rides = new Rides(t, dest, mond, tue, wed, thu, fri, user.getUid(), "-",
+                           party1name, party2name, party1phonenumber, party2phonenumber, party1address,
+                           "-", party1major, party2major);
+
                    FirebaseDatabase.getInstance().getReference("Rides")
                            .child(rides.makeTitle()).child("data")
                            .setValue(rides).addOnSuccessListener(new OnSuccessListener<Void>() {

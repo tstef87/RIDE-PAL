@@ -53,49 +53,7 @@ public class ListFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Rides ride = new Rides();
-
-                            ride.setDestination(snapshot.child("data").child("destination").getValue().toString());
-                            ride.setParty1name(snapshot.child("data").child("party1name").getValue().toString());
-                            ride.setParty2name("-");
-                            ride.setParty1phonenumber(snapshot.child("data").child("party1phonenumber").getValue().toString());
-                            ride.setParty2phonenumber("-");
-                            ride.setTime(snapshot.child("data").child("time").getValue().toString());
-                            ride.setParty1address(snapshot.child("data").child("party1address").getValue().toString());
-                            ride.setParty2address("-");
-
-                            if(snapshot.child("data").child("monday").getValue().toString().equals("true")){
-                                ride.setMonday(true);
-                            }else{
-                                ride.setMonday(false);
-                            }
-
-                            if(snapshot.child("data").child("tuesday").getValue().toString().equals("true")){
-                                ride.setTuesday(true);
-                            }else{
-                                ride.setTuesday(false);
-                            }
-
-                            if(snapshot.child("data").child("wednesday").getValue().toString().equals("true")){
-                                ride.setWednesday(true);
-                            }else{
-                                ride.setWednesday(false);
-                            }
-
-                            if(snapshot.child("data").child("thursday").getValue().toString().equals("true")){
-                                ride.setThursday(true);
-                            }else{
-                                ride.setThursday(false);
-                            }
-
-                            if(snapshot.child("data").child("friday").getValue().toString().equals("true")){
-                                ride.setFriday(true);
-                            }else{
-                                ride.setFriday(false);
-                            }
-                            ride.setParty1id(snapshot.child("data").child("party1id").getValue().toString());
-                            ride.setParty2id(snapshot.child("data").child("party2id").getValue().toString());
-
+                            Rides ride = snapshot.child("data").getValue(Rides.class);
 
                             data.add(ride.toStringList());
                             dataRides.add(ride);
@@ -132,6 +90,9 @@ public class ListFragment extends Fragment {
                                 i.putExtra("party2phonenumber", r.getParty2phonenumber());
                                 i.putExtra("party1address", r.getParty1address());
                                 i.putExtra("party2address", r.getParty2address());
+                                i.putExtra("party1major", r.getParty1major());
+                                i.putExtra("party2major", r.getParty2major());
+
                                 startActivity(i);
 
                             }

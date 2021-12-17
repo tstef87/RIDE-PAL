@@ -3,7 +3,7 @@ package com.example.ride_pal_real.ui.ride_applicants;
 public class Application {
 
 
-    public String name, preferences, id, phonenumber, canDrive, address;
+    public String name, preferences, id, phonenumber, canDrive, address, major;
 
     public Application(){
 
@@ -11,16 +11,23 @@ public class Application {
     }
 
 
-    public Application(String name, String preferences, String id, String phonenumber, String canDrive, String address){
+    public Application(String name, String preferences, String id, String phonenumber, String canDrive, String address, String major){
         this.name = name;
         this.preferences = preferences;
         this.id = id;
         this.phonenumber = phonenumber;
         this.canDrive = canDrive;
         this.address = address;
+        this.major = major;
     }
 
+    public String getMajor() {
+        return major;
+    }
 
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
     public String getName() {
         return name;

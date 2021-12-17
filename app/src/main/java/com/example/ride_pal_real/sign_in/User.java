@@ -7,7 +7,7 @@ import java.util.Locale;
 public class User {
 
 
-    public String firstname, lastname, email, phoneNumber;
+    public String firstname, lastname, email, phoneNumber, major;
 
     public User(){
 
@@ -16,11 +16,23 @@ public class User {
 
 
 
-    public User(String firstname, String lastname, String email, String phoneNumber){
+    public User(String firstname, String lastname, String email, String phoneNumber, String major){
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.major = major;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+
+
+        this.major = major;
+
     }
 
     public String getPhoneNumber() {

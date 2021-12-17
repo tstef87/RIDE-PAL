@@ -99,6 +99,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
                         application.setPhonenumber(userProfile.getPhoneNumber());
                         application.setPreferences(prefrences.getText().toString());
                         application.setAddress(recdData.getString("addressLngLat"));
+                        application.setMajor(userProfile.getMajor());
 
 
                         String pref = prefrences.getText().toString();

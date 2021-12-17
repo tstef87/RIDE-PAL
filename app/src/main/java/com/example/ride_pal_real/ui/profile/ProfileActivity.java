@@ -100,6 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
                 name.setText(user.getFullName());
                 email.setText(user.getEmail());
                 phonenumber.setText(user.getPhoneNumber());
+                major.setText(user.getMajor());
 
 
             }

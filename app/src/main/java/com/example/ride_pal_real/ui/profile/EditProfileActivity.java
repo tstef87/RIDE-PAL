@@ -84,7 +84,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveData();
-                Toast.makeText(EditProfileActivity.this , "yayaya", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this , "updated!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,6 +104,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     lname.setText(user.getLastname());
                     email.setText(user.getEmail());
                     phonenumber.setText(user.getPhoneNumber());
+                    major.setText(user.getMajor());
                 }
 
                 else{
@@ -128,6 +129,22 @@ public class EditProfileActivity extends AppCompatActivity {
             phonenumber.requestFocus();
             return;
         }
+        if(fname.getText().toString().isEmpty()){
+            fname.setError("First Name Can Not be Empty");
+            fname.requestFocus();
+            return;
+        }
+        if(lname.getText().toString().isEmpty()){
+            lname.setError("Last Name Can Not be Empty");
+            lname.requestFocus();
+            return;
+        }
+        if(major.getText().toString().isEmpty()){
+
+            major.setError("Major Can Not be Empty");
+            major.requestFocus();
+            return;
+        }
 
         databaseReferenceUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -139,6 +156,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 user.setPhoneNumber(phonenumber.getText().toString());
                 user.setFirstname(fname.getText().toString());
                 user.setLastname(lname.getText().toString());
+                user.setMajor(major.getText().toString());
 
 
 
@@ -160,6 +178,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                                 ride.setParty1phonenumber(phonenumber.getText().toString());
                                 ride.setParty1name(user.getFullName());
+                                ride.setParty1major(user.getMajor());
                                 databaseReferenceRides.child(ride.makeTitle()).child("data").setValue(ride);
 
 
@@ -171,6 +190,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                                 application.setName(user.getFullName());
                                 application.setPhonenumber(phonenumber.getText().toString());
+                                application.setMajor(user.getMajor());
                                 databaseReferenceRides.child(ride.makeTitle()).child("applications").child(application.getId()).setValue(application);
 
 

@@ -65,49 +65,8 @@ public class YourRides extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Rides ride = new Rides();
 
-                            ride.setDestination(snapshot.child("destination").getValue().toString());
-                            ride.setParty1name(snapshot.child("party1name").getValue().toString());
-                            ride.setParty2name(snapshot.child("party2name").getValue().toString());
-                            ride.setTime(snapshot.child("time").getValue().toString());
-
-                            if(snapshot.child("monday").getValue().toString().equals("true")){
-                                ride.setMonday(true);
-                            }else{
-                                ride.setMonday(false);
-                            }
-
-                            if(snapshot.child("tuesday").getValue().toString().equals("true")){
-                                ride.setTuesday(true);
-                            }else{
-                                ride.setTuesday(false);
-                            }
-
-                            if(snapshot.child("wednesday").getValue().toString().equals("true")){
-                                ride.setWednesday(true);
-                            }else{
-                                ride.setWednesday(false);
-                            }
-
-                            if(snapshot.child("thursday").getValue().toString().equals("true")){
-                                ride.setThursday(true);
-                            }else{
-                                ride.setThursday(false);
-                            }
-
-                            if(snapshot.child("friday").getValue().toString().equals("true")){
-                                ride.setFriday(true);
-                            }else{
-                                ride.setFriday(false);
-                            }
-
-                            ride.setParty1id(snapshot.child("party1id").getValue().toString());
-                            ride.setParty2id(snapshot.child("party2id").getValue().toString());
-                            ride.setParty1phonenumber(snapshot.child("party1phonenumber").getValue().toString());
-                            ride.setParty2phonenumber(snapshot.child("party2phonenumber").getValue().toString());
-                            ride.setParty1address(snapshot.child("party1address").getValue().toString());
-                            ride.setParty2address(snapshot.child("party2address").getValue().toString());
+                            Rides ride = snapshot.getValue(Rides.class);
 
                             data.add(ride.toStringListYR(userId));
                             dataRides.add(ride);
@@ -154,6 +113,8 @@ public class YourRides extends Fragment {
                                         i.putExtra("party2phonenumber", r.getParty2phonenumber());
                                         i.putExtra("party1address", r.getParty1address());
                                         i.putExtra("party2address", r.getParty2address());
+                                        i.putExtra("party1major", r.getParty1major());
+                                        i.putExtra("party2major", r.getParty2major());
                                         startActivity(i);
 
 

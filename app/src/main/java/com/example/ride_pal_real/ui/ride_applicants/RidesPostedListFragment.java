@@ -55,51 +55,8 @@ public class RidesPostedListFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Rides ride = new Rides();
 
-                            ride.setDestination(snapshot.child("data").child("destination").getValue().toString());
-                            ride.setParty1name(snapshot.child("data").child("party1name").getValue().toString());
-                            ride.setParty1address(snapshot.child("data").child("party1address").getValue().toString());
-                            ride.setParty2address("-");
-                            ride.setParty2name("-");
-                            ride.setParty1phonenumber(snapshot.child("data").child("party1phonenumber").getValue().toString());
-                            ride.setParty2phonenumber("-");
-                            ride.setTime(snapshot.child("data").child("time").getValue().toString());
-
-                            if (snapshot.child("data").child("monday").getValue().toString().equals("true")) {
-                                ride.setMonday(true);
-                            } else {
-                                ride.setMonday(false);
-                            }
-
-                            if (snapshot.child("data").child("tuesday").getValue().toString().equals("true")) {
-                                ride.setTuesday(true);
-                            } else {
-                                ride.setTuesday(false);
-                            }
-
-                            if (snapshot.child("data").child("wednesday").getValue().toString().equals("true")) {
-                                ride.setWednesday(true);
-                            } else {
-                                ride.setWednesday(false);
-                            }
-
-                            if (snapshot.child("data").child("thursday").getValue().toString().equals("true")) {
-                                ride.setThursday(true);
-                            } else {
-                                ride.setThursday(false);
-                            }
-
-                            if (snapshot.child("data").child("friday").getValue().toString().equals("true")) {
-                                ride.setFriday(true);
-                            } else {
-                                ride.setFriday(false);
-                            }
-                            ride.setParty1id(snapshot.child("data").child("party1id").getValue().toString());
-                            ride.setParty2id(snapshot.child("data").child("party2id").getValue().toString());
-                            ride.setParty1address(snapshot.child("data").child("party1address").getValue().toString());
-                            ride.setParty2address(snapshot.child("data").child("party2address").getValue().toString());
-
+                            Rides ride = snapshot.child("data").getValue(Rides.class);
 
                             if(userId.equals(ride.getParty1id())) {
                                 data.add(ride.toStringList());

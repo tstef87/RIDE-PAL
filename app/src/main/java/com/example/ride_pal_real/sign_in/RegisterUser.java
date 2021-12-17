@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
     private Button registerUser, back;
-    private EditText fname, lname, em, pw, pn;
+    private EditText fname, lname, em, pw, pn, mj;
     private ProgressBar pb;
     private FirebaseAuth mAuth;
 
@@ -47,6 +47,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         em = findViewById(R.id.sjuEmail);
         pw =  findViewById(R.id.password);
         pn = findViewById(R.id.phone_number);
+        mj = findViewById(R.id.major);
 
         pb = findViewById(R.id.progressBar);
 
@@ -72,6 +73,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String emailaddress = em.getText().toString().trim();
         String password = pw.getText().toString().trim();
         String phoneNumber = pn.getText().toString().trim();
+        String major = mj.getText().toString().trim();
 
         if (firstname.isEmpty()){
             fname.setError("First Name can not be Empty");
@@ -116,6 +118,10 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        if (major.isEmpty()){
+            mj.setError("Major Can Not be Empty");
+        }
+
 
 
 
@@ -125,7 +131,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(firstname, lastname, emailaddress, phoneNumber);
+                    User user = new User(firstname, lastname, emailaddress, phoneNumber, major);
+                    user.setMajor(major);
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

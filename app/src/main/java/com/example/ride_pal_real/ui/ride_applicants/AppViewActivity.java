@@ -38,7 +38,7 @@ import android.widget.TextView;
 
 public class AppViewActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView name, pref, canDrive, message;
+    TextView name, pref, canDrive, message, major;
     Button back, accept, decline;
     String ref;
     Application application;
@@ -54,7 +54,10 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         name = (TextView) findViewById(R.id.av_name);
         pref = (TextView) findViewById(R.id.av_preff);
         canDrive = (TextView) findViewById(R.id.av_can_drive);
+        major = (TextView) findViewById(R.id.av_major);
         message = (TextView) findViewById(R.id.av_message);
+
+
         message.setOnClickListener(this);
 
         back = (Button) findViewById(R.id.av_back);
@@ -76,12 +79,14 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
                 recdData.getString("id"),
                 recdData.getString("phonenumber"),
                 recdData.getString("canDrive"),
-                recdData.getString("address"));
+                recdData.getString("address"),
+                recdData.getString("major"));
 
 
         name.setText(application.getName());
         canDrive.setText(canDrive(application.getCanDrive()));
         pref.setText(application.getPreferences());
+        major.setText(application.getMajor());
 
         reference = FirebaseDatabase.getInstance().getReference("Rides");
 
@@ -184,6 +189,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         ride.setParty2phonenumber(application.getPhonenumber());
         ride.setParty2id(application.getId());
         ride.setParty2address(application.getAddress());
+        ride.setParty2major(application.getMajor());
 
 
         FirebaseDatabase.getInstance().getReference("YourRides")

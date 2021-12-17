@@ -41,11 +41,24 @@
         app:layout_constraintTop_toBottomOf="@+id/yrp_time" />
 
     <TextView
+        android:id="@+id/yrp_major"
+        android:layout_width="184dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="36dp"
+        android:text="Major"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yrp_days_of_week" />
+
+    <TextView
         android:id="@+id/yrp_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="100dp"
         android:clickable="true"
         android:text="Message"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,18 +68,18 @@
         android:id="@+id/yrp_get_directions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="28dp"
         android:text="Get Directions "
         app:layout_constraintEnd_toStartOf="@+id/yrp_add_to_calendar"
-        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toEndOf="@+id/yrp_message"
-        app:layout_constraintTop_toBottomOf="@+id/yrp_days_of_week" />
+        app:layout_constraintTop_toBottomOf="@+id/yrp_major" />
 
     <TextView
         android:id="@+id/yrp_add_to_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:text="Add to Calendar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,9 +89,10 @@
         android:id="@+id/yrp_delete_ride"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:text="Delete"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yrp_get_directions" />
 

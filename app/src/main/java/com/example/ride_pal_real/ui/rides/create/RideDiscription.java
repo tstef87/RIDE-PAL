@@ -27,14 +27,13 @@ import android.widget.Toast;
 
 public class RideDiscription extends AppCompatActivity {
 
-    private TextView nameTV, timeTV, destinationTV;
+    private TextView nameTV, timeTV, destinationTV, majorTV;
     private Button back, accept;
     private User userProfile;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
-    private String party2Name;
-    private String party2phonenumber;
-    private String party2address;
+
+    String party2name, party2phonenumber, party2address, party2major;
 
 
 
@@ -49,15 +48,18 @@ public class RideDiscription extends AppCompatActivity {
         String name = recdData.getString("party1name");
         String des = recdData.getString("destination");
         String time = recdData.getString("time");
+        String m = recdData.getString("party1major");
 
 
         nameTV = findViewById(R.id.dis_username_tv);
         timeTV = findViewById(R.id.dis_time_tv);
         destinationTV = findViewById(R.id.dis_destination_tv);
+        majorTV = findViewById(R.id.dis_major);
 
         nameTV.setText(name);
         timeTV.setText(des);
         destinationTV.setText(time);
+        majorTV.setText(m);
 
         back = findViewById(R.id.ride_dis_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +79,9 @@ public class RideDiscription extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                party2Name = user.getFullName();
+                party2name = user.getFullName();
                 party2phonenumber = user.getPhoneNumber();
+                party2major = user.getMajor();
 
             }
 
@@ -108,14 +111,16 @@ public class RideDiscription extends AppCompatActivity {
                         recdData.getString("party1id"),
                         recdData.getString("party2id"),
                         recdData.getString("party1name"),
-                        party2Name,
+                        "-",
                         recdData.getString("party1phonenumber"),
-                        party2phonenumber,
+                        "-",
                         recdData.getString("party1address"),
-                        party2address);
+                        "-",
+                        recdData.getString("party1major"),
+                        "-");
 
                 if(!userId.equals(ride.getParty1id())) {
-                    //Intent i = new Intent(RideDiscription.this , ApplyForRideActivity.class);
+
                     Intent i = new Intent(RideDiscription.this, MapsActivity.class);
                     i.putExtra("intent", "ApplyForRideActivity");
                     i.putExtra("RideName", ride.makeTitle());

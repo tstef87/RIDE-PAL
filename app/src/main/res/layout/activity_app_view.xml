@@ -11,7 +11,7 @@
         android:id="@+id/av_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="88dp"
         android:text="av_name"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,38 +32,39 @@
 
     <TextView
         android:id="@+id/av_preff"
-        android:layout_width="330dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/av_can_drive" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/av_mapView"
-        android:layout_width="297dp"
-        android:layout_height="217dp"
-        android:layout_marginTop="20dp"
-        android:apiKey="@string/google_maps_key"
-
+    <TextView
+        android:id="@+id/av_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="Major"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/av_preff" />
+        app:layout_constraintTop_toBottomOf="@+id/av_can_drive" />
 
     <TextView
         android:id="@+id/av_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="100dp"
         android:clickable="true"
         android:text="Message?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/av_mapView" />
+        app:layout_constraintTop_toBottomOf="@+id/av_preff" />
 
     <Button
         android:id="@+id/av_accept"
