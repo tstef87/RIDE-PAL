@@ -107,6 +107,11 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             em.requestFocus();
             return;
         }
+        if (!emailaddress.substring(emailaddress.length() - 8, emailaddress.length()).equals("@sju.edu")){
+            em.setError("must be SJU email");
+            em.requestFocus();
+            return;
+        }
 
         if(phoneNumber.isEmpty()){
             pn.setError("Phone Number is Required");
@@ -120,13 +125,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        /**  taken out for testing
-        if (!emailaddress.substring(emailaddress.length() - 8, emailaddress.length()).equals("@sju.edu")){
-            em.setError("must be SJU email");
-            em.requestFocus();
-            return;
-        }
-         */
+
+
 
         if (password.length() < 6){
             pw.setError("password must be more then 6 characters");

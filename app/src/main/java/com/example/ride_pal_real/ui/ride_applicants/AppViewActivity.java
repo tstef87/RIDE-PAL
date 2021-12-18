@@ -149,7 +149,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private String canDrive(String s){
-        if(s.equals("true")){
+        if(s.equals("yes")){
             return "is able to drive";
         }
         else {

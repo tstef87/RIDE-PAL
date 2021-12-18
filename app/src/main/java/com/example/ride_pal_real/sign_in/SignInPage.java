@@ -81,13 +81,11 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
             return;
         }
 
-        /** taken out for testing
         if (!email.substring(email.length() - 8, email.length()).equals("@sju.edu")){
             editTextEmail.setError("must be SJU email");
             editTextEmail.requestFocus();
             return;
         }
-         */
 
         if (pw.length() < 6){
             editTextPassword.setError("password must be more then 6 characters");

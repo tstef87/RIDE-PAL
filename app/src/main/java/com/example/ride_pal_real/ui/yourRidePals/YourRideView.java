@@ -70,6 +70,9 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
                 recdData.getString("party1major"),
                 recdData.getString("party2major"));
 
+
+        setPP();
+
         name = (TextView) findViewById(R.id.yrp_name);
         time = (TextView) findViewById(R.id.yrp_time);
         days = (TextView) findViewById(R.id.yrp_days_of_week);
@@ -209,7 +212,15 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         ImageView img = (ImageView) findViewById(R.id.img);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-        storageRef.child("profilePics/" + userId + ".jpg").getDownloadUrl()
+        String id = "";
+        if(ride.getParty2id().equals(userId)){
+            id = ride.getParty1id();
+        }
+        else{
+            id = ride.getParty2id();
+        }
+
+        storageRef.child("profilePics/" + id + ".jpg").getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
