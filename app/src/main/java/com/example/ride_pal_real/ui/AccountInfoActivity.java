@@ -58,6 +58,7 @@ public class AccountInfoActivity extends AppCompatActivity {
 
 
 
+    //makes the homepage
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class AccountInfoActivity extends AppCompatActivity {
         TextView navEmail = (TextView) headerView.findViewById(R.id.navEmail);
         navProfilePic = (ImageView) headerView.findViewById(R.id.ima);
 
+        //sets profile picture
         setPP();
 
 
@@ -108,6 +110,7 @@ public class AccountInfoActivity extends AppCompatActivity {
 
                 if (userProfile != null) {
 
+                    //in the app bar sets email and name
                     String full = userProfile.getFullName();
                     String ema = userProfile.email;
 
@@ -145,6 +148,7 @@ public class AccountInfoActivity extends AppCompatActivity {
     }
 
 
+    //sets profile picture
     private void setPP(){
 
 

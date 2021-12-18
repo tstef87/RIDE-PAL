@@ -11,6 +11,7 @@ public class Application {
     }
 
 
+    //application class for applying for rides
     public Application(String name, String preferences, String id, String phonenumber, String canDrive, String address, String major){
         this.name = name;
         this.preferences = preferences;

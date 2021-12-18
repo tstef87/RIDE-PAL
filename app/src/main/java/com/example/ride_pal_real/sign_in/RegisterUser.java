@@ -32,10 +32,6 @@ import java.util.ArrayList;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
-    private static final int PICK_IMAGE = 100;
-    Uri imageUri;
-    ImageView imgFavorite;
-
     Button registerUser, back;
     EditText fname, lname, em, pw, pn, mj;
     ProgressBar pb;
@@ -82,6 +78,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    //registes the user and inputs the data into the Firebase realtime database
     private void register(){
 
         String firstname = fname.getText().toString().trim();
@@ -91,6 +89,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String phoneNumber = pn.getText().toString().trim();
         String major = mj.getText().toString().trim();
 
+
+        //conditions to make sure the data entered is usable
         if (firstname.isEmpty()){
             fname.setError("First Name can not be Empty");
             fname.requestFocus();
@@ -125,9 +125,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-
-
-
         if (password.length() < 6){
             pw.setError("password must be more then 6 characters");
             pw.requestFocus();
@@ -139,9 +136,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
 
 
-
-
-
+        //makes the userID and inputs the data into the database
         pb.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(emailaddress, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -155,17 +150,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
+                            //sends link to users email
+                            //user needs to follow the link to use the app
                             if(task.isSuccessful()){
                                 Toast.makeText(RegisterUser.this,"user has been registered, check email for verification", Toast.LENGTH_LONG).show();
                                 pb.setVisibility(View.INVISIBLE);
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 user.sendEmailVerification();
                                 String id = user.getUid();
-
-//                                FirebaseStorage storageReference = FirebaseStorage.getInstance();
-//                                String filename = id+".jpg";
-//                                storageReference.getReference("/profilePics/"+filename).putFile(getDrawable());
-
                                 startActivity(new Intent(RegisterUser.this, SignInPage.class));
 
 
@@ -192,6 +184,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+    //checks the phone number to see if it is formatted correctly
     private boolean checkPhoneNumber(String pn){
 
         if(pn.charAt(0) == '('){
@@ -207,7 +201,4 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
         return false;
     }
-
-
-
 }

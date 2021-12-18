@@ -42,7 +42,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
     private Rides ride;
     private String userId;
 
-
+    //displays the ride you clicked on
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid();
 
+        //gets the data from the intent
         Bundle recdData = getIntent().getExtras();
         ride = new Rides(recdData.getString("time"),
                 recdData.getString("destination"),
@@ -133,8 +134,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-
+    //deletes the ride from your ride list and ride pal
     private void deleteRide(Rides rides){
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -172,6 +172,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //opens messages app
     private void openMesseges(Rides rides, String id){
         String s = "";
         String number;
@@ -188,6 +189,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", s, null)));
     }
 
+    //opens google maps
     private void openMap(String id){
 
         String url = ride.urlMaker(id);
@@ -207,6 +209,7 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //sets profile pic
     private void setPP() {
 
         ImageView img = (ImageView) findViewById(R.id.img);

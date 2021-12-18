@@ -41,7 +41,7 @@ public class YourRides extends Fragment {
     DatabaseReference referenceUser;
     DatabaseReference referenceRide;
 
-
+    //displays a list of your rides
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +64,7 @@ public class YourRides extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        //making the list of your rides
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                             Rides ride = snapshot.getValue(Rides.class);
@@ -83,6 +84,7 @@ public class YourRides extends Fragment {
                         TextView emptyText = (TextView) view.findViewById(android.R.id.empty);
                         listView.setEmptyView(emptyText);
 
+                        //makes items in list clickable
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

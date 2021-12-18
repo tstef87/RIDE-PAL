@@ -39,6 +39,7 @@ public class ListFragment extends Fragment {
     SearchView searchView;
 
 
+    //displays a list of all the rides posted
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class ListFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        //adds all the rides to a list view
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             Rides ride = snapshot.child("data").getValue(Rides.class);
 
@@ -66,7 +68,7 @@ public class ListFragment extends Fragment {
                         TextView emptyText = (TextView) view.findViewById(android.R.id.empty);
                         listView.setEmptyView(emptyText);
 
-
+                        //makes the rides clickable
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -111,6 +113,7 @@ public class ListFragment extends Fragment {
         FloatingActionButton createNewRide = (FloatingActionButton) view.findViewById(R.id.create_new_ride_fab);
 
 
+        //refreshs the page
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +122,7 @@ public class ListFragment extends Fragment {
             }
         });
 
+        //button brings you to map activity and lets you pick your address
         createNewRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +144,7 @@ public class ListFragment extends Fragment {
 
     }
 
-
+    //allows you to move to a new activity
     private void moveToNewActivity (Class c){
 
         Intent i = new Intent(getActivity(), c);

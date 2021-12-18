@@ -39,18 +39,13 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private StorageReference storageRefrence;
-
-    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
     DatabaseReference ref;
-    DatabaseReference databaseReference;
-    DatabaseReference databaseReference2;
-
     Button editProfile, back;
     TextView name, phonenumber, major, email;
     String userId;
 
 
+    //displays curent info of user
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +73,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //brings you to the edit profile activity
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +85,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    //sets the TextViews with the info of the User
     private void setTextViews(){
 
         FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
@@ -117,8 +114,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-
-
+    //sets profile picture
     private void setPP(){
 
 

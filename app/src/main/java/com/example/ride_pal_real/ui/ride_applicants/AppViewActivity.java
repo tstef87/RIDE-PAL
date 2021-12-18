@@ -55,6 +55,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
     ImageView profilePic;
 
 
+    //displays the application for your ride
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +149,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    //makes texts
     private String canDrive(String s){
         if(s.equals("yes")){
             return "is able to drive";
@@ -157,13 +159,14 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    //goes back to home page
     private void goBack() {
         Intent i = new Intent(AppViewActivity.this, RideApplicantsActivity.class);
         i.putExtra("ref", ref);
         startActivity(i);
     }
 
-
+    //deletes application from database
     private void decline() {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -188,7 +191,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-
+    //opens the messaging app to the applicants phone number
     private void openMesseges() {
         String s = "";
         String number;
@@ -200,7 +203,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", s, null)));
     }
 
-
+    //adds info to your ride list and applicants ride list
     private void accept() {
 
         ride.setParty2name(application.getName());
@@ -263,7 +266,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-
+    //sets profile picture
     private void setPP(){
 
 
@@ -284,8 +287,7 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
                 });
     }
 
-
-
+    //opens map with directions to applicants address
     private void openMap(){
 
         String url = "https://www.google.com/maps/dir/?api=1&destination=" + application.getAddress();

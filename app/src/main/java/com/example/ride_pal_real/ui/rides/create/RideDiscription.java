@@ -49,6 +49,7 @@ public class RideDiscription extends AppCompatActivity {
 
 
 
+    //when you click on a ride in the list fragment it will display this activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,8 +117,7 @@ public class RideDiscription extends AppCompatActivity {
 
         MapsFragment mf = new MapsFragment();
 
-
-
+        //apply for ride button
         accept = findViewById(R.id.accept);
         accept.setOnClickListener(new View.OnClickListener() {
 
@@ -160,7 +160,7 @@ public class RideDiscription extends AppCompatActivity {
         });
     }
 
-
+    //sets profile picture
     private void setPP(){
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -181,6 +181,7 @@ public class RideDiscription extends AppCompatActivity {
                 });
     }
 
+    //opens the map
     private void openMap(){
 
         String url = "https://www.google.com/maps/dir/?api=1&destination="+address;

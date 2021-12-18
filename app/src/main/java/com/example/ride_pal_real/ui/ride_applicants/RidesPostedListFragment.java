@@ -34,14 +34,14 @@ public class RidesPostedListFragment extends Fragment {
     ArrayList<Rides> dataRides = new ArrayList<Rides>();
     ListView listView;
 
-
-
+    //list of all the rides you posted
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    //inflates the fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -64,6 +64,7 @@ public class RidesPostedListFragment extends Fragment {
                             }
                         }
 
+                        //puts all the rides you posted into a list
                         listView = (ListView) view.findViewById(R.id.listviewYRP);
                         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
                         listView.setAdapter(adapter);
@@ -73,6 +74,7 @@ public class RidesPostedListFragment extends Fragment {
 
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                            //makes the items in the list clickable
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                                 Rides r = dataRides.get(position);

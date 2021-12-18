@@ -35,6 +35,7 @@ public class AccountSettings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //logs the user out and brings them back to the sign in screen
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(AccountSettings.this, SignInPage.class));
             }
@@ -42,6 +43,7 @@ public class AccountSettings extends AppCompatActivity {
 
         back = (Button) findViewById(R.id.back);
 
+        //bring user back to the home page
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

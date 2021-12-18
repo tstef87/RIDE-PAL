@@ -32,7 +32,7 @@ public class RideApplicantsActivity extends AppCompatActivity {
     ListView listView;
     FloatingActionButton refresh, back;
 
-
+    //shows all the people who applied to your ride
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +105,7 @@ public class RideApplicantsActivity extends AppCompatActivity {
                                 i.putExtra("address", application.getAddress());
                                 i.putExtra("major", application.getMajor());
 
+                                //transfers all the data to AppViewActivity
                                 startActivity(i);
                             }
                         });

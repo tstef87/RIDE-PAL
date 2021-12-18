@@ -55,6 +55,10 @@ public class ForgotPassword extends AppCompatActivity {
 
     }
 
+
+
+    //interacts with Firebase and will send a reset password link to the users
+    //email address
     private void resetPassword() {
 
         String email = emailEditText.getText().toString().trim();

@@ -7,14 +7,13 @@ import java.util.Locale;
 public class User {
 
 
+    //class for user
     public String firstname, lastname, email, phoneNumber, major;
 
     public User(){
 
 
     }
-
-
 
     public User(String firstname, String lastname, String email, String phoneNumber, String major){
         this.firstname = firstname;

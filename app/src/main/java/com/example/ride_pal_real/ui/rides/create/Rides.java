@@ -2,6 +2,7 @@ package com.example.ride_pal_real.ui.rides.create;
 
 import java.util.Locale;
 
+//ride class for database
 public class Rides {
     public String name, time, destination, party1id, party2id, party1name, party2name,
             party1phonenumber, party2phonenumber, party1address, party2address, party1major,

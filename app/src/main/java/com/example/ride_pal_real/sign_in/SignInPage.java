@@ -57,24 +57,30 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
+                //brings you to the create account page
                 startActivity(new Intent(this, RegisterUser.class));
                 break;
 
             case R.id.signIn:
+                //brings you to the app
                 userLogin();
                 break;
 
             case R.id.forgotPassword:
+                //brings you to the forgot password page
                 startActivity(new Intent(this, ForgotPassword.class));
                 break;
 
         }
     }
 
+
+    //checks to see if user is in the database and if they are authorised or not
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String pw = editTextPassword.getText().toString().trim();
 
+        //conditions to see if EditText inputs are formatted correctly
         if(email.isEmpty()){
             editTextEmail.setError("Email can not be empty");
             editTextEmail.requestFocus();
@@ -95,6 +101,7 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
 
         progressBar.setVisibility(View.VISIBLE);
 
+        //signs the user in
         mAuth.signInWithEmailAndPassword(email, pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -104,12 +111,15 @@ public class SignInPage extends AppCompatActivity implements View.OnClickListene
                     if(user.isEmailVerified()) {
                         startActivity(new Intent(SignInPage.this, AccountInfoActivity.class));
                     }else{
+                        //if user is not authenticated it sends then another emil
                         user.sendEmailVerification();
                         Toast.makeText(SignInPage.this, "check email for varification", Toast.LENGTH_LONG).show();
                     }
 
                     progressBar.setVisibility(View.INVISIBLE);
                 }
+
+                //if user in not in database or email and password is wrong
                 else{
                     Toast.makeText(SignInPage.this,"email or password in invalid", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);

@@ -114,6 +114,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    //fills the edit texts with the current data from your profile
     private void setEditText(){
 
         databaseReferenceUsers.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -143,8 +144,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    //saves the data changed
     private void saveData(){
 
+        //conditions to make sure data entered is formatted correctly
         if(!checkPhoneNumber(phonenumber.getText().toString())){
             phonenumber.setError("Phone Number Must be Formatted Like- (555)-555-5555");
             phonenumber.requestFocus();
@@ -172,26 +175,20 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
 
-
-                //user.setEmail(email.getText().toString());
                 user.setPhoneNumber(phonenumber.getText().toString());
                 user.setFirstname(fname.getText().toString());
                 user.setLastname(lname.getText().toString());
                 user.setMajor(major.getText().toString());
 
-
-
+                //changes data in the users section of Database
                 databaseReferenceUsers.setValue(user);
 
-
+                //Changes the data in the Rides section of database
                 databaseReferenceRides.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-
-
 
                             Rides ride = dataSnapshot.child("data").getValue(Rides.class);
 
@@ -201,11 +198,9 @@ public class EditProfileActivity extends AppCompatActivity {
                                 ride.setParty1name(user.getFullName());
                                 ride.setParty1major(user.getMajor());
                                 databaseReferenceRides.child(ride.makeTitle()).child("data").setValue(ride);
-
-
-
                             }
 
+                            //changes the data in the application tag of database
                             Application application = dataSnapshot.child("applications").child(ref).getValue(Application.class);
                             if(application != null) {
 
@@ -226,6 +221,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 });
 
+                //changes the data in the yourrides tag of database
                 databaseReferenceYourRides.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -277,6 +273,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    //checks if phone number is formatted correctly
     private boolean checkPhoneNumber(String pn){
 
         if(pn.charAt(0) == '('){
@@ -293,7 +290,7 @@ public class EditProfileActivity extends AppCompatActivity {
         return false;
     }
 
-
+    //opens photos and lets you select profile picture
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
@@ -312,6 +309,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    //sets profile picture
     private void setPP(){
 
 
@@ -333,13 +331,5 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
     }
-
-
-
-
-
 }

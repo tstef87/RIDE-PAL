@@ -33,6 +33,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
     EditText prefrences;
     TextView address;
 
+    //makes the apply for ride page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +64,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
         });
     }
 
+    //puts the ride application into the database under the posted ride
     public void applyForRide() {
 
         yes = findViewById(R.id.afr_yes);
@@ -140,6 +142,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
 
     }
 
+    //checks if check box is check either yes or no not both or neither
     public boolean validYesOrNo(CheckBox yes, CheckBox no){
         if (yes.isChecked() && no.isChecked()){
             Toast.makeText(ApplyForRideActivity.this, "Can Not Select Yes and No", Toast.LENGTH_LONG).show();
@@ -155,6 +158,7 @@ public class ApplyForRideActivity extends AppCompatActivity {
         }
     }
 
+    //chekcs if address is valid
     public boolean validAddress(String s){
         if (s  == null){
             Toast.makeText(ApplyForRideActivity.this, "Invalid Address", Toast.LENGTH_SHORT).show();

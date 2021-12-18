@@ -41,8 +41,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
     private User userProfile;
     private String spinnerResult, party1name, party2name, party1phonenumber, party2phonenumber, party1major, party2major;
 
-
-
+    //starts the create ride page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -91,7 +90,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
 
     }
 
-
+    //dissplays the item selected in the spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         spinnerResult = parent.getItemAtPosition(position).toString();
@@ -110,6 +109,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
     }
 
 
+    //creates the ride and puts it into the database
     private void createRide(){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -139,7 +139,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
                    boolean thu = tof(thday);
                    boolean fri = tof(fday);
 
-
+                   //checking if the data is formatted correctly
                    if (t.isEmpty()){
                        time.setError("time can not be empty");
                        time.requestFocus();
@@ -206,6 +206,8 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
            });
 
     }
+
+    //checks if time is formatted correctly
     private boolean checkTime(String time){
         if (time.length() > 3) {
             if (time.substring(time.length() - 2).toLowerCase(Locale.ROOT).equals("am") || time.substring(time.length() - 2, time.length()).toLowerCase(Locale.ROOT).equals("pm")) {
@@ -221,6 +223,7 @@ public class CreateRide extends AppCompatActivity implements AdapterView.OnItemS
         return false;
     }
 
+    //checks that atlest one day is selected
     private boolean checkAtLeastOneDay(boolean m, boolean t, boolean w, boolean th, boolean f){
         if(m || t || w || th || f){
             return true;
