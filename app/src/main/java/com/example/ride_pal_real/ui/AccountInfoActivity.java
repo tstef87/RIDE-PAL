@@ -26,6 +26,8 @@ import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.databinding.ActivityAccountInfoBinding;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.profile.ProfileActivity;
+import com.example.ride_pal_real.ui.yourRidePals.YourRideView;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -152,14 +154,19 @@ public class AccountInfoActivity extends AppCompatActivity {
 
 
 
-        storageRef.child("profilePics/"+userId+".jpg").getDownloadUrl()
-                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.with(AccountInfoActivity.this).load(uri).into(navProfilePic);
-                    }
-                });
+        if(storageRef.child("profilePics/"+userId+".jpg") != null) {
+            storageRef.child("profilePics/" + userId + ".jpg").getDownloadUrl()
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            if (uri != null) {
+                                Picasso.with(AccountInfoActivity.this).load(uri).into(navProfilePic);
+                            }
 
+
+                        }
+                    });
+        }
 
 
     }

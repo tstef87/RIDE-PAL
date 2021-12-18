@@ -160,6 +160,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                 pb.setVisibility(View.INVISIBLE);
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 user.sendEmailVerification();
+                                String id = user.getUid();
+
+//                                FirebaseStorage storageReference = FirebaseStorage.getInstance();
+//                                String filename = id+".jpg";
+//                                storageReference.getReference("/profilePics/"+filename).putFile(getDrawable());
+
                                 startActivity(new Intent(RegisterUser.this, SignInPage.class));
 
 

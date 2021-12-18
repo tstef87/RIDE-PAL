@@ -7,18 +7,41 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".ui.rides.create.RideDiscription">
-
     <TextView
         android:id="@+id/dis_username_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="User name"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:drawablePadding="10dp"
+
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="146dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="30dp"
+        app:cardCornerRadius="75dp"
+        app:cardPreventCornerOverlap="false">
+
+        <ImageView
+            android:id="@+id/iv_cp"
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/ic_launcher_profileicon"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <TextView
         android:id="@+id/dis_destination_tv"
@@ -27,6 +50,8 @@
         android:layout_marginTop="8dp"
         android:text="Destination"
         android:textSize="20sp"
+        android:drawablePadding="10dp"
+        app:drawableLeftCompat="@drawable/ic_pin"
 
  />
 
@@ -37,6 +62,8 @@
         android:layout_marginTop="8dp"
         android:text="Time"
         android:textSize="20sp"
+        android:drawablePadding="10dp"
+        app:drawableLeftCompat="@drawable/ic_time"
      />
 
     <TextView
@@ -46,17 +73,21 @@
         android:layout_marginTop="8dp"
         android:text="major"
         android:textSize="20sp"
+        android:drawablePadding="10dp"
+        app:drawableLeftCompat="@drawable/ic_major"
       />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.example.ride_pal_real.ui.map.MapsFragment"
-        android:layout_width="246dp"
-        android:layout_height="251dp"
+    <TextView
+        android:id="@+id/vom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-    />
+        android:text="view on map"
+        android:textSize="15sp"
+        android:clickable="true"/>
 
     <Button
+
         android:id="@+id/accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

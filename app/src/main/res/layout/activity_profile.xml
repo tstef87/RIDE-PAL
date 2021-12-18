@@ -43,10 +43,10 @@
         android:layout_margin="4dp"
         android:drawablePadding="7dp"
         android:text="Name"
-        android:drawableLeft="@drawable/ic_name"
 
         android:paddingLeft="10dp"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        app:drawableLeftCompat="@drawable/ic_name" />
 
     <TextView
         android:id="@+id/major"
@@ -56,9 +56,9 @@
         android:drawablePadding="7dp"
         android:text="Major"
         android:paddingLeft="10dp"
-        android:drawableLeft="@drawable/ic_major"
 
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        app:drawableLeftCompat="@drawable/ic_major" />
 
     <TextView
         android:id="@+id/email"
@@ -68,8 +68,8 @@
         android:drawablePadding="7dp"
         android:text="Email"
         android:paddingLeft="10dp"
-        android:drawableLeft="@drawable/ic_email"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        app:drawableLeftCompat="@drawable/ic_email" />
 
     <TextView
         android:id="@+id/phone"
@@ -78,11 +78,11 @@
         android:layout_margin="4dp"
         android:drawablePadding="7dp"
         android:text="Phone no"
-        android:drawableLeft="@drawable/ic_pn"
 
         android:paddingLeft="10dp"
 
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        app:drawableLeftCompat="@drawable/ic_pn" />
 
 
     <Button

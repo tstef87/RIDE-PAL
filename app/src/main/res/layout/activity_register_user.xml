@@ -29,6 +29,10 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/lastName"
+        app:drawableLeftCompat="@drawable/ic_name"
+        android:drawablePadding="10dp"
+
+
    />
 
     <EditText
@@ -40,8 +44,11 @@
         android:hint="Last Name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:drawablePadding="10dp"
+
         app:layout_constraintBottom_toTopOf="@+id/sjuEmail"
- />
+        app:drawableLeftCompat="@drawable/ic_name"
+        />
 
     <EditText
         android:id="@+id/password"
@@ -53,6 +60,9 @@
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/register_button"
+        app:drawableLeftCompat="@drawable/ic_password"
+        android:drawablePadding="10dp"
+
 />
 
     <EditText
@@ -64,6 +74,9 @@
         android:hint="SJU Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:drawablePadding="10dp"
+        app:drawableLeftCompat="@drawable/ic_email"
+
   />
 
     <EditText
@@ -74,7 +87,10 @@
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="phone"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        app:drawableLeftCompat="@drawable/ic_pn"
+        android:drawablePadding="10dp"
+/>
 
     <EditText
         android:id="@+id/major"
@@ -83,7 +99,10 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="Major"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        app:drawableLeftCompat="@drawable/ic_major"
+        android:drawablePadding="10dp"
+/>
 
     <ProgressBar
         android:id="@+id/progressBar"

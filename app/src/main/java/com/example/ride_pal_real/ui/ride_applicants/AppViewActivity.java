@@ -18,6 +18,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -40,6 +42,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AppViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,6 +77,9 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
 
         decline = (Button) findViewById(R.id.av_decline);
         decline.setOnClickListener(this);
+
+        TextView vom = (TextView) findViewById(R.id.av_vom);
+        vom.setOnClickListener(this);
 
         Bundle recdData = getIntent().getExtras();
 
@@ -133,6 +139,10 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.av_message:
                 openMesseges();
+                break;
+
+            case R.id.av_vom:
+                openMap();
                 break;
 
         }
@@ -265,12 +275,33 @@ public class AppViewActivity extends AppCompatActivity implements View.OnClickLi
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.with(AppViewActivity.this).load(uri).into(profilePic);
+                        try {
+                            Picasso.with(AppViewActivity.this).load(uri).into(profilePic);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
+    }
 
 
 
+    private void openMap(){
+
+        String url = "https://www.google.com/maps/dir/?api=1&destination=" + application.getAddress();
+        Uri gmmIntentUri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        intent.setPackage("com.google.android.apps.maps");
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            try {
+                Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                startActivity(unrestrictedIntent);
+            } catch (ActivityNotFoundException innerEx) {
+                Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 

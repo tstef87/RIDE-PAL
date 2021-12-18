@@ -43,6 +43,7 @@
             android:imeOptions="actionSearch"
             android:textSize="15sp"
             android:singleLine="true"
+
             />
 
 

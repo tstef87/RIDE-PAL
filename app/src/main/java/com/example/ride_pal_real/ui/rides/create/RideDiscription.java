@@ -8,6 +8,9 @@ import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
 import com.example.ride_pal_real.ui.map.MapsActivity;
 import com.example.ride_pal_real.ui.map.MapsFragment;
+import com.example.ride_pal_real.ui.profile.ProfileActivity;
+import com.example.ride_pal_real.ui.yourRidePals.YourRideView;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,23 +20,31 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RideDiscription extends AppCompatActivity {
 
-    private TextView nameTV, timeTV, destinationTV, majorTV;
-    private Button back, accept;
-    private User userProfile;
-    private FirebaseAuth mAuth;
-    private DatabaseReference reference;
+    TextView nameTV, timeTV, destinationTV, majorTV, vom;
+    Button back, accept;
+    User userProfile;
+    FirebaseAuth mAuth;
+    DatabaseReference reference;
 
-    String party2name, party2phonenumber, party2address, party2major;
+    String party2name, party2phonenumber, party2address, party2major, address;
+    ImageView profilePic;
+    Bundle recdData;
 
 
 
@@ -43,23 +54,35 @@ public class RideDiscription extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_discription);
 
-        Bundle recdData = getIntent().getExtras();
+        recdData = getIntent().getExtras();
 
         String name = recdData.getString("party1name");
         String des = recdData.getString("destination");
         String time = recdData.getString("time");
         String m = recdData.getString("party1major");
+        address = recdData.getString("party1address");
 
 
         nameTV = findViewById(R.id.dis_username_tv);
         timeTV = findViewById(R.id.dis_time_tv);
         destinationTV = findViewById(R.id.dis_destination_tv);
         majorTV = findViewById(R.id.dis_major);
+        profilePic = findViewById(R.id.iv_cp);
+        vom = findViewById(R.id.vom);
+
+        setPP();
 
         nameTV.setText(name);
         timeTV.setText(des);
         destinationTV.setText(time);
         majorTV.setText(m);
+
+        vom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMap();
+            }
+        });
 
         back = findViewById(R.id.ride_dis_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +159,47 @@ public class RideDiscription extends AppCompatActivity {
             }
         });
     }
+
+
+    private void setPP(){
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        ImageView img = (ImageView) findViewById(R.id.iv_cp);
+
+        storageRef.child("profilePics/"+recdData.getString("party1id")+".jpg").getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        try {
+
+                            Picasso.with(RideDiscription.this).load(uri).into(img);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    private void openMap(){
+
+        String url = "https://www.google.com/maps/dir/?api=1&destination="+address;
+
+        Uri gmmIntentUri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        intent.setPackage("com.google.android.apps.maps");
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            try {
+                Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                startActivity(unrestrictedIntent);
+            } catch (ActivityNotFoundException innerEx) {
+                Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 
 
 }

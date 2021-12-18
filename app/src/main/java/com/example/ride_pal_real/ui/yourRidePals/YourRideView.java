@@ -1,7 +1,10 @@
 package com.example.ride_pal_real.ui.yourRidePals;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.profile.ProfileActivity;
 import com.example.ride_pal_real.ui.rides.create.Rides;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -10,6 +13,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +28,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -196,5 +203,26 @@ public class YourRideView extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
+    private void setPP() {
+
+        ImageView img = (ImageView) findViewById(R.id.img);
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        storageRef.child("profilePics/" + userId + ".jpg").getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        try {
+                            Picasso.with(YourRideView.this).load(uri).into(img);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
 }
 

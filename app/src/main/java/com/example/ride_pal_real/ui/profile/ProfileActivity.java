@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ride_pal_real.R;
 import com.example.ride_pal_real.sign_in.User;
 import com.example.ride_pal_real.ui.AccountInfoActivity;
+import com.example.ride_pal_real.ui.yourRidePals.YourRideView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -131,7 +132,14 @@ public class ProfileActivity extends AppCompatActivity {
         .addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(ProfileActivity.this).load(uri).into(img);
+                try {
+                    Picasso.with(ProfileActivity.this).load(uri).into(img);
+                }
+
+                 catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
